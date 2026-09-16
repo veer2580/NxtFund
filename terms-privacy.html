@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NXTFund - Terms & Privacy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            red: '#FA4A23',
+                            lightRed: '#FFF5F2',
+                            dark: '#111827',
+                            gray: '#6B7280',
+                            lightGray: '#F9FAFB',
+                            border: '#E5E7EB'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html, body { overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-white text-gray-800 antialiased selection:bg-brand-red selection:text-white">
+
+    <nav class="relative flex items-center justify-between px-6 py-4 max-w-[1400px] mx-auto w-full bg-white">
+        <a href="index.html" class="cursor-pointer">
+            <img src="assets/images/logo/log1.png" alt="NXT Fund" class="h-16 w-auto object-contain">
+        </a>
+
+        <ul id="desktop-menu" class="hidden lg:flex items-center space-x-8 text-[15px] font-semibold text-gray-800">
+            <li class="cursor-pointer hover:text-[#F24E2B] transition pb-1"><a href="startups.html">Startups</a></li>
+            <li class="cursor-pointer hover:text-[#F24E2B] transition pb-1"><a href="investor-brief.html">Investors</a></li>
+            <li class="cursor-pointer hover:text-[#F24E2B] transition pb-1"><a href="partners.html">Partners</a></li>
+            <li class="cursor-pointer hover:text-[#F24E2B] transition pb-1"><a href="events.html">Events</a></li>
+            <li class="cursor-pointer hover:text-[#F24E2B] transition pb-1"><a href="blog-insights.html">News</a></li>
+            <li class="cursor-pointer hover:text-[#F24E2B] transition pb-1"><a href="gallery.html">Gallery</a></li>
+        </ul>
+
+        <div id="desktop-cta" class="hidden lg:flex items-center space-x-3">
+            <a href="yc/yc-application.html" class="bg-[#F24E2B] text-white text-[15px] font-semibold py-2.5 px-6 rounded-md hover:bg-orange-600 transition">
+                Apply for Funding
+            </a>
+            </div>
+
+        <button id="mobile-toggle" aria-label="Toggle menu" class="lg:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand">
+            <svg id="icon-menu" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <svg id="icon-close" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+
+        <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-lg z-50">
+            <ul class="flex flex-col p-4 space-y-2 text-[15px] font-semibold text-gray-800">
+                <li class="hover:text-brand transition"><a href="startups.html" class="block py-2">Startups</a></li>
+                <li class="hover:text-brand transition"><a href="investor-brief.html" class="block py-2">Investors</a></li>
+                <li class="hover:text-brand transition"><a href="partners.html" class="block py-2">Partners</a></li>
+                <li class="hover:text-brand transition"><a href="events.html" class="block py-2">Events</a></li>
+                <li class="hover:text-brand transition"><a href="blog-insights.html" class="block py-2">News</a></li>
+                <li class="hover:text-brand transition"><a href="gallery.html" class="block py-2">Gallery</a></li>
+                <li class="pt-2">
+                    <a href="yc/yc-application.html" class="block text-center bg-brand text-white font-semibold py-3 rounded-md hover:bg-orange-600 transition">Apply for Funding</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="bg-[#111827] text-white py-14 px-6 lg:px-12 border-b border-[#F24E2B]/20">
+        <div class="max-w-[1240px] mx-auto">
+            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-[#FA4A23]">
+                <i class="fa-solid fa-scale-balanced"></i>
+                Legal Centre
+            </div>
+            <h1 class="mt-5 font-serif text-4xl sm:text-5xl font-bold leading-[1.05] tracking-[-0.02em]">
+                Terms &amp; Privacy
+            </h1>
+            <p class="mt-6 max-w-3xl text-base sm:text-lg leading-relaxed text-gray-400">
+                The terms and conditions and privacy policy that govern your access to and use of the NXTFUND website, together with our commitment to protecting your personal information.
+            </p>
+            <div class="mt-8 flex flex-wrap gap-2.5 text-xs font-semibold">
+                <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-2">
+                    <i class="fa-regular fa-calendar-days text-[#FA4A23]"></i> Last Updated: September 7, 2026
+                </span>
+                <span class="rounded-full border border-white/10 bg-white/5 px-3.5 py-2">Terms &amp; Conditions</span>
+                <span class="rounded-full border border-white/10 bg-white/5 px-3.5 py-2">Privacy Policy</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="max-w-[1240px] mx-auto grid grid-cols-1 lg:grid-cols-[270px_minmax(0,1fr)] gap-10 px-6 lg:px-10 py-12 lg:py-16">
+        <aside class="lg:sticky lg:top-6 lg:self-start lg:max-h-[calc(100vh-3rem)] lg:overflow-y-auto lg:pr-4">
+            <p class="text-xs font-bold uppercase tracking-[0.17em] text-gray-500">In this document</p>
+            <nav class="mt-4 border-l border-gray-200" aria-label="Terms sections">
+                <p class="mt-2 px-4 pt-4 text-[11px] font-bold uppercase tracking-[0.15em] text-[#F24E2B]">Terms &amp; Conditions</p>
+                <a href="#t-about" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">01.</span>About NXTFUND</a>
+                <a href="#t-eligibility" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">02.</span>Eligibility</a>
+                <a href="#t-startup-apps" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">03.</span>Startup Applications</a>
+                <a href="#t-no-funding" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">04.</span>No Guarantee of Funding</a>
+                <a href="#t-info" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">05.</span>Information Provided by Users</a>
+                <a href="#t-confidentiality" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">06.</span>Confidentiality</a>
+                <a href="#t-ip" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">07.</span>Intellectual Property</a>
+                <a href="#t-user-content" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">08.</span>User Content</a>
+                <a href="#t-prohibited" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">09.</span>Prohibited Use</a>
+                <a href="#t-third-party" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">10.</span>Third-Party Services &amp; Links</a>
+                <a href="#t-availability" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">11.</span>Website Availability</a>
+                <a href="#t-disclaimers" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">12.</span>Disclaimers</a>
+                <a href="#t-investment-disclaimer" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">13.</span>Investment Disclaimer</a>
+                <a href="#t-liability" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">14.</span>Limitation of Liability</a>
+                <a href="#t-indemnification" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">15.</span>Indemnification</a>
+                <a href="#t-privacy" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">16.</span>Privacy</a>
+                <a href="#t-communications" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">17.</span>Communications</a>
+                <a href="#t-modification" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">18.</span>Modification of These Terms</a>
+                <a href="#t-termination" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">19.</span>Termination</a>
+                <a href="#t-governing-law" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">20.</span>Governing Law &amp; Jurisdiction</a>
+                <a href="#t-severability" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">21.</span>Severability</a>
+                <a href="#t-entire-agreement" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">22.</span>Entire Agreement</a>
+                <a href="#t-contact" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">23.</span>Contact Us</a>
+
+                <p class="mt-2 px-4 pt-4 text-[11px] font-bold uppercase tracking-[0.15em] text-[#F24E2B]">Privacy Policy</p>
+                <a href="#p-collect" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">01.</span>Information We Collect</a>
+                <a href="#p-use" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">02.</span>How We Use Your Information</a>
+                <a href="#p-startup" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">03.</span>Startup &amp; Business Information</a>
+                <a href="#p-share" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">04.</span>How We Share Information</a>
+                <a href="#p-confidential" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">05.</span>Confidential Business Information</a>
+                <a href="#p-cookies" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">06.</span>Cookies &amp; Tracking Technologies</a>
+                <a href="#p-security" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">07.</span>Data Security</a>
+                <a href="#p-retention" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">08.</span>Data Retention</a>
+                <a href="#p-third-party" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">09.</span>Third-Party Services</a>
+                <a href="#p-links" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">10.</span>Third-Party Links</a>
+                <a href="#p-rights" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">11.</span>Your Privacy Rights</a>
+                <a href="#p-children" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">12.</span>Children's Privacy</a>
+                <a href="#p-transfers" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">13.</span>International Data Transfers</a>
+                <a href="#p-app-data" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">14.</span>Application &amp; Communication Data</a>
+                <a href="#p-fraud" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">15.</span>Fraud &amp; Security</a>
+                <a href="#p-changes" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">16.</span>Changes to This Privacy Policy</a>
+                <a href="#p-gov-law" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">17.</span>Governing Law</a>
+                <a href="#p-contact" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">18.</span>Contact Us</a>
+                <a href="#p-acceptance" class="block border-l-2 border-transparent py-1.5 pl-4 text-sm leading-5 text-gray-500 hover:border-[#F24E2B] hover:text-gray-900 transition"><span class="mr-1.5 font-semibold text-[#F24E2B]">19.</span>Acceptance</a>
+            </nav>
+        </aside>
+
+        <article class="min-w-0">
+            <div class="rounded-2xl border border-[#F24E2B]/25 bg-brand-lightRed p-5 sm:p-6 text-sm leading-7 text-gray-800">
+                Welcome to NXTFUND, a venture investment and startup ecosystem initiative of Celebso Group, operated by Celebso Technologies. These Terms &amp; Conditions and the Privacy Policy together govern your access to and use of www.nxtfund.in. Please read them carefully before using the Website.
+            </div>
+
+            <div class="mt-11 space-y-12">
+
+                <p class="text-xs font-bold uppercase tracking-[0.17em] text-[#F24E2B]">Part 1 - Terms &amp; Conditions</p>
+
+                <section id="t-about" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">01</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">About NXTFUND</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>NXTFUND is a venture investment initiative associated with Celebso Group and operated by Celebso Technologies.</p>
+                        <p>NXTFUND may provide information relating to startups, entrepreneurship, funding opportunities, investment initiatives, applications, programs, and related business activities.</p>
+                        <p>The Website is intended to facilitate communication and information sharing between NXTFUND and founders, startups, investors, partners, and other ecosystem participants.</p>
+                    </div>
+                </section>
+
+                <section id="t-eligibility" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">02</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Eligibility</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>By using this Website, you represent that:</p>
+                        <ul class="space-y-2.5">
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>You are legally capable of entering into a binding agreement.</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>The information you provide is accurate and complete.</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>You will use the Website only for lawful purposes.</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>You will not misuse, disrupt, or attempt to compromise the Website or its services.</span></li>
+                        </ul>
+                        <p>If you are submitting information on behalf of a company or startup, you represent that you are authorized to provide such information.</p>
+                    </div>
+                </section>
+
+                <section id="t-startup-apps" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">03</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Startup Applications</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>NXTFUND may provide founders or startups with the ability to submit applications, proposals, business information, pitch materials, financial information, or other documents for consideration.</p>
+                        <p>Submission of an application does not guarantee:</p>
+                        <ul class="space-y-2.5">
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Funding;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Investment;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Selection;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Partnership;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Incubation;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Acceleration;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Mentorship;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Commercial opportunities; or</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Any other benefit.</span></li>
+                        </ul>
+                        <p>NXTFUND reserves the right to review, evaluate, reject, or discontinue any application at its discretion.</p>
+                    </div>
+                </section>
+
+                <section id="t-no-funding" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">04</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">No Guarantee of Funding</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>Any information displayed on the Website regarding funding amounts, investment opportunities, programs, portfolio companies, or potential investments is provided for informational purposes unless expressly stated otherwise in a separate written agreement.</p>
+                        <p>Nothing on the Website should be interpreted as a promise, commitment, or guarantee that NXTFUND will invest in any particular startup or company.</p>
+                        <p>Any investment or funding commitment, where applicable, shall be subject to separate documentation, due diligence, internal approvals, applicable laws, and mutually agreed terms.</p>
+                    </div>
+                </section>
+
+                <section id="t-info" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">05</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Information Provided by Users</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>You are responsible for ensuring that all information submitted to NXTFUND is:</p>
+                        <ul class="space-y-2.5">
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Accurate;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Complete;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Current;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Lawful; and</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Not misleading.</span></li>
+                        </ul>
+                        <p>You must not submit information that infringes the intellectual property, privacy, confidentiality, or other legal rights of another person or organization.</p>
+                        <p>NXTFUND may rely on information provided by users when reviewing applications or communicating with applicants.</p>
+                    </div>
+                </section>
+
+                <section id="t-confidentiality" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">06</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Confidentiality</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>Users should carefully consider what information they submit through the Website.</p>
+                        <p>Where a separate confidentiality or non-disclosure agreement ("NDA") has been executed between the parties, the confidentiality obligations contained in that agreement shall apply.</p>
+                        <p>Unless otherwise agreed in writing, submission of information through the Website alone does not automatically create a confidential or fiduciary relationship between the user and NXTFUND.</p>
+                        <p>Users should avoid submitting passwords, payment-card information, government identification documents, or other highly sensitive information unless specifically requested through an authorized process.</p>
+                    </div>
+                </section>
+
+                <section id="t-ip" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">07</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Intellectual Property</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>All content available on the Website, including but not limited to:</p>
+                        <ul class="space-y-2.5">
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Logos;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Brand names;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Text;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Graphics;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Images;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Designs;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Website layouts;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Software;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>User interface elements;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Videos;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Icons;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Trademarks; and</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Other materials</span></li>
+                        </ul>
+                        <p>may be owned by or licensed to Celebso Technologies, Celebso Group, NXTFUND, or their respective partners.</p>
+                        <p>Such content may not be copied, reproduced, modified, distributed, republished, sold, or commercially exploited without prior written permission, except where permitted by applicable law.</p>
+                    </div>
+                </section>
+
+                <section id="t-user-content" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">08</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">User Content</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>Where the Website permits users to submit content, you retain ownership of your content, subject to any separate agreement entered into with NXTFUND.</p>
+                        <p>By submitting content to NXTFUND, you grant NXTFUND permission to use, review, reproduce, store, process, and communicate such content to the extent reasonably necessary to evaluate applications, provide services, operate the Website, or perform activities connected with NXTFUND.</p>
+                        <p>NXTFUND does not claim ownership of a startup's intellectual property merely because an application or proposal has been submitted, unless otherwise expressly agreed in writing.</p>
+                    </div>
+                </section>
+
+                <section id="t-prohibited" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">09</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Prohibited Use</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>You agree not to:</p>
+                        <ul class="space-y-2.5">
+                            <li class="flex gap-3"><i class="fa-solid fa-xmark mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Use the Website for unlawful purposes;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-xmark mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Submit false or misleading information;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-xmark mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Impersonate another individual or organization;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-xmark mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Attempt to gain unauthorized access to the Website;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-xmark mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Introduce malware, viruses, or harmful code;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-xmark mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Interfere with the Website's operation;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-xmark mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Scrape or systematically collect Website content without permission;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-xmark mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Reverse engineer or attempt to reproduce Website systems;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-xmark mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Abuse application or communication features; or</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-xmark mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Use the Website to commit fraud or facilitate illegal activity.</span></li>
+                        </ul>
+                        <p>NXTFUND may restrict or terminate access where it reasonably believes these Terms have been violated.</p>
+                    </div>
+                </section>
+
+                <section id="t-third-party" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">10</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Third-Party Services and Links</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>The Website may contain links to third-party websites, platforms, tools, or services.</p>
+                        <p>NXTFUND does not control and is not responsible for the content, availability, security, privacy practices, or policies of third-party websites.</p>
+                        <p>Your use of third-party services is subject to the terms and policies of the relevant third party.</p>
+                    </div>
+                </section>
+
+                <section id="t-availability" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">11</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Website Availability</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>We aim to keep the Website available and functional, but we do not guarantee that:</p>
+                        <ul class="space-y-2.5">
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>The Website will always be available;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>The Website will be uninterrupted;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>All information will always be accurate or current;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>The Website will be free from errors or technical issues; or</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>The Website will be free from viruses or other harmful components.</span></li>
+                        </ul>
+                        <p>NXTFUND may modify, suspend, restrict, or discontinue any part of the Website without prior notice where reasonably necessary.</p>
+                    </div>
+                </section>
+
+                <section id="t-disclaimers" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">12</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Disclaimers</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>The Website and its content are provided on an "as available" and "as is" basis to the extent permitted by applicable law.</p>
+                        <p>Information available through NXTFUND should not be considered:</p>
+                        <ul class="space-y-2.5">
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Legal advice;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Tax advice;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Financial advice;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Investment advice;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Accounting advice; or</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>A recommendation to invest in any particular company or opportunity.</span></li>
+                        </ul>
+                        <p>Users should obtain appropriate professional advice before making financial, investment, legal, or business decisions.</p>
+                    </div>
+                </section>
+
+                <section id="t-investment-disclaimer" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">13</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Investment Disclaimer</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>Startup investments involve significant risks, including the potential loss of capital.</p>
+                        <p>Past performance, previous funding, portfolio information, projections, business plans, market estimates, or other information displayed on the Website should not be interpreted as a guarantee of future performance.</p>
+                        <p>Any investment decision should be made only after appropriate independent evaluation and due diligence.</p>
+                        <p>Nothing on the Website constitutes an offer, solicitation, invitation, or commitment to invest unless expressly provided through legally valid documentation and permitted under applicable law.</p>
+                    </div>
+                </section>
+
+                <section id="t-liability" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">14</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Limitation of Liability</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>To the maximum extent permitted by applicable law, NXTFUND, Celebso Group, Celebso Technologies, and their respective directors, employees, representatives, partners, or affiliates shall not be liable for indirect, incidental, special, consequential, or similar losses arising from or relating to:</p>
+                        <ul class="space-y-2.5">
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Use or inability to use the Website;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Information submitted through the Website;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Investment or business decisions;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Funding outcomes;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Loss of business opportunities;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Technical interruptions;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Third-party services; or</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Reliance on information published on the Website.</span></li>
+                        </ul>
+                        <p>Nothing in these Terms excludes liability that cannot legally be excluded under applicable law.</p>
+                    </div>
+                </section>
+
+                <section id="t-indemnification" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">15</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Indemnification</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>You agree to indemnify and hold harmless NXTFUND, Celebso Group, Celebso Technologies, and their respective directors, employees, representatives, and affiliates from claims, liabilities, damages, losses, costs, or expenses arising from:</p>
+                        <ul class="space-y-2.5">
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Your violation of these Terms;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Your misuse of the Website;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Information or content submitted by you;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Your violation of another person's rights; or</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Your violation of applicable laws or regulations.</span></li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="t-privacy" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">16</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Privacy</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>Your use of the Website may involve the collection and processing of personal information.</p>
+                        <p>Such information will be handled in accordance with the NXTFUND Privacy Policy.</p>
+                        <p>By using the Website, you acknowledge that you have read the applicable Privacy Policy.</p>
+                    </div>
+                </section>
+
+                <section id="t-communications" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">17</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Communications</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>By submitting your contact information through the Website, you may receive communications relating to:</p>
+                        <ul class="space-y-2.5">
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Your application;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>NXTFUND programs;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Startup opportunities;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Events;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Partnerships;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Updates; or</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Other relevant communications.</span></li>
+                        </ul>
+                        <p>You may contact us if you wish to modify your communication preferences.</p>
+                    </div>
+                </section>
+
+                <section id="t-modification" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">18</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Modification of These Terms</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>NXTFUND may update or modify these Terms from time to time.</p>
+                        <p>The updated version will be published on the Website with a revised "Last Updated" date.</p>
+                        <p>Your continued use of the Website after changes are published constitutes acceptance of the updated Terms, to the extent permitted by applicable law.</p>
+                    </div>
+                </section>
+
+                <section id="t-termination" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">19</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Termination</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>NXTFUND may suspend or terminate your access to the Website where it reasonably believes that you have:</p>
+                        <ul class="space-y-2.5">
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Violated these Terms;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Misused the Website;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Submitted fraudulent information;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Engaged in unlawful activity; or</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Created a security or operational risk.</span></li>
+                        </ul>
+                        <p>Termination does not affect rights or obligations that accrued before termination.</p>
+                    </div>
+                </section>
+
+                <section id="t-governing-law" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">20</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Governing Law and Jurisdiction</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>These Terms shall be governed by and interpreted in accordance with the laws applicable in India.</p>
+                        <p>Subject to applicable law, courts having jurisdiction in Jaipur, Rajasthan, India shall have jurisdiction over disputes arising from or relating to these Terms or your use of the Website.</p>
+                    </div>
+                </section>
+
+                <section id="t-severability" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">21</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Severability</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] text-sm leading-7 text-gray-600">
+                        <p>If any provision of these Terms is determined to be invalid, unlawful, or unenforceable, the remaining provisions shall continue to remain effective to the extent permitted by applicable law.</p>
+                    </div>
+                </section>
+
+                <section id="t-entire-agreement" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">22</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Entire Agreement</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] text-sm leading-7 text-gray-600">
+                        <p>These Terms, together with the Privacy Policy and any additional written agreements entered into between you and NXTFUND, constitute the applicable understanding regarding your use of the Website, unless otherwise expressly agreed in writing.</p>
+                    </div>
+                </section>
+
+                <section id="t-contact" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">23</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Contact Us</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>For questions, concerns, applications, or other matters relating to these Terms, you may contact us at:</p>
+                        <div class="rounded-xl border border-gray-200 bg-gray-50 p-5 space-y-2">
+                            <p class="font-bold text-gray-900">NXTFUND</p>
+                            <p>An initiative of Celebso Group</p>
+                            <p>Operated by Celebso Technologies</p>
+                            <p>Jaipur, Rajasthan, India</p>
+                            <p class="pt-1">Email: <a href="mailto:celebso54@gmail.com" class="text-[#F24E2B] font-semibold hover:underline">celebso54@gmail.com</a></p>
+                            <p>Website: <a href="https://www.nxtfund.in" class="text-[#F24E2B] font-semibold hover:underline" target="_blank" rel="noopener">www.nxtfund.in</a></p>
+                        </div>
+                        <p class="pt-1 text-xs text-gray-400">© 2026 ANTELLAY Labs. All Rights Reserved. A Celebso Group Company.</p>
+                    </div>
+                </section>
+
+                <div class="flex items-center gap-4 pt-4">
+                    <span class="h-px flex-1 bg-gray-200"></span>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-semibold">Privacy Policy</h2>
+                    <span class="h-px flex-1 bg-gray-200"></span>
+                </div>
+
+                <section id="p-collect" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">01</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Information We Collect</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>Depending on how you use our Website, we may collect the following information.</p>
+                        <p class="pt-2 font-semibold text-gray-900">1.1 Information You Provide</p>
+                        <p>When you contact us, submit a startup application, or otherwise communicate with NXTFUND, you may provide information such as:</p>
+                        <ul class="space-y-2.5">
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Full name</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Email address</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Phone number</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Company or startup name</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Founder or team information</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Business information</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Website and social-media links</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Startup description</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Business model</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Funding requirements</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Pitch-deck or business documents</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Other information voluntarily submitted by you</span></li>
+                        </ul>
+                        <p>You should only provide information that you are authorized to share.</p>
+                        <p class="pt-2 font-semibold text-gray-900">1.2 Information Collected Automatically</p>
+                        <p>When you visit our Website, certain technical information may be collected automatically, including:</p>
+                        <ul class="space-y-2.5">
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>IP address</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Browser type</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Device type</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Operating system</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Pages visited</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Approximate usage information</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Date and time of access</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Referring website</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Technical and diagnostic information</span></li>
+                        </ul>
+                        <p>This information may be used to maintain, secure, and improve the Website.</p>
+                    </div>
+                </section>
+
+                <section id="p-use" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">02</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">How We Use Your Information</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>We may use information collected through the Website to:</p>
+                        <ul class="space-y-2.5">
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Process startup or funding applications;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Review and evaluate submitted information;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Communicate with founders, applicants, partners, and users;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Respond to enquiries and requests;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Provide information about NXTFUND programs and initiatives;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Improve our Website and services;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Maintain Website security;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Detect and prevent fraud, abuse, or unauthorized activity;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Maintain internal records;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Comply with applicable legal and regulatory requirements; and</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Carry out legitimate business activities.</span></li>
+                        </ul>
+                        <p>We will not use your information for purposes materially unrelated to the purpose for which it was collected without appropriate notice or lawful basis where required.</p>
+                    </div>
+                </section>
+
+                <section id="p-startup" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">03</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Startup and Business Information</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>If you submit information about a startup or business, NXTFUND may use that information for purposes including:</p>
+                        <ul class="space-y-2.5">
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Application review;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Business evaluation;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Due diligence;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Internal assessment;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Communication with you;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Evaluation of potential investment or partnership opportunities; and</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Related NXTFUND activities.</span></li>
+                        </ul>
+                        <p>Submitting information does not guarantee funding, investment, selection, partnership, or any other outcome.</p>
+                    </div>
+                </section>
+
+                <section id="p-share" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">04</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">How We Share Information</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>We may share information where reasonably necessary with:</p>
+                        <ul class="space-y-2.5">
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Employees and authorized representatives;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Professional advisors;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Service providers;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Technology and hosting providers;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Legal, accounting, or compliance professionals;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Business partners involved in relevant activities; or</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Government, regulatory, or law-enforcement authorities where required by law.</span></li>
+                        </ul>
+                        <p>We do not intend to sell your personal information as a commercial data product.</p>
+                        <p>Where information is shared with service providers, we seek to limit access to information reasonably necessary for the relevant purpose.</p>
+                    </div>
+                </section>
+
+                <section id="p-confidential" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">05</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Confidential Business Information</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>NXTFUND understands that founders may submit commercially sensitive information.</p>
+                        <p>However, submission of information through the Website does not automatically create a legally binding confidentiality or non-disclosure obligation unless a separate agreement expressly provides for one.</p>
+                        <p>If you have highly confidential or proprietary information, you should consider whether an appropriate NDA or other confidentiality agreement is required before sharing such information.</p>
+                    </div>
+                </section>
+
+                <section id="p-cookies" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">06</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Cookies and Tracking Technologies</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>The Website may use cookies or similar technologies to:</p>
+                        <ul class="space-y-2.5">
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Enable Website functionality;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Remember preferences;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Understand Website usage;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Improve performance;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Analyze traffic; and</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Enhance user experience.</span></li>
+                        </ul>
+                        <p>You may be able to control cookies through your browser settings.</p>
+                        <p>Disabling certain cookies may affect some Website functionality.</p>
+                    </div>
+                </section>
+
+                <section id="p-security" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">07</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Data Security</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>We take reasonable technical and organizational measures designed to protect information against unauthorized access, loss, misuse, alteration, or disclosure.</p>
+                        <p>However, no method of transmission or electronic storage is completely secure.</p>
+                        <p>Therefore, while we take reasonable precautions, we cannot guarantee absolute security of information transmitted to or stored by us.</p>
+                    </div>
+                </section>
+
+                <section id="p-retention" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">08</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Data Retention</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>We may retain information for as long as reasonably necessary to:</p>
+                        <ul class="space-y-2.5">
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Provide or administer our services;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Evaluate applications;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Maintain business records;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Resolve disputes;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Enforce agreements;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Meet legal or regulatory obligations; or</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Protect our legitimate business interests.</span></li>
+                        </ul>
+                        <p>Retention periods may vary depending on the nature and purpose of the information.</p>
+                    </div>
+                </section>
+
+                <section id="p-third-party" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">09</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Third-Party Services</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>Our Website may use third-party services for functions such as:</p>
+                        <ul class="space-y-2.5">
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Website hosting;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Analytics;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Communication;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Forms;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Security;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Cloud storage; or</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Other technical services.</span></li>
+                        </ul>
+                        <p>These third parties may process information according to their own privacy policies and applicable contractual obligations.</p>
+                        <p>We are not responsible for the independent privacy practices of third-party websites or services.</p>
+                    </div>
+                </section>
+
+                <section id="p-links" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">10</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Third-Party Links</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>The Website may contain links to external websites or platforms.</p>
+                        <p>If you follow a third-party link, you will leave the NXTFUND Website.</p>
+                        <p>We do not control the privacy policies or practices of those third-party websites and recommend reviewing their privacy policies before providing information.</p>
+                    </div>
+                </section>
+
+                <section id="p-rights" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">11</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Your Privacy Rights</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>Depending on applicable law, you may have rights regarding your personal information, which may include the ability to:</p>
+                        <ul class="space-y-2.5">
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Request access to certain personal information;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Request correction of inaccurate information;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Request deletion where legally applicable;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Withdraw certain permissions or consent;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Raise concerns regarding the processing of your information; and</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Request information about how your data is handled.</span></li>
+                        </ul>
+                        <p>To exercise an applicable privacy right, contact us using the details provided below.</p>
+                        <p>We may need to verify your request before taking action.</p>
+                    </div>
+                </section>
+
+                <section id="p-children" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">12</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Children's Privacy</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>The Website is not intended to knowingly collect personal information from children in circumstances where such collection is prohibited by applicable law.</p>
+                        <p>If you believe that a child has provided personal information to us improperly, please contact us so that we can review the matter and take appropriate action where required.</p>
+                    </div>
+                </section>
+
+                <section id="p-transfers" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">13</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">International Data Transfers</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>Depending on the technology providers and services used by NXTFUND, information may be processed or stored in locations outside the user's state or country.</p>
+                        <p>Where applicable, we will take reasonable steps to ensure that such processing is carried out in accordance with applicable legal requirements.</p>
+                    </div>
+                </section>
+
+                <section id="p-app-data" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">14</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Application and Communication Data</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>Information submitted through application forms, contact forms, emails, or other communication channels may be retained for legitimate business purposes, including reviewing applications, responding to enquiries, maintaining records, and communicating with applicants.</p>
+                        <p>Please ensure that information submitted through these channels is accurate and that you have the necessary authority to provide it.</p>
+                    </div>
+                </section>
+
+                <section id="p-fraud" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">15</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Fraud and Security</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>We may collect and use technical or other information where reasonably necessary to:</p>
+                        <ul class="space-y-2.5">
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Detect suspicious activity;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Prevent fraud;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Protect our Website;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Investigate security incidents;</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Prevent unauthorized access; and</span></li>
+                            <li class="flex gap-3"><i class="fa-solid fa-check mt-1 h-4 w-4 shrink-0 text-[#F24E2B]"></i><span>Protect our users, business, and systems.</span></li>
+                        </ul>
+                        <p>Information may be disclosed to relevant authorities where legally required or reasonably necessary to address unlawful activity.</p>
+                    </div>
+                </section>
+
+                <section id="p-changes" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">16</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Changes to This Privacy Policy</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>We may update this Privacy Policy from time to time to reflect changes in our services, technology, legal requirements, or business practices.</p>
+                        <p>When we make changes, we may update the "Last Updated" date displayed at the beginning of this Policy.</p>
+                        <p>You are encouraged to review this page periodically.</p>
+                    </div>
+                </section>
+
+                <section id="p-gov-law" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">17</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Governing Law</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>This Privacy Policy shall be governed by the laws applicable in India, subject to any mandatory rights or protections available to you under applicable law.</p>
+                        <p>Subject to applicable law, courts having jurisdiction in Jaipur, Rajasthan, India shall have jurisdiction over matters arising from or relating to this Privacy Policy.</p>
+                    </div>
+                </section>
+
+                <section id="p-contact" class="scroll-mt-8 border-b border-gray-100 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">18</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Contact Us</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>If you have questions, concerns, requests, or complaints regarding this Privacy Policy or the handling of your information, you can contact us at:</p>
+                        <div class="rounded-xl border border-gray-200 bg-gray-50 p-5 space-y-2">
+                            <p class="font-bold text-gray-900">NXTFUND</p>
+                            <p>An initiative of Celebso Group</p>
+                            <p>Operated by Celebso Technologies</p>
+                            <p>Jaipur, Rajasthan, India</p>
+                            <p class="pt-1">Email: <a href="mailto:celebso54@gmail.com" class="text-[#F24E2B] font-semibold hover:underline">celebso54@gmail.com</a></p>
+                            <p>Website: <a href="https://www.nxtfund.in" class="text-[#F24E2B] font-semibold hover:underline" target="_blank" rel="noopener">www.nxtfund.in</a></p>
+                        </div>
+                        <p class="pt-1 text-xs text-gray-400">© 2026 ANTELLAY Labs. All Rights Reserved. A Celebso Group Company.</p>
+                    </div>
+                </section>
+
+                <section id="p-acceptance" class="scroll-mt-8 pb-12 last:border-0">
+                    <div class="flex items-start gap-4">
+                        <span class="flex min-h-9 min-w-9 items-center justify-center rounded-lg bg-[#111827] px-2 text-xs font-bold text-white">19</span>
+                        <h2 class="pt-0.5 font-serif text-2xl sm:text-3xl font-semibold leading-tight">Acceptance</h2>
+                    </div>
+                    <div class="mt-5 sm:ml-[52px] space-y-3 text-sm leading-7 text-gray-600">
+                        <p>By using www.nxtfund.in, you acknowledge that you have read and understood this Privacy Policy.</p>
+                        <p>If you do not agree with the practices described in this Policy, please discontinue use of the Website.</p>
+                    </div>
+                </section>
+            </div>
+
+            <div class="mt-4 rounded-3xl bg-[#111827] p-7 sm:p-9 text-white sm:flex sm:items-center sm:justify-between">
+                <div>
+                    <i class="fa-solid fa-envelope mb-3 text-[#FA4A23]" style="font-size:24px;"></i>
+                    <h2 class="text-2xl font-serif font-semibold">Questions about this document</h2>
+                    <p class="mt-2 max-w-xl text-sm leading-6 text-gray-400">Mention the policy name in your subject line so your query reaches the right team.</p>
+                </div>
+                <a href="mailto:celebso54@gmail.com" class="mt-6 sm:mt-0 inline-flex items-center justify-center gap-2 rounded-xl bg-[#FA4A23] px-5 py-3 font-semibold text-white transition hover:bg-red-600 w-full sm:w-auto text-center break-all sm:break-normal">
+                    celebso54@gmail.com <i class="fa-solid fa-arrow-up-right-from-square flex-shrink-0"></i>
+                </a>
+            </div>
+        </article>
+    </div>
+
+        <footer class="bg-[#0B0E14] text-white pt-16 pb-10 px-6 mt-12 relative overflow-hidden bg-cover bg-center" style="background-image:url('assets/images/footer/footer-bg.png');">
+        <div class="absolute inset-0 bg-neutral-900/70"></div>
+        <div class="max-w-4xl mx-auto text-center space-y-8 relative z-10">
+
+            <div class="flex justify-center">
+<img src="assets/images/logo/footer-logo.png" alt="NXT Fund" class="h-24 w-auto object-contain">
+            </div>
+
+            <p class="text-xs font-medium text-gray-400 tracking-wide">
+                Connect. <span class="text-brand font-semibold">Create.</span> Grow.
+            </p>
+
+            <ul class="flex flex-wrap justify-center gap-x-6 gap-y-3 text-xs text-gray-300 font-medium">
+                <li><a href="terms-privacy.html" class="hover:text-brand transition">Terms & Privacy</a></li>
+                <li class="text-gray-500">•</li>
+                <li><a href="about.html" class="hover:text-brand transition">About Us</a></li>
+                <li class="text-gray-500">•</li>
+                <li><a href="contact-us.html" class="hover:text-brand transition">Contact Us</a></li>
+                <li class="text-gray-500">•</li>
+                <li><a href="partners.html" class="hover:text-brand transition">Become a Partner</a></li>
+                <li class="text-gray-500">•</li>
+            </ul>
+
+            <div class="flex items-center justify-center gap-2 text-xs text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span>celebso54@gmail.com</span>
+            </div>
+
+            <div class="flex justify-center gap-4 pt-2">
+                <a href="https://www.instagram.com/thenxtfund?stkn=bnY0enhtZzdnY2o=" aria-label="Instagram" class="w-9 h-9 rounded-full border border-gray-800 flex items-center justify-center hover:border-brand transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 3a5 5 0 015 5v8a5 5 0 01-5 5H8a5 5 0 01-5-5V8a5 5 0 015-5h8zm-4 6a3 3 0 100 6 3 3 0 000-6zm4.5-2.5h.01"></path></svg>
+                </a>
+                <a href="https://www.linkedin.com/company/celebso-venture/posts/?feedView=all" aria-label="LinkedIn" class="w-9 h-9 rounded-full border border-gray-800 flex items-center justify-center hover:border-brand transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>
+                </a>
+                <a href="#" aria-label="YouTube" class="w-9 h-9 rounded-full border border-gray-800 flex items-center justify-center hover:border-brand transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg>
+                </a>
+                <a href="#" aria-label="Heart" class="w-9 h-9 rounded-full border border-gray-800 flex items-center justify-center hover:border-brand transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                </a>
+            </div>
+
+            <div class="text-[11px] text-gray-500 pt-6 border-t border-gray-900">
+                © 2026 ANTELLAY Labs. All Rights Reserved. A Celebso Group Company.
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            const toggle = document.getElementById('mobile-toggle');
+            const menu = document.getElementById('mobile-menu');
+            const iconMenu = document.getElementById('icon-menu');
+            const iconClose = document.getElementById('icon-close');
+            if (!toggle || !menu) return;
+            toggle.addEventListener('click', () => {
+                const open = menu.classList.toggle('hidden') === false;
+                if (iconMenu) iconMenu.classList.toggle('hidden', open);
+                if (iconClose) iconClose.classList.toggle('hidden', !open);
+            });
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+
+# Local files
+node_modules/
+database/nxtfund.db
+.env
+assets/uploads/
+
+desktop.ini

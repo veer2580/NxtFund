@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NXTFund Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: { brand: '#F24E2B', dark: '#0B0E14' }
+        }
+      }
+    }
+  </script>
+  <style>
+        html, body { overflow-x: hidden; }
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f1f4; }
+    ::-webkit-scrollbar-thumb { background: #d4d4d8; border-radius: 8px; }
+    ::-webkit-scrollbar-thumb:hover { background: #F24E2B; }
+    .card { background: #fff; border: 1px solid #f0f0f2; border-radius: 14px; box-shadow: 0 4px 14px rgba(0,0,0,0.04); }
+    .tab-btn { white-space: nowrap; }
+    .tab-btn.active { background: #F24E2B; color: #fff; }
+    .app-card, .msg-item, .content-card { transition: border-color .2s; border: 1px solid #f0f0f2; }
+    .app-card:hover, .msg-item:hover, .content-card:hover { border-color: #F24E2B; }
+    .det-row { display: flex; gap: 8px; padding: 7px 0; border-bottom: 1px dashed #eee; font-size: 13px; }
+    .det-row b { flex-shrink: 0; width: 170px; color: #6b7280; font-weight: 600; }
+    .badge { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .form-input { width: 100%; border: 1px solid #e5e7eb; border-radius: 8px; padding: 9px 12px; font-size: 13px; background: #fff; outline: none; }
+    .form-input:focus { border-color: #F24E2B; box-shadow: 0 0 0 3px rgba(242,78,43,0.12); }
+    .modal-backdrop { background: rgba(11,14,20,0.55); backdrop-filter: blur(3px); }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900 antialiased min-h-screen">
+
+  <!-- ============ LOGIN ============ -->
+  <div id="loginView" class="hidden min-h-screen flex items-center justify-center p-6" style="background: radial-gradient(1000px 500px at 10% 0%, rgba(242,78,43,0.08), transparent), radial-gradient(800px 500px at 100% 100%, rgba(11,14,20,0.06), transparent), #f8f9fa;">
+    <div class="card w-full max-w-sm p-10">
+      <div class="text-center mb-8">
+        <div class="text-3xl font-extrabold tracking-tight mb-3">Admin</div>
+        <img src="assets/images/logo/log1.png" alt="NXTFund" class="w-40 h-32 mx-auto mb-4 object-contain">
+        <p class="text-sm text-gray-500 mt-1">Sign in with your admin password</p>
+      </div>
+      <form id="loginForm" autocomplete="off">
+        <label class="block text-xs font-semibold text-gray-700 mb-2">Password</label>
+        <input id="loginPassword" type="password" required placeholder="Enter admin password"
+          class="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm outline-none focus:border-[#F24E2B] focus:ring-2 focus:ring-[#F24E2B]/20">
+        <div id="loginError" class="hidden mt-3 text-sm text-red-600 font-medium bg-red-50 border border-red-100 rounded-lg px-3 py-2"></div>
+        <button type="submit" id="loginBtn"
+          class="mt-6 w-full bg-[#F24E2B] hover:bg-[#d94020] text-white font-bold text-sm py-3 rounded-lg transition">
+          Login
+        </button>
+      </form>
+      
+    </div>
+  </div>
+
+  <!-- ============ DASHBOARD ============ -->
+  <div id="dashboardView" class="hidden">
+    <header class="bg-[#0B0E14] text-white">
+      <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <img src="assets/images/logo/footer-logo.png" alt="NXTFund" class="w-32 h-24 object-contain">
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="text-xs text-gray-300 hidden sm:block">Admin</span>
+          <button id="logoutBtn" class="text-xs font-semibold px-4 py-2 rounded-lg border border-gray-700 hover:border-[#F24E2B] hover:text-[#F24E2B] transition">Logout</button>
+        </div>
+      </div>
+      <nav class="max-w-7xl mx-auto px-6 border-t border-white/10">
+        <div class="flex overflow-x-auto no-scrollbar gap-2 py-3">
+          <button class="tab-btn px-4 py-2 rounded-lg text-sm font-bold bg-white/5 text-gray-300 hover:text-white transition" data-tab="overview">Overview</button>
+          <button class="tab-btn px-4 py-2 rounded-lg text-sm font-bold bg-white/5 text-gray-300 hover:text-white transition" data-tab="messages">Messages</button>
+          <button class="tab-btn px-4 py-2 rounded-lg text-sm font-bold bg-white/5 text-gray-300 hover:text-white transition" data-tab="applications">Applications</button>
+          <button class="tab-btn px-4 py-2 rounded-lg text-sm font-bold bg-white/5 text-gray-300 hover:text-white transition" data-tab="registrations">Registrations</button>
+          <button class="tab-btn px-4 py-2 rounded-lg text-sm font-bold bg-white/5 text-gray-300 hover:text-white transition" data-tab="events">Events</button>
+          <button class="tab-btn px-4 py-2 rounded-lg text-sm font-bold bg-white/5 text-gray-300 hover:text-white transition" data-tab="blogs">Blogs</button>
+          <button class="tab-btn px-4 py-2 rounded-lg text-sm font-bold bg-white/5 text-gray-300 hover:text-white transition" data-tab="startups">Startups</button>
+          <button class="tab-btn px-4 py-2 rounded-lg text-sm font-bold bg-white/5 text-gray-300 hover:text-white transition" data-tab="partners">Partners</button>
+          <button class="tab-btn px-4 py-2 rounded-lg text-sm font-bold bg-white/5 text-gray-300 hover:text-white transition" data-tab="settings">Settings</button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-8">
+
+      <!-- ============ OVERVIEW ============ -->
+      <section id="view-overview" class="tab-view">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <h2 class="text-xl font-extrabold tracking-tight">Overview</h2>
+            <p class="text-sm text-gray-500 mt-0.5">Everything at a glance</p>
+          </div>
+          <button id="refreshBtn" class="text-sm font-bold px-4 py-2.5 rounded-lg border border-gray-200 bg-white hover:border-[#F24E2B] hover:text-[#F24E2B] transition">Refresh</button>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div class="card p-5">
+            <div class="text-3xl font-extrabold text-[#F24E2B]" id="statContacts">0</div>
+            <div class="text-xs font-semibold text-gray-500 mt-1">Contact Messages</div>
+          </div>
+          <div class="card p-5">
+            <div class="text-3xl font-extrabold text-amber-600" id="statUnread">0</div>
+            <div class="text-xs font-semibold text-gray-500 mt-1">Unread</div>
+          </div>
+          <div class="card p-5">
+            <div class="text-3xl font-extrabold text-indigo-600" id="statApps">0</div>
+            <div class="text-xs font-semibold text-gray-500 mt-1">Applications</div>
+          </div>
+          <div class="card p-5">
+            <div class="text-3xl font-extrabold text-green-600" id="statPending">0</div>
+            <div class="text-xs font-semibold text-gray-500 mt-1">Pending Review</div>
+          </div>
+          <div class="card p-5">
+            <div class="text-3xl font-extrabold text-rose-600" id="statRegs">0</div>
+            <div class="text-xs font-semibold text-gray-500 mt-1">Event Registrations</div>
+          </div>
+          <div class="card p-5">
+            <div class="text-3xl font-extrabold text-lime-600" id="statRegNew">0</div>
+            <div class="text-xs font-semibold text-gray-500 mt-1">New Registrations</div>
+          </div>
+          <div class="card p-5">
+            <div class="text-3xl font-extrabold text-cyan-600" id="statEvents">0</div>
+            <div class="text-xs font-semibold text-gray-500 mt-1">Events</div>
+          </div>
+          <div class="card p-5">
+            <div class="text-3xl font-extrabold text-purple-600" id="statBlogs">0</div>
+            <div class="text-xs font-semibold text-gray-500 mt-1">Blog Posts</div>
+          </div>
+          <div class="card p-5">
+            <div class="text-3xl font-extrabold text-blue-600" id="statStartups">0</div>
+            <div class="text-xs font-semibold text-gray-500 mt-1">Startups</div>
+          </div>
+          <div class="card p-5">
+            <div class="text-3xl font-extrabold text-teal-600" id="statPartners">0</div>
+            <div class="text-xs font-semibold text-gray-500 mt-1">Partners</div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="card p-5">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-extrabold text-[15px]">Recent Messages</h3>
+              <button class="text-xs font-bold text-[#F24E2B] hover:underline" data-jump="messages">View all</button>
+            </div>
+            <div id="ovRecentMessages" class="space-y-0"></div>
+          </div>
+          <div class="card p-5">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-extrabold text-[15px]">Recent Applications</h3>
+              <button class="text-xs font-bold text-[#F24E2B] hover:underline" data-jump="applications">View all</button>
+            </div>
+            <div id="ovRecentApplications" class="space-y-0"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ MESSAGES ============ -->
+      <section id="view-messages" class="tab-view hidden">
+        <div class="flex flex-wrap items-center gap-3 mb-6">
+          <div>
+            <h2 class="text-xl font-extrabold tracking-tight">Messages</h2>
+            <p class="text-sm text-gray-500 mt-0.5">Contact form submissions</p>
+          </div>
+          <div class="ml-auto flex flex-wrap items-center gap-2">
+            <input type="search" id="searchMessages" placeholder="Search messages..." class="form-input !w-56">
+            <select id="filterMessages" class="form-input !w-40">
+              <option value="all">All Statuses</option>
+              <option value="unread">Unread</option>
+              <option value="read">Read</option>
+              <option value="replied">Replied</option>
+            </select>
+          </div>
+        </div>
+        <div id="messageContent" class="space-y-3"></div>
+        <div id="emptyMessages" class="hidden text-center py-16 text-gray-400">
+          <div class="text-5xl mb-3">&#128203;</div>
+          <div class="font-semibold text-gray-500">No messages found</div>
+        </div>
+      </section>
+
+      <!-- ============ APPLICATIONS ============ -->
+      <section id="view-applications" class="tab-view hidden">
+        <div class="flex flex-wrap items-center gap-3 mb-6">
+          <div>
+            <h2 class="text-xl font-extrabold tracking-tight">Applications</h2>
+            <p class="text-sm text-gray-500 mt-0.5">Funding applications</p>
+          </div>
+          <div class="ml-auto flex flex-wrap items-center gap-2">
+            <input type="search" id="searchApps" placeholder="Search applications..." class="form-input !w-56">
+            <select id="filterApps" class="form-input !w-44">
+              <option value="all">All Statuses</option>
+              <option value="pending">Pending</option>
+              <option value="reviewed">Reviewed</option>
+              <option value="accepted">Accepted</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </div>
+        </div>
+        <div id="appContent" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+        <div id="emptyApps" class="hidden text-center py-16 text-gray-400">
+          <div class="text-5xl mb-3">&#128202;</div>
+          <div class="font-semibold text-gray-500">No applications found</div>
+        </div>
+      </section>
+
+      <!-- ============ EVENT REGISTRATIONS ============ -->
+      <section id="view-registrations" class="tab-view hidden">
+        <div class="flex flex-wrap items-center gap-3 mb-6">
+          <div>
+            <h2 class="text-xl font-extrabold tracking-tight">Event Registrations</h2>
+            <p class="text-sm text-gray-500 mt-0.5">NXTFund Demo Day registrations</p>
+          </div>
+          <div class="ml-auto flex flex-wrap items-center gap-2">
+            <input type="search" id="searchReg" placeholder="Search registrations..." class="form-input !w-56">
+            <select id="filterReg" class="form-input !w-44">
+              <option value="all">All Statuses</option>
+              <option value="new">New</option>
+              <option value="reviewed">Reviewed</option>
+              <option value="contacted">Contacted</option>
+            </select>
+          </div>
+        </div>
+        <div id="regContent" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+        <div id="emptyReg" class="hidden text-center py-16 text-gray-400">
+          <div class="text-5xl mb-3">&#127881;</div>
+          <div class="font-semibold text-gray-500">No registrations found</div>
+        </div>
+      </section>
+
+      <!-- ============ CONTENT (events/blogs/startups/partners) ============ -->
+      <section id="view-events" class="tab-view hidden">
+        <div class="flex flex-wrap items-center gap-3 mb-6">
+          <div>
+            <h2 class="text-xl font-extrabold tracking-tight">Events</h2>
+            <p class="text-sm text-gray-500 mt-0.5">Manage events, webinars &amp; meetups</p>
+          </div>
+          <div class="ml-auto flex flex-wrap items-center gap-2">
+            <input type="search" data-csearch="events" placeholder="Search..." class="form-input !w-48">
+            <button data-add="events" class="text-sm font-bold px-4 py-2.5 rounded-lg bg-[#F24E2B] hover:bg-[#d94020] text-white transition">+ Add Event</button>
+          </div>
+        </div>
+        <div id="content-events" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        <div id="empty-events" class="hidden text-center py-16 text-gray-400"><div class="font-semibold text-gray-500">No events found</div></div>
+      </section>
+      <section id="view-blogs" class="tab-view hidden">
+        <div class="flex flex-wrap items-center gap-3 mb-6">
+          <div>
+            <h2 class="text-xl font-extrabold tracking-tight">Blog Posts</h2>
+            <p class="text-sm text-gray-500 mt-0.5">Manage articles &amp; insights</p>
+          </div>
+          <div class="ml-auto flex flex-wrap items-center gap-2">
+            <select data-cfilter="blogs" class="form-input !w-40">
+              <option value="all">All Statuses</option>
+              <option value="published">Published</option>
+              <option value="draft">Draft</option>
+            </select>
+            <input type="search" data-csearch="blogs" placeholder="Search..." class="form-input !w-48">
+            <button data-add="blogs" class="text-sm font-bold px-4 py-2.5 rounded-lg bg-[#F24E2B] hover:bg-[#d94020] text-white transition">+ Add Blog</button>
+          </div>
+        </div>
+        <div id="content-blogs" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        <div id="empty-blogs" class="hidden text-center py-16 text-gray-400"><div class="font-semibold text-gray-500">No blogs found</div></div>
+      </section>
+      <section id="view-startups" class="tab-view hidden">
+        <div class="flex flex-wrap items-center gap-3 mb-6">
+          <div>
+            <h2 class="text-xl font-extrabold tracking-tight">Startups</h2>
+            <p class="text-sm text-gray-500 mt-0.5">Manage the portfolio</p>
+          </div>
+          <div class="ml-auto flex flex-wrap items-center gap-2">
+            <select data-cfilter="startups" class="form-input !w-40">
+              <option value="all">All Statuses</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+            <input type="search" data-csearch="startups" placeholder="Search..." class="form-input !w-48">
+            <button data-add="startups" class="text-sm font-bold px-4 py-2.5 rounded-lg bg-[#F24E2B] hover:bg-[#d94020] text-white transition">+ Add Startup</button>
+          </div>
+        </div>
+        <div id="content-startups" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        <div id="empty-startups" class="hidden text-center py-16 text-gray-400"><div class="font-semibold text-gray-500">No startups found</div></div>
+      </section>
+      <section id="view-partners" class="tab-view hidden">
+        <div class="flex flex-wrap items-center gap-3 mb-6">
+          <div>
+            <h2 class="text-xl font-extrabold tracking-tight">Partners</h2>
+            <p class="text-sm text-gray-500 mt-0.5">Manage ecosystem partners</p>
+          </div>
+          <div class="ml-auto flex flex-wrap items-center gap-2">
+            <input type="search" data-csearch="partners" placeholder="Search..." class="form-input !w-48">
+            <button data-add="partners" class="text-sm font-bold px-4 py-2.5 rounded-lg bg-[#F24E2B] hover:bg-[#d94020] text-white transition">+ Add Partner</button>
+          </div>
+        </div>
+        <div id="content-partners" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        <div id="empty-partners" class="hidden text-center py-16 text-gray-400"><div class="font-semibold text-gray-500">No partners found</div></div>
+      </section>
+
+      <!-- ============ SETTINGS ============ -->
+      <section id="view-settings" class="tab-view hidden">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <h2 class="text-xl font-extrabold tracking-tight">Settings</h2>
+            <p class="text-sm text-gray-500 mt-0.5">Admin account &amp; security</p>
+          </div>
+        </div>
+
+        <div class="card max-w-2xl p-6">
+          <h3 class="font-extrabold text-[15px] mb-1">Change Admin Password</h3>
+          <p class="text-xs text-gray-500 mb-5">Updates the ADMIN_PASSWORD in your .env file immediately.</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="sm:col-span-2">
+              <label class="block text-xs font-semibold text-gray-700 mb-1.5">Current Password</label>
+              <input id="pwCurrent" type="password" autocomplete="new-password" placeholder="Enter current password" class="form-input">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-700 mb-1.5">New Password</label>
+              <input id="pwNew" type="password" autocomplete="new-password" placeholder="8-64 characters" class="form-input">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-gray-700 mb-1.5">Confirm New Password</label>
+              <input id="pwConfirm" type="password" autocomplete="new-password" placeholder="Repeat new password" class="form-input">
+            </div>
+          </div>
+          <button id="changePasswordBtn" class="mt-5 text-sm font-bold px-5 py-2.5 rounded-lg bg-[#0B0E14] hover:bg-black text-white transition">Change Password</button>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ============ FORM MODAL ============ -->
+  <div id="formModal" class="hidden fixed inset-0 z-50 modal-backdrop flex items-center justify-center p-4">
+    <div class="card w-full max-w-lg max-h-[90vh] overflow-y-auto p-6">
+      <div class="flex items-center justify-between mb-5">
+        <h3 id="formModalTitle" class="text-lg font-extrabold tracking-tight">Add</h3>
+        <button class="text-gray-400 hover:text-gray-700 text-xl leading-none" data-close-form>&times;</button>
+      </div>
+      <form id="itemForm" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></form>
+    </div>
+  </div>
+
+  <!-- ============ CONFIRM MODAL ============ -->
+  <div id="confirmModal" class="hidden fixed inset-0 z-50 modal-backdrop flex items-center justify-center p-4">
+    <div class="card w-full max-w-sm p-6 text-center">
+      <div class="w-12 h-12 mx-auto mb-4 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-2xl">&#9888;</div>
+      <h3 class="font-extrabold text-[16px] mb-2">Are you sure?</h3>
+      <p id="confirmMessage" class="text-sm text-gray-500 mb-6">This action cannot be undone.</p>
+      <div class="flex gap-3 justify-center">
+        <button class="px-5 py-2 rounded-lg bg-gray-100 text-gray-700 text-sm font-bold hover:bg-gray-200 transition" data-close-confirm>Cancel</button>
+        <button id="confirmOkBtn" class="px-5 py-2 rounded-lg bg-red-600 text-white text-sm font-bold hover:bg-red-700 transition">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var TOKEN_KEY = 'nxtfund_admin_token';
+    var API = '/api';
+
+    function getToken() { return localStorage.getItem(TOKEN_KEY) || ''; }
+
+    async function api(path, opts) {
+      opts = opts || {};
+      opts.headers = Object.assign({}, opts.headers || {});
+      if (getToken()) opts.headers['Authorization'] = 'Bearer ' + getToken();
+      if (opts.body && !(opts.body instanceof FormData)) {
+        opts.headers['Content-Type'] = 'application/json';
+      }
+      var res = await fetch(API + path, opts);
+      if (res.status === 401) {
+        logout(true);
+        throw new Error('Unauthorized');
+      }
+      var data = await res.json().catch(function () { return {}; });
+      if (!res.ok) throw new Error(data.error || 'Request failed');
+      return data;
+    }
+
+    // ---------- Login / logout ----------
+    function showLogin() {
+      document.getElementById('loginView').classList.remove('hidden');
+      document.getElementById('dashboardView').classList.add('hidden');
+    }
+    function showDashboard() {
+      document.getElementById('loginView').classList.add('hidden');
+      document.getElementById('dashboardView').classList.remove('hidden');
+      switchTab('overview');
+      loadAll();
+    }
+    function logout(silent) {
+      if (getToken()) {
+        fetch(API + '/auth/logout', { method: 'POST', headers: { 'Authorization': 'Bearer ' + getToken() } }).catch(function(){});
+      }
+      localStorage.removeItem(TOKEN_KEY);
+      showLogin();
+      if (!silent) showToast('Logged out', 'error');
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var errBox = document.getElementById('loginError');
+      var btn = document.getElementById('loginBtn');
+      errBox.classList.add('hidden');
+      btn.disabled = true;
+      btn.textContent = 'Logging in...';
+      try {
+        var data = await api('/auth/login', {
+          method: 'POST',
+          body: JSON.stringify({ password: document.getElementById('loginPassword').value })
+        });
+        localStorage.setItem(TOKEN_KEY, data.token);
+        document.getElementById('loginPassword').value = '';
+        showDashboard();
+      } catch (err) {
+        errBox.textContent = err.message;
+        errBox.classList.remove('hidden');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Login';
+      }
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', function () { logout(); });
+
+    // ---------- Toast ----------
+    var toastEl;
+    function ensureToast() {
+      if (!toastEl) {
+        toastEl = document.createElement('div');
+        toastEl.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);z-index:9999;padding:12px 20px;border-radius:10px;color:#fff;font-size:13px;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,0.2);opacity:0;transition:all .3s;background:#111827;max-width:90%;';
+        document.body.appendChild(toastEl);
+      }
+      return toastEl;
+    }
+    function showToast(msg, type) {
+      var t = ensureToast();
+      t.textContent = msg;
+      t.style.background = type === 'error' ? '#dc2626' : type === 'success' ? '#16a34a' : '#111827';
+      t.style.opacity = '1';
+      t.style.transform = 'translateX(-50%) translateY(0)';
+      clearTimeout(t._timer);
+      t._timer = setTimeout(function () {
+        t.style.opacity = '0';
+        t.style.transform = 'translateX(-50%) translateY(20px)';
+      }, 2800);
+    }
+
+    // ---------- State ----------
+    var state = {
+      tab: 'overview',
+      contacts: [],
+      applications: [],
+      registrations: [],
+      content: { events: [], blogs: [], startups: [], partners: [] },
+      settings: {},
+      csearch: { events: '', blogs: '', startups: '', partners: '' },
+      cfilter: { blogs: 'all', startups: 'all' }
+    };
+
+    var CONTACT_STATUSES = ['unread', 'read', 'replied'];
+    var APP_STATUSES = ['pending', 'reviewed', 'accepted', 'rejected'];
+    var REG_STATUSES = ['new', 'reviewed', 'contacted'];
+
+    var CONTENT_DEFS = {
+      events: {
+        label: 'Event', collection: 'events', icon: '&#128197;',
+        titleKey: 'title',
+        badgeKey: 'type',
+        badges: { upcoming: 'bg-amber-100 text-amber-700', past: 'bg-gray-200 text-gray-600' },
+        meta: [['location', '&#128205;'], ['date', '&#128197;'], ['time', '&#128337;']],
+        imageKey: 'image_url',
+        fields: [
+          { key: 'title', label: 'Title', type: 'text', required: true, full: true },
+          { key: 'description', label: 'Description', type: 'textarea', full: true },
+          { key: 'date', label: 'Date', type: 'date' },
+          { key: 'time', label: 'Time (e.g. 10:00 AM)', type: 'text' },
+          { key: 'location', label: 'Location', type: 'text' },
+          { key: 'type', label: 'Type', type: 'select', options: ['upcoming', 'past'] },
+          { key: 'image_url', label: 'Image URL', type: 'text' },
+          { key: 'link', label: 'Link / Registration URL', type: 'text' }
+        ]
+      },
+      blogs: {
+        label: 'Blog Post', collection: 'blogs', icon: '&#128221;',
+        titleKey: 'title',
+        badgeKey: 'status',
+        badges: { published: 'bg-green-100 text-green-700', draft: 'bg-amber-100 text-amber-700' },
+        meta: [['author', '&#9997;'], ['created_at', '&#128197;']],
+        imageKey: 'image_url',
+        fields: [
+          { key: 'title', label: 'Title', type: 'text', required: true, full: true },
+          { key: 'excerpt', label: 'Excerpt', type: 'textarea', full: true },
+          { key: 'content', label: 'Content', type: 'textarea', full: true },
+          { key: 'author', label: 'Author', type: 'text' },
+          { key: 'image_url', label: 'Image URL', type: 'text' },
+          { key: 'status', label: 'Status', type: 'select', options: ['published', 'draft'] }
+        ]
+      },
+      startups: {
+        label: 'Startup', collection: 'startups', icon: '&#127970;',
+        titleKey: 'name',
+        badgeKey: 'status',
+        badges: { active: 'bg-green-100 text-green-700', inactive: 'bg-gray-200 text-gray-600' },
+        meta: [['sector', '&#128200;'], ['website', '&#128279;']],
+        imageKey: null,
+        fields: [
+          { key: 'name', label: 'Name', type: 'text', required: true, full: true },
+          { key: 'description', label: 'Description', type: 'textarea', full: true },
+          { key: 'sector', label: 'Sector', type: 'text' },
+          { key: 'website', label: 'Website', type: 'url' },
+          { key: 'status', label: 'Status', type: 'select', options: ['active', 'inactive'] }
+        ]
+      },
+      partners: {
+        label: 'Partner', collection: 'partners', icon: '&#129309;',
+        titleKey: 'name',
+        badgeKey: 'category',
+        badges: { Corporate: 'bg-blue-100 text-blue-700', VCs: 'bg-purple-100 text-purple-700', Accelerators: 'bg-cyan-100 text-cyan-700', Advisors: 'bg-amber-100 text-amber-700' },
+        meta: [['website', '&#128279;']],
+        imageKey: 'logo_url',
+        fields: [
+          { key: 'name', label: 'Name', type: 'text', required: true, full: true },
+          { key: 'description', label: 'Description', type: 'textarea', full: true },
+          { key: 'category', label: 'Category', type: 'select', options: ['Corporate', 'VCs', 'Accelerators', 'Advisors'] },
+          { key: 'website', label: 'Website', type: 'url' },
+          { key: 'logo_url', label: 'Logo URL', type: 'text' }
+        ]
+      }
+    };
+
+    // ---------- Helpers ----------
+    function fmtDate(d) {
+      if (!d) return '';
+      try { return new Date(d).toLocaleString(undefined, { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }); }
+      catch (e) { return ''; }
+    }
+    function fmtDateShort(d) {
+      if (!d) return '';
+      try { return new Date(d).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }); }
+      catch (e) { return ''; }
+    }
+    function escapeHTML(s) {
+      return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+    function initCap(s) {
+      return String(s == null ? '?' : s).charAt(0).toUpperCase();
+    }
+
+    // ---------- Tabs ----------
+    function switchTab(tab) {
+      state.tab = tab;
+      document.querySelectorAll('.tab-btn').forEach(function (b) {
+        b.classList.toggle('active', b.getAttribute('data-tab') === tab);
+      });
+      document.querySelectorAll('.tab-view').forEach(function (v) {
+        v.classList.toggle('hidden', v.id !== 'view-' + tab);
+      });
+      renderAllForTab(tab);
+    }
+
+    document.querySelectorAll('.tab-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () { switchTab(btn.getAttribute('data-tab')); });
+    });
+    document.getElementById('refreshBtn').addEventListener('click', loadAll);
+
+    document.querySelectorAll('[data-jump]').forEach(function (b) {
+      b.addEventListener('click', function () { switchTab(b.getAttribute('data-jump')); });
+    });
+
+    function renderAllForTab(tab) {
+      if (tab === 'overview') renderOverview();
+      else if (tab === 'messages') renderMessages();
+      else if (tab === 'applications') renderApplications();
+      else if (tab === 'registrations') renderRegistrations();
+      else if (tab === 'events' || tab === 'blogs' || tab === 'startups' || tab === 'partners') renderContent(tab);
+    }
+
+    // ---------- Data loading ----------
+    async function loadAll() {
+      try {
+        var [contactsRes, appsRes, regsRes, eventsRes, blogsRes, startupsRes, partnersRes, stats] = await Promise.all([
+          api('/admin/contacts'),
+          api('/admin/applications'),
+          api('/admin/registrations'),
+          api('/admin/content/events'),
+          api('/admin/content/blogs'),
+          api('/admin/content/startups'),
+          api('/admin/content/partners'),
+          api('/admin/stats')
+        ]);
+        state.contacts = contactsRes;
+        state.applications = appsRes;
+        state.registrations = regsRes;
+        state.content.events = eventsRes;
+        state.content.blogs = blogsRes;
+        state.content.startups = startupsRes;
+        state.content.partners = partnersRes;
+        state.stats = stats;
+        renderAllForTab(state.tab);
+      } catch (err) {
+        showToast(err.message, 'error');
+      }
+    }
+
+    // ==================== OVERVIEW ====================
+    function renderOverview() {
+      var s = state.stats || { counts: {} };
+      var c = s.counts || {};
+      document.getElementById('statContacts').textContent = (c.contacts && c.contacts.total) || 0;
+      document.getElementById('statUnread').textContent = (c.contacts && c.contacts.unread) || 0;
+      document.getElementById('statApps').textContent = (c.applications && c.applications.total) || 0;
+      document.getElementById('statPending').textContent = (c.applications && c.applications.pending) || 0;
+      document.getElementById('statRegs').textContent = (c.event_registrations && c.event_registrations.total) || 0;
+      document.getElementById('statRegNew').textContent = (c.event_registrations && c.event_registrations.new) || 0;
+      document.getElementById('statEvents').textContent = (c.events && c.events.total) || 0;
+      document.getElementById('statBlogs').textContent = (c.blogs && c.blogs.total) || 0;
+      document.getElementById('statStartups').textContent = (c.startups && c.startups.total) || 0;
+      document.getElementById('statPartners').textContent = (c.partners && c.partners.total) || 0;
+
+      var recent = s.recentContacts || [];
+      document.getElementById('ovRecentMessages').innerHTML = recent.length
+        ? recent.map(function (m) {
+            return '<div class="flex items-start justify-between gap-3 py-3 border-b border-gray-100 last:border-0">' +
+              '<div class="min-w-0">' +
+                '<div class="font-bold text-sm truncate">' + escapeHTML(m.name) + ' <span class="text-gray-400 font-medium">' + escapeHTML(m.subject || '') + '</span></div>' +
+                '<div class="text-xs text-gray-500 truncate">' + escapeHTML(m.email || '') + ' &middot; ' + fmtDate(m.created_at) + '</div>' +
+              '</div>' +
+              '<span class="badge shrink-0 ' + ((m.status === 'unread') ? 'bg-red-100 text-red-700' : 'bg-gray-200 text-gray-600') + '">' + escapeHTML(m.status) + '</span>' +
+            '</div>';
+          }).join('')
+        : '<div class="text-sm text-gray-400 py-6 text-center">No messages yet</div>';
+
+      var recentApps = s.recentApplications || [];
+      document.getElementById('ovRecentApplications').innerHTML = recentApps.length
+        ? recentApps.map(function (a) {
+            return '<div class="flex items-center justify-between gap-3 py-3 border-b border-gray-100 last:border-0">' +
+              '<div class="min-w-0">' +
+                '<div class="font-bold text-sm truncate">' + escapeHTML(a.company_name || a.founder_name || 'Untitled') + '</div>' +
+                '<div class="text-xs text-gray-500 truncate">' + escapeHTML(a.founder_name || '') + ' &middot; ' + fmtDate(a.submitted_at) + '</div>' +
+              '</div>' +
+              '<span class="badge shrink-0 ' + (appBadge(a.status)) + '">' + escapeHTML(a.status || 'pending') + '</span>' +
+            '</div>';
+          }).join('')
+        : '<div class="text-sm text-gray-400 py-6 text-center">No applications yet</div>';
+    }
+
+    // ==================== MESSAGES ====================
+    function contactBadge(s) {
+      var map = { unread: 'bg-red-100 text-red-700', read: 'bg-amber-100 text-amber-700', replied: 'bg-green-100 text-green-700' };
+      return map[s] || 'bg-gray-100 text-gray-600';
+    }
+
+    function renderMessages() {
+      var box = document.getElementById('messageContent');
+      var q = document.getElementById('searchMessages').value.trim().toLowerCase();
+      var f = document.getElementById('filterMessages').value;
+      var list = state.contacts.slice();
+      if (f !== 'all') list = list.filter(function (c) { return c.status === f; });
+      if (q) list = list.filter(function (c) {
+        return [c.name, c.email, c.subject, c.message].some(function (v) {
+          return String(v == null ? '' : v).toLowerCase().indexOf(q) !== -1;
+        });
+      });
+      document.getElementById('emptyMessages').classList.toggle('hidden', list.length > 0);
+      box.innerHTML = list.map(function (c) {
+        return '<div class="msg-item card p-5">' +
+          '<div class="flex flex-wrap items-start justify-between gap-3">' +
+            '<div class="min-w-0">' +
+              '<div class="flex items-center gap-3 flex-wrap">' +
+                '<div class="w-9 h-9 rounded-full bg-[#F24E2B]/10 text-[#F24E2B] font-bold flex items-center justify-center">' + initCap(c.name) + '</div>' +
+                '<div>' +
+                  '<div class="font-bold text-[15px]">' + escapeHTML(c.name) + ' <span class="text-gray-400 font-medium text-xs">' + escapeHTML(c.email || '') + '</span></div>' +
+                  '<div class="text-xs text-gray-500">' + escapeHTML(c.subject || '') + ' &middot; ' + fmtDate(c.created_at) + '</div>' +
+                '</div>' +
+              '</div>' +
+            '</div>' +
+            '<div class="flex items-center gap-2">' +
+              '<span class="badge ' + contactBadge(c.status) + '">' + escapeHTML(c.status || 'unknown') + '</span>' +
+            '</div>' +
+          '</div>' +
+          '<p class="mt-3 text-sm text-gray-600 leading-relaxed break-words">' + escapeHTML(c.message || '') + '</p>' +
+          '<div class="mt-4 flex flex-wrap gap-2">' +
+            (c.status === 'unread' ? '<button data-act="set" data-kind="contacts" data-id="' + c.id + '" data-status="read" class="text-xs font-bold px-3 py-1.5 rounded-lg bg-amber-100 text-amber-700 hover:bg-amber-200 transition">Mark as read</button>' : '') +
+            (c.status !== 'replied' ? '<button data-act="set" data-kind="contacts" data-id="' + c.id + '" data-status="replied" class="text-xs font-bold px-3 py-1.5 rounded-lg bg-green-100 text-green-700 hover:bg-green-200 transition">Mark replied</button>' : '') +
+            (c.status !== 'unread' ? '<button data-act="set" data-kind="contacts" data-id="' + c.id + '" data-status="unread" class="text-xs font-bold px-3 py-1.5 rounded-lg bg-red-100 text-red-700 hover:bg-red-200 transition">Mark unread</button>' : '') +
+            '<button data-act="del" data-kind="contacts" data-id="' + c.id + '" data-name="' + escapeHTML(c.name || 'this message') + '" class="text-xs font-bold px-3 py-1.5 rounded-lg bg-gray-100 text-gray-600 hover:bg-red-100 hover:text-red-600 transition">Delete</button>' +
+          '</div>' +
+        '</div>';
+      }).join('') || '<div class="hidden"></div>';
+
+      bindMessageActions(box);
+    }
+
+    function bindMessageActions(box) {
+      box.querySelectorAll('[data-act="set"]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          setContactStatus(btn.getAttribute('data-id'), btn.getAttribute('data-status'));
+        });
+      });
+      box.querySelectorAll('[data-act="del"]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          confirmDialog('Delete ' + btn.getAttribute('data-name') + '?', function () {
+            deleteItem('contacts', btn.getAttribute('data-id'), 'Message deleted');
+          });
+        });
+      });
+    }
+
+    async function setContactStatus(id, status) {
+      try {
+        await api('/admin/contacts/' + id, { method: 'PATCH', body: JSON.stringify({ status: status }) });
+        state.contacts = state.contacts.map(function (c) { return c.id === id ? Object.assign({}, c, { status: status }) : c; });
+        if (state.tab === 'messages') renderMessages();
+        renderOverview();
+        showToast('Message marked as ' + status, 'success');
+      } catch (err) { showToast(err.message, 'error'); }
+    }
+
+    // ==================== APPLICATIONS ====================
+    function appBadge(s) {
+      var map = { pending: 'bg-amber-100 text-amber-700', reviewed: 'bg-blue-100 text-blue-700', accepted: 'bg-green-100 text-green-700', rejected: 'bg-red-100 text-red-700' };
+      return map[s] || 'bg-gray-100 text-gray-600';
+    }
+
+    var APP_FIELDS = [
+      ['Founder', 'founder_name'], ['Email', 'founder_email'], ['LinkedIn', 'founder_linkedin'], ['Role', 'founder_role'],
+      ['Company', 'company_name'], ['Company description', 'company_description'], ['Company URL', 'company_url'],
+      ['Company location', 'company_location'], ['Stage', 'stage'], ['Monthly expenses', 'monthly_expenses'],
+      ['Monthly revenue', 'monthly_revenue'], ['Active users', 'active_users'], ['Product', 'product_description'],
+      ['Motivation', 'motivation'], ['Novelty', 'novelty'], ['Competitors', 'competitors'], ['Unique insight', 'unique_insight'],
+      ['Business model', 'business_model'], ['Incorporated', 'incorporated'], ['Incorporation location', 'incorporation_location'],
+      ['Equity split', 'equity_split'], ['Past funding', 'past_funding'], ['Requested amount', 'requested_amount'],
+      ['Batch preference', 'batch_preference'], ['Additional info', 'additional_info'], ['Video file', 'video_file'], ['Demo file', 'demo_file']
+    ];
+
+    function detailRows(a) {
+      var rows = [];
+      APP_FIELDS.forEach(function (f) {
+        if (a[f[1]] != null && a[f[1]] !== '') {
+          rows.push('<div class="det-row"><b>' + escapeHTML(f[0]) + '</b><span class="break-words min-w-0">' + escapeHTML(a[f[1]]) + '</span></div>');
+        }
+      });
+      return rows.join('');
+    }
+
+    function renderApplications() {
+      var box = document.getElementById('appContent');
+      var q = document.getElementById('searchApps').value.trim().toLowerCase();
+      var f = document.getElementById('filterApps').value;
+      var list = state.applications.slice();
+      if (f !== 'all') list = list.filter(function (a) { return a.status === f; });
+      if (q) list = list.filter(function (a) {
+        return [a.company_name, a.founder_name, a.founder_email, a.company_description].some(function (v) {
+          return String(v == null ? '' : v).toLowerCase().indexOf(q) !== -1;
+        });
+      });
+      document.getElementById('emptyApps').classList.toggle('hidden', list.length > 0);
+
+      box.innerHTML = list.map(function (a) {
+        var co = (a.cofounders || []).length;
+        return '<div class="app-card card p-5 flex flex-col">' +
+          '<div class="flex items-start justify-between gap-3">' +
+            '<div class="min-w-0">' +
+              '<div class="font-extrabold text-[16px] leading-tight">' + escapeHTML(a.company_name || a.founder_name || 'Untitled') + '</div>' +
+              '<div class="text-sm text-gray-500 mt-1">' + escapeHTML(a.company_description || '') + '</div>' +
+            '</div>' +
+            '<span class="badge shrink-0 ' + appBadge(a.status) + '">' + escapeHTML(a.status || 'unknown') + '</span>' +
+          '</div>' +
+          '<div class="grid grid-cols-2 gap-2 text-xs text-gray-500 mt-4">' +
+            '<div><span class="text-gray-400">Founder</span><br><b class="text-gray-700">' + escapeHTML(a.founder_name || '-') + '</b></div>' +
+            '<div><span class="text-gray-400">Email</span><br><b class="text-gray-700">' + escapeHTML(a.founder_email || '-') + '</b></div>' +
+            '<div><span class="text-gray-400">Stage</span><br><b class="text-gray-700">' + escapeHTML(a.stage || a.progress_stage || '-') + '</b></div>' +
+            '<div><span class="text-gray-400">Requested</span><br><b class="text-gray-700">' + escapeHTML(a.requested_amount || a.funding_amount || '-') + '</b></div>' +
+            '<div><span class="text-gray-400">Batch</span><br><b class="text-gray-700">' + escapeHTML(a.batch_preference || '-') + '</b></div>' +
+            '<div><span class="text-gray-400">Submitted</span><br><b class="text-gray-700">' + fmtDate(a.submitted_at) + '</b></div>' +
+          '</div>' +
+          '<div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between gap-3 flex-wrap">' +
+            '<select class="status-select text-xs font-bold border border-gray-200 rounded-lg px-2 py-1.5 bg-white outline-none" data-id="' + a.id + '">' +
+              APP_STATUSES.map(function (s) {
+                return '<option value="' + s + '"' + (a.status === s ? ' selected' : '') + '>' + s + '</option>';
+              }).join('') +
+            '</select>' +
+            '<div class="flex gap-2">' +
+              '<button data-act="detail" data-id="' + a.id + '" class="text-xs font-bold px-4 py-1.5 rounded-lg bg-[#F24E2B]/10 text-[#F24E2B] hover:bg-[#F24E2B] hover:text-white transition">View Details</button>' +
+              '<button data-act="del" data-kind="applications" data-id="' + a.id + '" data-name="' + escapeHTML(a.company_name || 'this application') + '" class="text-xs font-bold px-3 py-1.5 rounded-lg bg-gray-100 text-gray-600 hover:bg-red-100 hover:text-red-600 transition">Delete</button>' +
+            '</div>' +
+          '</div>' +
+          '<div id="detail-' + a.id + '" class="hidden mt-4 pt-3 border-t border-gray-100">' +
+            detailRows(a) +
+            (co ? '<div class="det-row"><b>Cofounders</b><span>Added ' + co + '</span></div>' : '') +
+          '</div>' +
+        '</div>';
+      }).join('') || '<div class="hidden"></div>';
+
+      box.querySelectorAll('.status-select').forEach(function (sel) {
+        sel.addEventListener('change', function () {
+          setAppStatus(sel.getAttribute('data-id'), sel.value);
+        });
+      });
+      box.querySelectorAll('[data-act="detail"]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var el = document.getElementById('detail-' + btn.getAttribute('data-id'));
+          if (el) el.classList.toggle('hidden');
+          btn.textContent = el.classList.contains('hidden') ? 'View Details' : 'Hide Details';
+        });
+      });
+      box.querySelectorAll('[data-act="del"]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          confirmDialog('Delete ' + btn.getAttribute('data-name') + '?', function () {
+            deleteItem('applications', btn.getAttribute('data-id'), 'Application deleted');
+          });
+        });
+      });
+    }
+
+    async function setAppStatus(id, status) {
+      try {
+        await api('/admin/applications/' + id, { method: 'PATCH', body: JSON.stringify({ status: status }) });
+        state.applications = state.applications.map(function (a) { return a.id === id ? Object.assign({}, a, { status: status }) : a; });
+        if (state.tab === 'applications') renderApplications();
+        renderOverview();
+        showToast('Application updated to ' + status, 'success');
+      } catch (err) { showToast(err.message, 'error'); }
+    }
+
+    // ==================== EVENT REGISTRATIONS ====================
+    function regBadge(s) {
+      var map = { new: 'bg-rose-100 text-rose-700', reviewed: 'bg-blue-100 text-blue-700', contacted: 'bg-green-100 text-green-700' };
+      return map[s] || 'bg-gray-100 text-gray-600';
+    }
+
+    var REG_FIELDS = [
+      ['Full Name', 'full_name'], ['Email', 'email'], ['Mobile', 'mobile'], ['Company', 'company_name'],
+      ['Designation', 'designation'], ['City', 'city'], ['LinkedIn', 'linkedin'], ['Attendee Type', 'attendee_type'],
+      ['Website', 'website'], ['Interests', 'interests'], ['Event', 'event_title']
+    ];
+
+    function regDetailRows(r) {
+      var rows = [];
+      REG_FIELDS.forEach(function (f) {
+        if (r[f[1]] != null && r[f[1]] !== '') {
+          rows.push('<div class="det-row"><b>' + escapeHTML(f[0]) + '</b><span class="break-words min-w-0">' + escapeHTML(r[f[1]]) + '</span></div>');
+        }
+      });
+      return rows.join('');
+    }
+
+    function renderRegistrations() {
+      var box = document.getElementById('regContent');
+      var q = document.getElementById('searchReg').value.trim().toLowerCase();
+      var f = document.getElementById('filterReg').value;
+      var list = state.registrations.slice();
+      if (f !== 'all') list = list.filter(function (r) { return r.status === f; });
+      if (q) list = list.filter(function (r) {
+        return [r.full_name, r.email, r.mobile, r.company_name, r.city, r.attendee_type].some(function (v) {
+          return String(v == null ? '' : v).toLowerCase().indexOf(q) !== -1;
+        });
+      });
+      document.getElementById('emptyReg').classList.toggle('hidden', list.length > 0);
+
+      box.innerHTML = list.map(function (r) {
+        return '<div class="app-card card p-5 flex flex-col">' +
+          '<div class="flex items-start justify-between gap-3">' +
+            '<div class="min-w-0">' +
+              '<div class="font-extrabold text-[16px] leading-tight">' + escapeHTML(r.full_name || 'Untitled') + '</div>' +
+              '<div class="text-sm text-gray-500 mt-1">' + escapeHTML(r.event_title || 'Event registration') + '</div>' +
+            '</div>' +
+            '<span class="badge shrink-0 ' + regBadge(r.status) + '">' + escapeHTML(r.status || 'unknown') + '</span>' +
+          '</div>' +
+          '<div class="grid grid-cols-2 gap-2 text-xs text-gray-500 mt-4">' +
+            '<div><span class="text-gray-400">Email</span><br><b class="text-gray-700 break-words">' + escapeHTML(r.email || '-') + '</b></div>' +
+            '<div><span class="text-gray-400">Mobile</span><br><b class="text-gray-700">' + escapeHTML(r.mobile || '-') + '</b></div>' +
+            '<div><span class="text-gray-400">Company</span><br><b class="text-gray-700">' + escapeHTML(r.company_name || '-') + '</b></div>' +
+            '<div><span class="text-gray-400">City</span><br><b class="text-gray-700">' + escapeHTML(r.city || '-') + '</b></div>' +
+            '<div><span class="text-gray-400">Type</span><br><b class="text-gray-700">' + escapeHTML(r.attendee_type || '-') + '</b></div>' +
+            '<div><span class="text-gray-400">Submitted</span><br><b class="text-gray-700">' + fmtDate(r.submitted_at) + '</b></div>' +
+          '</div>' +
+          '<div class="mt-4 pt-4 border-t border-gray-100 flex items-center justify-between gap-3 flex-wrap">' +
+            '<select class="status-select text-xs font-bold border border-gray-200 rounded-lg px-2 py-1.5 bg-white outline-none" data-id="' + r.id + '">' +
+              REG_STATUSES.map(function (s) {
+                return '<option value="' + s + '"' + (r.status === s ? ' selected' : '') + '>' + s + '</option>';
+              }).join('') +
+            '</select>' +
+            '<div class="flex gap-2">' +
+              '<button data-act="regdetail" data-id="' + r.id + '" class="text-xs font-bold px-4 py-1.5 rounded-lg bg-[#F24E2B]/10 text-[#F24E2B] hover:bg-[#F24E2B] hover:text-white transition">View Details</button>' +
+              '<button data-act="regdel" data-id="' + r.id + '" data-name="' + escapeHTML(r.full_name || 'this registration') + '" class="text-xs font-bold px-3 py-1.5 rounded-lg bg-gray-100 text-gray-600 hover:bg-red-100 hover:text-red-600 transition">Delete</button>' +
+            '</div>' +
+          '</div>' +
+          '<div id="regdetail-' + r.id + '" class="hidden mt-4 pt-3 border-t border-gray-100">' + regDetailRows(r) + '</div>' +
+        '</div>';
+      }).join('') || '<div class="hidden"></div>';
+
+      box.querySelectorAll('.status-select').forEach(function (sel) {
+        sel.addEventListener('change', function () {
+          setRegStatus(sel.getAttribute('data-id'), sel.value);
+        });
+      });
+      box.querySelectorAll('[data-act="regdetail"]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var el = document.getElementById('regdetail-' + btn.getAttribute('data-id'));
+          if (el) el.classList.toggle('hidden');
+          btn.textContent = el.classList.contains('hidden') ? 'View Details' : 'Hide Details';
+        });
+      });
+      box.querySelectorAll('[data-act="regdel"]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          confirmDialog('Delete registration of ' + btn.getAttribute('data-name') + '?', function () {
+            deleteItem('registrations', btn.getAttribute('data-id'), 'Registration deleted');
+          });
+        });
+      });
+    }
+
+    async function setRegStatus(id, status) {
+      try {
+        await api('/admin/registrations/' + id, { method: 'PATCH', body: JSON.stringify({ status: status }) });
+        state.registrations = state.registrations.map(function (r) { return r.id === id ? Object.assign({}, r, { status: status }) : r; });
+        if (state.tab === 'registrations') renderRegistrations();
+        renderOverview();
+        showToast('Registration marked as ' + status, 'success');
+      } catch (err) { showToast(err.message, 'error'); }
+    }
+
+    // ==================== CONTENT (events/blogs/startups/partners) ====================
+    function filteredContent(type) {
+      var q = state.csearch[type].toLowerCase();
+      var f = state.cfilter[type + ''] || 'all';
+      var list = state.content[type].slice();
+      if (f !== 'all') list = list.filter(function (i) { return (i.status || i.type) === f; });
+      if (q) {
+        list = list.filter(function (i) {
+          var d = CONTENT_DEFS[type];
+          var keys = [d.titleKey].concat(['description', 'sector', 'category', 'author', 'location']);
+          return keys.some(function (k) { return String(i[k] == null ? '' : i[k]).toLowerCase().indexOf(q) !== -1; });
+        });
+      }
+      return list;
+    }
+
+    function contentThumb(def, item) {
+      var img = def.imageKey && item[def.imageKey];
+      if (img) {
+        return '<div class="h-32 rounded-lg overflow-hidden bg-gray-100 mb-3"><img src="' + escapeHTML(img) + '" alt="" class="w-full h-full object-cover" onerror="this.style.display=\'none\'"></div>';
+      }
+      return '<div class="h-32 rounded-lg mb-3 flex items-center justify-center text-4xl" style="background:linear-gradient(135deg,#fde3db,#f8b8a6)">' + def.icon + '</div>';
+    }
+
+    function renderContent(type) {
+      var def = CONTENT_DEFS[type];
+      var box = document.getElementById('content-' + type);
+      var empty = document.getElementById('empty-' + type);
+      var list = filteredContent(type);
+      empty.classList.toggle('hidden', list.length > 0);
+
+      box.innerHTML = list.map(function (item) {
+        var title = item[def.titleKey] || 'Untitled';
+        var badgeVal = item[def.badgeKey] || 'unknown';
+        var badges = def.badges || {};
+        var metaRows = def.meta.map(function (m) {
+          var v = item[m[0]];
+          if (!v) return '';
+          if (m[0] === 'created_at') v = fmtDateShort(v);
+          return '<div class="text-xs text-gray-500"><span class="text-gray-400 mr-1">' + m[1] + '</span>' + escapeHTML(v) + '</div>';
+        }).join('');
+        return '<div class="content-card card p-4 flex flex-col">' +
+          contentThumb(def, item) +
+          '<div class="flex items-start justify-between gap-2">' +
+            '<div class="font-extrabold text-[15px] leading-tight min-w-0 truncate">' + escapeHTML(title) + '</div>' +
+            '<span class="badge shrink-0 ' + (badges[badgeVal] || 'bg-gray-100 text-gray-600') + '">' + escapeHTML(badgeVal) + '</span>' +
+          '</div>' +
+          '<p class="text-sm text-gray-500 mt-2 leading-relaxed line-clamp-3">' + escapeHTML(item.description || item.excerpt || '') + '</p>' +
+          '<div class="mt-3 space-y-0.5">' + metaRows + '</div>' +
+          '<div class="mt-4 pt-3 border-t border-gray-100 flex gap-2">' +
+            '<button data-edit="' + item.id + '" class="flex-1 text-xs font-bold px-3 py-1.5 rounded-lg bg-gray-100 text-gray-700 hover:bg-[#F24E2B]/10 hover:text-[#F24E2B] transition">Edit</button>' +
+            '<button data-del="' + item.id + '" class="flex-1 text-xs font-bold px-3 py-1.5 rounded-lg bg-gray-100 text-gray-600 hover:bg-red-100 hover:text-red-600 transition">Delete</button>' +
+          '</div>' +
+        '</div>';
+      }).join('') || '<div class="hidden"></div>';
+
+      box.querySelectorAll('[data-edit]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var item = state.content[type].find(function (i) { return i.id === btn.getAttribute('data-edit'); });
+          openFormModal(type, item);
+        });
+      });
+      box.querySelectorAll('[data-del]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          confirmDialog('Delete this ' + def.label.toLowerCase() + '?', function () {
+            deleteItem(type, btn.getAttribute('data-del'), def.label + ' deleted');
+          });
+        });
+      });
+    }
+
+    document.querySelectorAll('[data-csearch]').forEach(function (inp) {
+      inp.addEventListener('input', function () {
+        state.csearch[inp.getAttribute('data-csearch')] = inp.value;
+        renderContent(inp.getAttribute('data-csearch'));
+      });
+    });
+    document.querySelectorAll('[data-cfilter]').forEach(function (sel) {
+      sel.addEventListener('change', function () {
+        state.cfilter[sel.getAttribute('data-cfilter')] = sel.value;
+        renderContent(sel.getAttribute('data-cfilter'));
+      });
+    });
+
+    // ==================== CONTENT FORM MODAL ====================
+    var formModal, confirmM, formType = null, formItemId = null;
+
+    function fieldHtml(f) {
+      var wrapCls = f.full ? 'sm:col-span-2' : '';
+      var required = f.required ? ' required' : '';
+      if (f.type === 'textarea') {
+        return '<div class="' + wrapCls + '"><label class="block text-xs font-semibold text-gray-700 mb-1.5">' + escapeHTML(f.label) + (f.required ? ' *' : '') + '</label>' +
+          '<textarea data-field="' + f.key + '" rows="3" class="form-input"' + required + '></textarea></div>';
+      }
+      if (f.type === 'select') {
+        return '<div class="' + wrapCls + '"><label class="block text-xs font-semibold text-gray-700 mb-1.5">' + escapeHTML(f.label) + '</label>' +
+          '<select data-field="' + f.key + '" class="form-input">' +
+            f.options.map(function (o) { return '<option value="' + escapeHTML(o) + '">' + escapeHTML(o) + '</option>'; }).join('') +
+          '</select></div>';
+      }
+      return '<div class="' + wrapCls + '"><label class="block text-xs font-semibold text-gray-700 mb-1.5">' + escapeHTML(f.label) + '</label>' +
+        '<input data-field="' + f.key + '" type="' + f.type + '" class="form-input"' + required + '></div>';
+    }
+
+    function openFormModal(type, item) {
+      formType = type;
+      formItemId = item ? item.id : null;
+      var def = CONTENT_DEFS[type];
+      document.getElementById('formModalTitle').textContent = (item ? 'Edit ' : 'Add ') + def.label;
+      document.getElementById('itemForm').innerHTML = def.fields.map(fieldHtml).join('') +
+        '<div class="sm:col-span-2 flex gap-3 pt-2">' +
+          '<button type="button" class="flex-1 px-4 py-2.5 rounded-lg bg-gray-100 text-gray-700 text-sm font-bold hover:bg-gray-200 transition" data-close-form>Cancel</button>' +
+          '<button type="submit" class="flex-1 px-4 py-2.5 rounded-lg bg-[#F24E2B] hover:bg-[#d94020] text-white text-sm font-bold transition">' + (item ? 'Save Changes' : 'Create') + '</button>' +
+        '</div>';
+      def.fields.forEach(function (f) {
+        var el = document.querySelector('#itemForm [data-field="' + f.key + '"]');
+        if (el && item && item[f.key] != null) el.value = item[f.key];
+      });
+      formModal.classList.remove('hidden');
+    }
+
+    document.getElementById('itemForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      if (!formType) return;
+      try {
+        var payload = {};
+        CONTENT_DEFS[formType].fields.forEach(function (f) {
+          var el = document.querySelector('#itemForm [data-field="' + f.key + '"]');
+          payload[f.key] = el ? el.value : '';
+        });
+        if (formItemId) {
+          await api('/admin/content/' + formType + '/' + formItemId, { method: 'PATCH', body: JSON.stringify(payload) });
+          showToast(CONTENT_DEFS[formType].label + ' updated', 'success');
+        } else {
+          await api('/admin/content/' + formType, { method: 'POST', body: JSON.stringify(payload) });
+          showToast(CONTENT_DEFS[formType].label + ' created', 'success');
+        }
+        formModal.classList.add('hidden');
+        await loadContent(formType);
+      } catch (err) {
+        showToast(err.message, 'error');
+      }
+    });
+
+    async function loadContent(type) {
+      try {
+        var items = await api('/admin/content/' + type);
+        state.content[type] = items;
+        renderContent(type);
+        if (state.tab === 'overview') await loadAll();
+      } catch (err) {
+        showToast(err.message, 'error');
+      }
+    }
+
+    document.querySelectorAll('[data-add]').forEach(function (btn) {
+      btn.addEventListener('click', function () { openFormModal(btn.getAttribute('data-add'), null); });
+    });
+    document.querySelectorAll('[data-close-form]').forEach(function (b) {
+      b.addEventListener('click', function () { formModal.classList.add('hidden'); });
+    });
+
+    // ==================== DELETE / CONFIRM ====================
+    function confirmDialog(message, onConfirm) {
+      document.getElementById('confirmMessage').textContent = message;
+      confirmM._onConfirm = onConfirm;
+      confirmM.classList.remove('hidden');
+    }
+    document.querySelectorAll('[data-close-confirm]').forEach(function (b) {
+      b.addEventListener('click', function () { confirmM.classList.add('hidden'); });
+    });
+    document.getElementById('confirmOkBtn').addEventListener('click', function () {
+      confirmM.classList.add('hidden');
+      if (confirmM._onConfirm) confirmM._onConfirm();
+    });
+
+    async function deleteItem(kind, id, successMsg) {
+      try {
+        await api('/admin/' + kind + '/' + id, { method: 'DELETE' });
+        showToast(successMsg, 'success');
+        if (kind === 'contacts' || kind === 'applications' || kind === 'registrations') await loadAll();
+        else {
+          state.content[kind] = state.content[kind].filter(function (i) { return i.id !== id; });
+          renderContent(kind);
+        }
+      } catch (err) { showToast(err.message, 'error'); }
+    }
+
+    // ==================== DELETE / CONFIRM ====================
+    document.getElementById('changePasswordBtn').addEventListener('click', async function () {
+      var cur = document.getElementById('pwCurrent').value;
+      var nw = document.getElementById('pwNew').value;
+      var cf = document.getElementById('pwConfirm').value;
+      if (!cur) { showToast('Enter your current password', 'error'); return; }
+      if (nw.length < 8) { showToast('New password must be at least 8 characters', 'error'); return; }
+      if (nw !== cf) { showToast('New passwords do not match', 'error'); return; }
+      try {
+        await api('/admin/password', {
+          method: 'POST',
+          body: JSON.stringify({ current_password: cur, new_password: nw })
+        });
+        document.getElementById('pwCurrent').value = '';
+        document.getElementById('pwNew').value = '';
+        document.getElementById('pwConfirm').value = '';
+        showToast('Password updated successfully', 'success');
+      } catch (err) { showToast(err.message, 'error'); }
+    });
+
+    // ---------- Search input listeners ----------
+    document.getElementById('searchMessages').addEventListener('input', function () { renderMessages(); });
+    document.getElementById('filterMessages').addEventListener('change', function () { renderMessages(); });
+    document.getElementById('searchApps').addEventListener('input', function () { renderApplications(); });
+    document.getElementById('filterApps').addEventListener('change', function () { renderApplications(); });
+    document.getElementById('searchReg').addEventListener('input', function () { renderRegistrations(); });
+    document.getElementById('filterReg').addEventListener('change', function () { renderRegistrations(); });
+
+    // ---------- Boot ----------
+    (async function boot() {
+      formModal = document.getElementById('formModal');
+      confirmM = document.getElementById('confirmModal');
+      formModal.addEventListener('click', function (e) {
+        if (e.target === formModal || e.target.closest('[data-close-form]')) {
+          formModal.classList.add('hidden');
+        }
+      });
+      confirmM.addEventListener('click', function (e) { if (e.target === confirmM) confirmM.classList.add('hidden'); });
+      if (!getToken()) { showLogin(); return; }
+      try {
+        await api('/auth/check');
+        showDashboard();
+      } catch (err) {
+        showLogin();
+      }
+    })();
+  })();
+  </script>
+</body>
+</html>

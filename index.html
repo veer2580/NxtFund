@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NXT Fund - Build For Founders</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: '#F24E2B',
+                        dark: '#0B0E14',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <style>
+        html, body { overflow-x: hidden; }
+        /* ===== Custom Animations ===== */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(242, 78, 43, 0.4); }
+            50% { box-shadow: 0 0 0 15px rgba(242, 78, 43, 0); }
+        }
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-word {
+            display: inline-block;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        .fade-word:nth-child(1)  { animation-delay: 0.1s; }
+        .fade-word:nth-child(2)  { animation-delay: 0.2s; }
+        .fade-word:nth-child(3)  { animation-delay: 0.3s; }
+        .fade-word:nth-child(4)  { animation-delay: 0.4s; }
+        .fade-word:nth-child(5)  { animation-delay: 0.5s; }
+        .fade-word:nth-child(6)  { animation-delay: 0.6s; }
+        .fade-word:nth-child(7)  { animation-delay: 0.7s; }
+        .fade-word:nth-child(8)  { animation-delay: 0.8s; }
+
+        /* Investor marquee */
+        .investor-marquee {
+            display: flex;
+            width: max-content;
+            animation: marqueeScroll 20s linear infinite;
+        }
+        .investor-marquee:hover {
+            animation-play-state: paused;
+        }
+        @keyframes marqueeScroll {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .investor-marquee img {
+            transition: transform 0.4s ease, filter 0.4s ease, opacity 0.4s ease;
+        }
+        .investor-marquee img:hover {
+            transform: scale(1.15) rotate(-3deg);
+            filter: grayscale(0) drop-shadow(0 0 8px rgba(242,78,43,0.5));
+            opacity: 1;
+        }
+
+        /* Event images marquee (moves right) */
+        .event-marquee {
+            display: flex;
+            width: max-content;
+            animation: marqueeScrollRight 30s linear infinite;
+        }
+        .event-marquee:hover {
+            animation-play-state: paused;
+        }
+        @keyframes marqueeScrollRight {
+            0%   { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        .animate-float { animation: float 5s ease-in-out infinite; }
+        .animate-pulse-glow { animation: pulse-glow 2.5s ease-in-out infinite; }
+        .animate-bounce-slow { animation: bounce-slow 2.5s ease-in-out infinite; }
+        .animate-gradient {
+            background-size: 200% 200%;
+            animation: gradient-shift 6s ease infinite;
+        }
+        .animate-marquee { animation: marquee 25s linear infinite; }
+
+        /* Card hover lift effect */
+        .hover-lift {
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .hover-lift:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Image zoom on hover */
+        .zoom-img { overflow: hidden; }
+        .zoom-img img {
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .zoom-img:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Gradient animated headline */
+        .gradient-text {
+            background: linear-gradient(90deg, #F24E2B, #ff8a5c, #F24E2B, #ff6b3d);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 6s ease infinite;
+        }
+
+        /* Button shine sweep */
+        .btn-shine { position: relative; overflow: hidden; }
+        .btn-shine::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+            transform: translateX(-150%);
+            animation: shimmer 3s ease infinite;
+        }
+    </style>
+<script src="assets/js/api.js"></script>
+</head>
+<body class="bg-white text-gray-900 antialiased overflow-x-hidden">
+
+    <nav class="relative flex items-center justify-between px-6 py-4 max-w-[1400px] mx-auto w-full bg-white animate-fade-in-down">
+        <a href="index.html" class="cursor-pointer">
+            <img src="assets/images/logo/log1.png" alt="NXT Fund" class="h-16 w-auto object-contain hover:scale-105 transition-transform duration-300">
+        </a>
+
+        <ul id="desktop-menu" class="hidden lg:flex items-center space-x-8 text-[15px] font-semibold text-gray-800">
+            <li class="cursor-pointer hover:text-brand transition pb-1 hover:pb-0 hover:border-b-2 hover:border-brand"><a href="startups.html">Startups</a></li>
+            <li class="cursor-pointer hover:text-brand transition pb-1 hover:pb-0 hover:border-b-2 hover:border-brand"><a href="investor-brief.html">Investors</a></li>
+            <li class="cursor-pointer hover:text-brand transition pb-1 hover:pb-0 hover:border-b-2 hover:border-brand"><a href="partners.html">Partners</a></li>
+            <li class="cursor-pointer hover:text-brand transition pb-1 hover:pb-0 hover:border-b-2 hover:border-brand"><a href="events.html">Events</a></li>
+            <li class="cursor-pointer hover:text-brand transition pb-1 hover:pb-0 hover:border-b-2 hover:border-brand"><a href="blog-insights.html">News</a></li>
+            <li class="cursor-pointer hover:text-brand transition pb-1 hover:pb-0 hover:border-b-2 hover:border-brand"><a href="gallery.html">Gallery</a></li>
+        </ul>
+
+        <div class="hidden lg:flex items-center space-x-3">
+            <a href="yc/yc-application.html" class="btn-shine bg-brand text-white text-[15px] font-semibold py-2.5 px-6 rounded-md hover:bg-orange-600 transition">
+                Apply for Funding
+            </a>
+        </div>
+
+        <button id="mobile-toggle" aria-label="Toggle menu" class="lg:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand">
+            <svg id="icon-menu" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <svg id="icon-close" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+
+        <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-lg z-50">
+            <ul class="flex flex-col p-4 space-y-2 text-[15px] font-semibold text-gray-800">
+                <li class="hover:text-brand transition"><a href="startups.html" class="block py-2">Startups</a></li>
+                <li class="hover:text-brand transition"><a href="investor-brief.html" class="block py-2">Investors</a></li>
+                <li class="hover:text-brand transition"><a href="partners.html" class="block py-2">Partners</a></li>
+                <li class="hover:text-brand transition"><a href="events.html" class="block py-2">Events</a></li>
+                <li class="hover:text-brand transition"><a href="blog-insights.html" class="block py-2">News</a></li>
+                <li class="hover:text-brand transition"><a href="gallery.html" class="block py-2">Gallery</a></li>
+                <li class="pt-2">
+                    <a href="yc/yc-application.html" class="block text-center bg-brand text-white font-semibold py-3 rounded-md hover:bg-orange-600 transition">Apply for Funding</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="max-w-[1400px] mx-auto px-4 sm:px-6 py-6">
+        <div class="flex flex-col lg:flex-row items-center gap-10 bg-[#f8f9fa] rounded-[28px] sm:rounded-[40px] p-6 sm:p-8 lg:pl-16 pr-4 py-4 relative overflow-hidden">
+
+            <div class="absolute top-10 right-10 w-40 h-40 rounded-full bg-brand/10 blur-3xl animate-float"></div>
+
+            <div class="flex-1 space-y-6 py-10 max-w-xl" data-aos="fade-right">
+                <h1 class="text-[32px] sm:text-[40px] lg:text-[48px] font-extrabold leading-[1.1] tracking-tight text-black">
+                    <span class="fade-word">N<span class="text-brand">X</span>T</span>
+                    <span class="fade-word">turns</span>
+                    <span class="fade-word">builders</span>
+                    <br>
+                    <span class="fade-word">Into</span>
+                    <span class="fade-word">formidable</span>
+                    <span class="fade-word">founders</span>
+                </h1>
+                <p class="text-gray-700 text-[16px] sm:text-[17px] leading-relaxed pr-0 sm:pr-8" data-setting="hero_subtitle">
+                    Connecting visionary founders with investors, strategic partners, and growth opportunities to build the defining companies of tomorrow.
+                </p>
+                <div class="flex flex-wrap gap-4 pt-2">
+                    <a href="yc/yc-application.html" class="btn-shine bg-black text-white text-[15px] font-semibold py-3.5 px-8 rounded-lg hover:bg-gray-800 transition">
+                        Apply Now
+                    </a>
+                    <a href="partners.html" class="bg-transparent border-[1.5px] border-brand text-brand text-[15px] font-semibold py-3.5 px-8 rounded-lg hover:bg-orange-50 transition">
+                        Become a Partner
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex-1 w-full relative" data-aos="fade-left" data-aos-delay="150">
+                <img src="assets/images/pages/gallery/WhatsApp Image 2026-09-03 at 9.55.29 PM.jpeg" alt="Founder" class="w-full h-auto object-cover rounded-[32px] shadow-sm zoom-img">
+            </div>
+        </div>
+    </section>
+
+    <section class="py-10 overflow-hidden bg-white relative">
+        <div class="overflow-hidden">
+            <div class="investor-marquee">
+                <img src="assets/images/pages/partners/ChatGPT Image Sep 1, 2026, 10_08_53 AM.png" alt="Partner 4" class="h-14 w-auto object-contain mx-10 transition-all duration-500">
+                <img src="assets/images/pages/partners/ChatGPT Image Sep 4, 2026, 12_02_02 PM.png" alt="Partner 5" class="h-14 w-auto object-contain mx-10 transition-all duration-500">
+                <img src="assets/images/pages/partners/ChatGPT Image Sep 4, 2026, 12_08_56 PM.png" alt="Partner 6" class="h-14 w-auto object-contain mx-10 transition-all duration-500">
+                <img src="assets/images/pages/partners/ChatGPT Image Sep 1, 2026, 10_08_53 AM.png" alt="Partner 4" class="h-14 w-auto object-contain mx-10 transition-all duration-500">
+                <img src="assets/images/pages/partners/ChatGPT Image Sep 4, 2026, 12_02_02 PM.png" alt="Partner 5" class="h-14 w-auto object-contain mx-10 transition-all duration-500">
+                <img src="assets/images/pages/partners/ChatGPT Image Sep 4, 2026, 12_08_56 PM.png" alt="Partner 6" class="h-14 w-auto object-contain mx-10 transition-all duration-500">
+                <img src="assets/images/pages/partners/ChatGPT Image Sep 1, 2026, 10_08_53 AM.png" alt="Partner 4" class="h-14 w-auto object-contain mx-10 transition-all duration-500">
+                <img src="assets/images/pages/partners/ChatGPT Image Sep 4, 2026, 12_02_02 PM.png" alt="Partner 5" class="h-14 w-auto object-contain mx-10 transition-all duration-500">
+                <img src="assets/images/pages/partners/ChatGPT Image Sep 4, 2026, 12_08_56 PM.png" alt="Partner 6" class="h-14 w-auto object-contain mx-10 transition-all duration-500">
+            </div>
+        </div>
+        <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-20"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-20"></div>
+    </section>
+
+    <section class="py-16 px-6 bg-white">
+        <div class="max-w-4xl mx-auto text-center space-y-6">
+            <p class="text-gray-700 text-[15px] leading-relaxed">
+                In 2025, N<span class="text-[#F24E2B]">X</span>T FUND developed a new model of startup funding.
+                Four times a year we invest up to ₹100 Crore in a select group of
+                startups. Selected founders gain access to funding, incubation,
+                mentorship, and an extensive investor network, while working
+                closely with our team to get their companies into the best possible
+                shape before presenting to a large audience of investors.
+            </p>
+            <p class="text-gray-700 text-[15px] leading-relaxed">
+                But N<span class="text-[#F24E2B]">X</span>T FUND doesn't end with funding. We and the N<span class="text-[#F24E2B]">X</span>T FUND
+                founder network continue to help founders build, scale, raise
+                capital, and grow their companies for the long term and beyond.
+            </p>
+        </div>
+    </section>
+
+
+
+    <section class="max-w-6xl mx-auto px-6 py-12">
+        <div class="flex flex-col md:flex-row justify-between items-center border-t border-b border-gray-200 py-10">
+            <div class="text-center flex-1 w-full md:border-r border-gray-200 last:border-0 mb-6 md:mb-0" data-aos="fade-up" data-aos-delay="0">
+                <h3 class="text-[32px] font-bold text-brand mb-1 hover:scale-110 transition-transform duration-300">5 Cr+</h3>
+                <p class="text-[11px] font-bold text-gray-500 uppercase tracking-widest">Startup Fund</p>
+            </div>
+            <div class="text-center flex-1 w-full md:border-r border-gray-200 last:border-0 mb-6 md:mb-0" data-aos="fade-up" data-aos-delay="100">
+                <h3 class="text-[32px] font-bold text-brand mb-1 hover:scale-110 transition-transform duration-300">100+</h3>
+                <p class="text-[11px] font-bold text-gray-500 uppercase tracking-widest">Applications Received</p>
+            </div>
+            <div class="text-center flex-1 w-full md:border-r border-gray-200 last:border-0 mb-6 md:mb-0" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="text-[32px] font-bold text-brand mb-1 hover:scale-110 transition-transform duration-300">30+</h3>
+                <p class="text-[11px] font-bold text-gray-500 uppercase tracking-widest">Mentors & Experts</p>
+            </div>
+            <div class="text-center flex-1 w-full md:border-r border-gray-200 last:border-0 mb-6 md:mb-0" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="text-[32px] font-bold text-brand mb-1 hover:scale-110 transition-transform duration-300">50+</h3>
+                <p class="text-[11px] font-bold text-gray-500 uppercase tracking-widest">Investor Network</p>
+            </div>
+            <div class="text-center flex-1 w-full" data-aos="fade-up" data-aos-delay="400">
+                <h3 class="text-[32px] font-bold text-brand mb-1 hover:scale-110 transition-transform duration-300">24/7</h3>
+                <p class="text-[11px] font-bold text-gray-500 uppercase tracking-widest">AI Monitoring</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-[1200px] mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+
+        <div class="lg:col-span-5 space-y-6" data-aos="fade-right">
+            <img src="assets/images/pages/gallery/ChatGPT Image Aug 29, 2026, 12_23_34 PM.png" alt="Building" class="w-full rounded-[20px] shadow-sm object-cover h-[320px] zoom-img">
+        </div>
+
+        <div class="lg:col-span-7 flex flex-col h-full pt-4" data-aos="fade-left">
+            <h4 class="text-brand text-[11px] font-bold tracking-widest uppercase mb-4">About NXT Fund</h4>
+            <h2 class="text-[32px] sm:text-[44px] font-extrabold text-black mb-8 leading-tight">
+                Build For Founders<span class="text-brand">.</span>
+            </h2>
+
+            <div class="flex flex-col sm:flex-row gap-10">
+                <div class="flex-1 space-y-6 text-gray-700 leading-relaxed text-[15px]">
+                    <p>
+                        NXT Fund is the investment arm of <a href="#" class="text-brand font-medium hover:underline">Celebso Group</a>, on a mission to back exceptional founders and build category-defining companies from India.
+                    </p>
+                    <p>
+                        We provide early-stage funding, world-class <a href="#" class="text-brand font-medium hover:underline">incubation</a> at Startup Valley Jaipur, mentorship from industry leaders and AI-powered monitoring to help startups grow 10X faster.
+                    </p>
+                </div>
+
+                <div class="w-full sm:w-[220px] shrink-0" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="bg-gray-50 border border-gray-100 rounded-[20px] p-8 text-center shadow-sm hover-lift">
+<h5 class="font-bold text-black text-[15px] mb-3 leading-tight">Startup<br>Incubation</h5>
+                        <div class="w-6 border-b-[3px] border-brand mx-auto mb-4"></div>
+                        <p class="text-[10px] text-gray-500 uppercase font-bold tracking-wider leading-relaxed">
+                            World-class incubation<br>at Startup Valley Jaipur
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-[1200px] mx-auto px-6 pb-20">
+        <div class="relative w-full min-h-[200px] rounded-[24px] overflow-hidden bg-white">
+             <img src="assets/images/pages/gallery/ChatGPT Image Aug 29, 2026, 12_23_34 PM.png" alt="Campus Banner" class="absolute left-[15%] right-0 inset-y-0 w-[85%] h-full object-cover object-bottom">
+             <div class="absolute left-0 inset-y-0 w-[30%] bg-white"></div>
+             <div class="absolute left-[30%] inset-y-0 w-24 sm:w-56 bg-gradient-to-r from-white from-20% via-white/60 via-45% to-transparent"></div>
+             <div class="relative z-10 flex flex-col lg:flex-row items-start justify-between gap-8 p-6 sm:p-8">
+                 <div>
+                     <div class="flex flex-wrap gap-3 mb-5">
+                         <a href="yc/yc-application.html" class="bg-brand text-white text-[14px] font-semibold py-3 px-5 rounded-md hover:bg-orange-600 transition flex items-center gap-2">
+                             Apply For Funding <span>&rarr;</span>
+                         </a>
+<a href="school.html" class="bg-white border-[1.5px] border-gray-200 text-black text-[14px] font-semibold py-3 px-5 rounded-md hover:bg-gray-50 transition">
+                             Explore Startup Valley
+                         </a>
+                     </div>
+                     <div class="text-[13px] text-gray-600 space-y-1.5">
+                         <p>NXT Fund is the investment arm of <span class="text-brand font-medium">Celebso Group</span></p>
+                         <p class="font-bold text-gray-900 flex items-center gap-1">
+                             <span class="text-brand text-lg leading-none">+</span> Backed by Vision. Driven by Impact.
+                         </p>
+                     </div>
+                 </div>
+
+                 <div class="bg-white rounded-[16px] p-4 flex items-center gap-4 shadow-lg w-[260px] border border-gray-100">
+                     <h5 class="font-bold text-black text-[14px] leading-tight">Startup<br>Incubation</h5>
+                 </div>
+             </div>
+        </div>
+    </section>
+
+    <header class="max-w-7xl mx-auto px-6 pt-12 pb-6">
+        <h1 class="text-4xl md:text-5xl font-serif font-bold text-black leading-snug">
+            Building the Next <br>
+            Generation of <span class="text-brand">Global</span> Companies.
+        </h1>
+    </header>
+
+    <section class="max-w-7xl mx-auto px-6 py-4">
+        <!-- REPLACE THIS IMAGE WITH YOUR MAP GRAPHIC -->
+        <img src="assets/images/pages/investor/ChatGPT Image Aug 29, 2026, 01_16_08 PM.png" alt="Global Network Map" class="w-full h-auto object-contain bg-white p-4 rounded-xl shadow-sm mix-blend-multiply">
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+        <div class="lg:col-span-5 space-y-6">
+            <h4 class="text-brand text-xs font-bold tracking-widest uppercase mb-4">Global Investor & Ecosystem Brief</h4>
+            <h2 class="text-5xl md:text-6xl font-serif font-bold text-black leading-[1.1]">
+                The World <br>
+                Is Full of <br>
+                <span class="text-brand">Builders.</span>
+            </h2>
+            <div class="space-y-4 text-gray-600 text-sm leading-relaxed mt-6 max-w-md">
+                <p>
+                    Great ideas can come from anywhere. We believe the next generation of transformative companies will be built by founders everywhere.
+                </p>
+                <p>
+                    NXTFUND is designed to discover, support and scale exceptional founders from every corner of the world.
+                </p>
+            </div>
+            <hr class="w-16 border-t-2 border-brand mt-8">
+        </div>
+
+        <div class="lg:col-span-7 flex justify-center w-full">
+             <!-- REPLACE THIS IMAGE WITH YOUR NETWORK DIAGRAM (NXTFUND Center) -->
+             <img src="assets/images/pages/index/ChatGPT Image Aug 29, 2026, 01_17_14 PM.png" alt="Founder Network" class="w-full max-w-2xl h-auto object-contain">
+        </div>
+
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 pt-12">
+        <div class="relative w-full">
+            <img src="assets/images/pages/index/ChatGPT Image Aug 29, 2026, 01_18_30 PM.png" alt="Global Skyline" class="w-full h-auto object-cover rounded-2xl">
+            <h2 class="absolute top-6 left-6 sm:top-10 sm:left-8 md:top-16 md:left-16 text-3xl sm:text-4xl md:text-5xl font-serif font-bold leading-tight max-w-lg drop-shadow-lg">
+                <span class="text-white">Innovation has <br> no borders. <br></span>
+                <span class="text-brand">Neither should <br> access to <br> opportunity.</span>
+            </h2>
+        </div>
+    </section>
+
+    <footer class="max-w-7xl mx-auto px-6 pb-12 relative z-10 mt-[-20px]">
+        <div class="bg-black text-white rounded-xl p-8 md:p-10 flex flex-col md:flex-row justify-between items-center md:items-stretch gap-8 shadow-2xl">
+
+            <div class="flex-1 border-b md:border-b-0 md:border-r border-gray-700 pb-6 md:pb-0 md:pr-8 flex items-center">
+                <h3 class="text-2xl md:text-3xl font-serif font-bold leading-tight">
+                    Become Part of the <br> Global Network
+                </h3>
+            </div>
+
+            <div class="flex-1 flex items-center">
+                <p class="text-gray-300 text-sm leading-relaxed max-w-xs">
+                    Connect with founders, investors and strategic partners shaping the next generation of global companies.
+                </p>
+            </div>
+
+            <div class="flex-shrink-0 flex flex-col sm:flex-row gap-4 items-center justify-center">
+                <a href="contact-us.html" class="bg-white text-black font-semibold text-sm py-3 px-6 rounded hover:bg-gray-200 transition whitespace-nowrap w-full sm:w-auto">
+                    Join the Network
+                </a>
+                <a href="investor-brief.html" class="bg-transparent border border-white text-white font-semibold text-sm py-3 px-6 rounded hover:bg-white/10 transition flex items-center justify-center gap-2 whitespace-nowrap w-full sm:w-auto">
+                    Download Thesis
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                    </svg>
+                </a>
+            </div>
+
+        </div>
+    </footer>
+
+    <section class="max-w-6xl mx-auto px-6 py-10" id="home-event-section">
+        <div class="bg-[#0B0E14] rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-8 shadow-xl hover-lift" data-aos="zoom-in">
+
+            <div class="w-full md:w-64 h-40 shrink-0 zoom-img rounded-xl">
+                <!-- Replace with your event meeting image -->
+                <img src="assets/images/pages/blog/ChatGPT Image Aug 29, 2026, 01_28_12 PM.png" alt="Event" class="w-full h-full object-cover rounded-xl border border-gray-800">
+            </div>
+
+            <div class="flex-1 text-white">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="w-2 h-2 bg-brand rounded-full animate-pulse"></span>
+                    <span class="text-[10px] font-bold text-brand uppercase tracking-widest">Upcoming</span>
+                </div>
+                <h2 class="text-2xl font-bold mb-2" data-home-event="title">Celebso Founders Circle - Jaipur</h2>
+                <p class="text-gray-400 text-sm leading-relaxed max-w-md" data-home-event="desc">
+                    An exclusive evening for founders to connect, collaborate and grow together.
+                </p>
+                <div class="flex flex-wrap items-center gap-6 mt-5 text-xs text-gray-400 font-medium">
+                    <div class="flex items-center gap-2">
+                        <svg class="w-4 h-4 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        <span data-home-event="date">20 Aug 2026</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <svg class="w-4 h-4 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        <span data-home-event="location">Jaipur, India</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shrink-0 mt-4 md:mt-0">
+                <a href="https://allevents.in/jaipur/celebso-founders-circle-jaipur-tickets/80006319189371?ref=left-menu" target="_blank" class="border border-brand text-brand hover:bg-brand hover:text-white transition-colors duration-300 text-sm font-semibold py-2.5 px-6 rounded-lg flex items-center gap-2" data-home-event="link">
+                    Register <span>&rarr;</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 pb-12">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <!-- Replace these 4 src links with your gallery images -->
+            <div class="zoom-img rounded-[24px]" data-aos="zoom-in" data-aos-delay="0"><img src="assets/images/pages/index/ChatGPT Image Aug 29, 2026, 01_32_42 PM.png" alt="Gallery 1" class="w-full aspect-square object-cover rounded-[24px] shadow-sm hover:rotate-2 transition-transform duration-300"></div>
+            <div class="zoom-img rounded-[24px]" data-aos="zoom-in" data-aos-delay="100"><img src="assets/images/pages/index/ChatGPT Image Aug 29, 2026, 01_33_38 PM.png" alt="Gallery 2" class="w-full aspect-square object-cover rounded-[24px] shadow-sm hover:-rotate-2 transition-transform duration-300"></div>
+            <div class="zoom-img rounded-[24px]" data-aos="zoom-in" data-aos-delay="200"><img src="assets/images/pages/index/ChatGPT Image Aug 29, 2026, 01_35_04 PM.png" alt="Gallery 3" class="w-full aspect-square object-cover rounded-[24px] shadow-sm hover:rotate-2 transition-transform duration-300"></div>
+            <div class="zoom-img rounded-[24px]" data-aos="zoom-in" data-aos-delay="300"><img src="assets/images/pages/index/ChatGPT Image Aug 29, 2026, 01_36_08 PM.png" alt="Gallery 4" class="w-full aspect-square object-cover rounded-[24px] shadow-sm hover:-rotate-2 transition-transform duration-300"></div>
+        </div>
+    </section>
+
+    <section class="bg-[#F8F9FB] py-16">
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="flex justify-between items-end mb-10" data-aos="fade-up">
+                <div>
+                    <h4 class="text-brand text-[10px] font-bold tracking-widest uppercase mb-2">Portfolio Spotlight</h4>
+                    <h2 class="text-4xl font-extrabold text-black tracking-tight">Featured Startups</h2>
+                </div>
+                <a href="startups.html" class="text-sm font-bold text-gray-800 border-b-2 border-gray-800 pb-0.5 hover:text-brand hover:border-brand transition">
+                    View All Companies
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch" id="home-featured-grid">
+                <!-- Dynamically rendered from /api/startups -->
+
+                <div class="lg:col-span-8 bg-white rounded-2xl shadow-sm overflow-hidden flex flex-col relative hover-lift" data-aos="fade-right">
+                    <span class="absolute top-4 right-4 bg-brand text-white text-[10px] px-3 py-1.5 rounded-full uppercase font-bold tracking-wider z-10">
+                        Series A
+                    </span>
+                    <!-- Replace with CPU/Quantum image -->
+                    <img src="assets/images/pages/index/WhatsApp Image 2026-09-03 at 9.48.57 PM.jpeg" alt="Quantum Dynamics" class="w-full h-[340px] object-cover">
+                    <div class="p-8 flex-1 flex flex-col justify-center">
+                        <h3 class="text-2xl font-bold text-black mb-2">ANTELLAY Space</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed max-w-xl">
+                            AI brain for satellites and space missions
+                        </p>
+                        <div class="flex gap-2 mt-5">
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded text-xs font-bold">AI/ML</span>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded text-xs font-bold">Logistics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-4 flex flex-col gap-6">
+
+                    <div class="bg-white rounded-2xl shadow-sm flex flex-1 overflow-hidden relative hover-lift" data-aos="fade-left" data-aos-delay="100">
+                        <!-- Replace with Dashboard image -->
+                        <img src="assets/images/pages/index/Gemini_Generated_Image_f7jqlof7jqlof7jq.png" alt="FinTrack AI" class="w-[45%] object-cover">
+                        <div class="p-5 flex flex-col justify-center pr-12">
+                            <h3 class="text-lg font-bold text-black mb-1.5">VOLIMY</h3>
+                            <p class="text-xs text-gray-500 leading-relaxed">
+                                India's water supply management platform...
+                            </p>
+                        </div>
+                        <div class="absolute right-0 top-0 bottom-0 w-8 bg-[#1A1A1A] flex flex-col justify-center items-center gap-2">
+                             <div class="w-3 h-3 bg-gray-500 rounded-sm"></div>
+                             <div class="w-3 h-3 bg-gray-500 rounded-sm"></div>
+                             <div class="w-3 h-3 bg-gray-500 rounded-sm"></div>
+                             <div class="w-3 h-3 bg-gray-500 rounded-sm"></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-sm flex flex-1 overflow-hidden relative hover-lift" data-aos="fade-left" data-aos-delay="200">
+                        <!-- Replace with Vertical Farming image -->
+                        <img src="assets/images/pages/index/ChatGPT Image Aug 29, 2026, 01_44_16 PM.png" alt="BioBloom" class="w-[45%] object-cover">
+                        <div class="p-5 flex flex-col justify-center pr-12">
+                            <h3 class="text-lg font-bold text-black mb-1.5">NumeriXX.ai</h3>
+                            <p class="text-xs text-gray-500 leading-relaxed">
+                                AI-powered Personal Pattern Intelligence...
+                            </p>
+                        </div>
+                        <div class="absolute right-0 top-0 bottom-0 w-8 bg-[#1A1A1A] flex flex-col justify-center items-center gap-2">
+                             <div class="w-3 h-3 bg-gray-500 rounded-sm"></div>
+                             <div class="w-3 h-3 bg-gray-500 rounded-sm"></div>
+                             <div class="w-3 h-3 bg-gray-500 rounded-sm"></div>
+                             <div class="w-3 h-3 bg-gray-500 rounded-sm"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-6 py-16">
+        <div class="bg-white rounded-2xl shadow-[0_4px_40px_rgb(0,0,0,0.04)] border border-gray-100 p-8 flex flex-col lg:flex-row items-center justify-between gap-8 hover-lift" data-aos="fade-up">
+
+            <div class="flex items-center gap-4 lg:w-1/4">
+                <!-- Replace with Logo image -->
+                <img src="assets/images/pages/index/ChatGPT Image Aug 30, 2026, 09_46_22 PM.png" alt="Celebso" class="w-16 h-16 object-contain hover:rotate-6 transition-transform duration-500">
+                <div>
+                    <h3 class="text-xl font-bold leading-tight text-black">Celebso<br>Startup School</h3>
+                    <p class="text-xs text-gray-500 mt-1 font-medium">by <span class="text-brand font-bold">Celebso Group</span></p>
+                </div>
+            </div>
+
+            <div class="hidden lg:block w-px h-16 bg-gray-200"></div>
+
+            <div class="lg:w-1/4 text-center lg:text-left">
+                <h3 class="text-xl font-bold text-black leading-tight">Apply <span class="text-brand">Admission</span><br>2026 Batch</h3>
+                <div class="w-8 h-1 bg-brand mt-3 mx-auto lg:mx-0"></div>
+            </div>
+
+            <div class="hidden lg:block w-px h-16 bg-gray-200"></div>
+
+            <div class="flex flex-col gap-3 lg:w-1/4">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full border border-red-100 flex items-center justify-center">
+                        <svg class="w-4 h-4 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+                    </div>
+                    <div class="text-[11px] font-bold text-black leading-tight">
+                        International<br><span class="font-medium text-gray-500">Students</span>
+                    </div>
+                </div>
+                <hr class="border-gray-100 w-full">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full border border-green-100 flex items-center justify-center overflow-hidden">
+                       <img src="assets/images/pages/common/flag.jpg" alt="Indian Students" class="w-full h-full object-cover">
+                    </div>
+                    <div class="text-[11px] font-bold text-black leading-tight">
+                        Indian<br><span class="font-medium text-gray-500">Students</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center lg:w-1/5">
+                <a href="https://school.celebso.com/" target="_blank" class="border border-brand text-brand hover:bg-brand hover:text-white transition-colors duration-300 text-sm font-semibold py-2.5 px-6 rounded-lg w-full flex justify-center items-center gap-2">
+                    Apply Now <span>&rarr;</span>
+                </a>
+                <p class="text-[10px] text-gray-500 font-semibold mt-3">Join. Learn. Grow.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="bg-[#0B0E14] text-white py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+
+            <div class="mb-16" data-aos="fade-up">
+                <span class="text-brand text-[10px] font-bold tracking-widest uppercase block mb-3">Our Ecosystem</span>
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-4">Why Founders Choose<br>NXTFund</h2>
+                <p class="text-gray-400 text-sm md:text-base max-w-xl leading-relaxed">
+                    We don't just write checks. We provide the structural integrity and strategic acceleration required to scale from zero to global dominance.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-y-12 gap-x-10">
+
+                <div class="space-y-3 hover-lift p-4 rounded-2xl hover:bg-white/5" data-aos="zoom-in" data-aos-delay="0">
+<h3 class="text-lg font-bold">Investor Access</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Direct lines to Tier-1 VCs and family offices across the globe, facilitating high-speed capital raises.
+                    </p>
+                </div>
+
+                <div class="space-y-3 hover-lift p-4 rounded-2xl hover:bg-white/5" data-aos="zoom-in" data-aos-delay="100">
+<h3 class="text-lg font-bold">Strategic Partnerships</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Curated introductions to Fortune 500 decision-makers and high-value distribution channels.
+                    </p>
+                </div>
+
+                <div class="space-y-3 hover-lift p-4 rounded-2xl hover:bg-white/5" data-aos="zoom-in" data-aos-delay="200">
+<h3 class="text-lg font-bold">Growth Advisory</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Hands-on GTM strategies and operational scaling from partners who have built unicorns.
+                    </p>
+                </div>
+
+                <div class="space-y-3 hover-lift p-4 rounded-2xl hover:bg-white/5" data-aos="zoom-in" data-aos-delay="300">
+<h3 class="text-lg font-bold">Founder Education</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Workshops, masterclasses, and 1:1 mentorship to help founders grow smarter and faster.
+                    </p>
+                </div>
+
+                <div class="space-y-3 hover-lift p-4 rounded-2xl hover:bg-white/5" data-aos="zoom-in" data-aos-delay="400">
+<h3 class="text-lg font-bold">Global Network</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Tap into a global network of founders, investors, operators, and industry experts.
+                    </p>
+                </div>
+
+                <div class="space-y-3 hover-lift p-4 rounded-2xl hover:bg-white/5" data-aos="zoom-in" data-aos-delay="500">
+<h3 class="text-lg font-bold">Talent Sourcing</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Access top-tier talent to build, scale, and lead your vision to market leadership.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-white">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+            <div class="lg:col-span-6 relative" data-aos="fade-right">
+                <!-- Replace with your architecture/team building image -->
+                <img src="assets/images/pages/gallery/WhatsApp Image 2026-09-01 at 10.42.12 AM.jpeg" alt="Success Story" class="w-full rounded-2xl shadow-sm object-cover h-[420px] zoom-img">
+
+                <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-5 py-3 rounded-2xl shadow-lg border border-gray-100 text-center animate-float">
+                    <span class="text-2xl font-black text-brand tracking-tight block">12x</span>
+                    <span class="text-[9px] font-bold text-gray-500 uppercase tracking-widest">Avg. ROI</span>
+                </div>
+            </div>
+
+            <div class="lg:col-span-6 space-y-6" data-aos="fade-left">
+                <span class="text-brand text-[10px] font-bold tracking-widest uppercase block">Success Stories</span>
+
+                <h2 class="text-4xl font-extrabold text-black tracking-tight">From Vision to Velocity</h2>
+
+                <p class="text-lg text-gray-700 italic font-medium leading-relaxed">
+                    "NXTFund didn't just give us the capital; they gave us the roadmap. Their network opened doors that we didn't even know existed. They are truly the partner every visionary founder dreams of."
+                </p>
+
+                <div class="flex items-center gap-4 pt-4">
+                    <!-- Replace with Founder Avatar -->
+                    <img src="assets/images/pages/index/Screenshot 2026-09-08 010251.png" alt="Rahul Singh" class="w-12 h-12 rounded-full object-cover">
+                    <div>
+                        <h4 class="font-bold text-sm text-black">Rahul Singh</h4>
+                        <p class="text-xs text-gray-500">CEO, SolarStream</p>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <a href="blog-insights.html" class="inline-flex items-center gap-2 text-xs font-bold text-black hover:text-brand transition">
+                        Read More Growth Stories <span>&rarr;</span>
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="text-center max-w-4xl mx-auto px-6 py-12">
+        <div class="w-8 h-1 bg-brand mx-auto mb-6"></div>
+        <h1 class="text-4xl md:text-6xl font-serif italic font-normal text-black tracking-tight leading-tight mb-4">
+            It's <span class="text-brand font-semibold">never</span> too early to apply.
+        </h1>
+        <p class="text-gray-500 text-sm md:text-base font-normal mb-8">
+            We fund companies with no revenue, product, or fully baked idea.
+        </p>
+        <a href="yc/yc-application.html" class="bg-black text-white text-sm font-semibold py-3 px-10 rounded-full hover:bg-gray-800 transition">
+            Apply
+        </a>
+    </section>
+
+    <section class="max-w-full overflow-hidden py-8 px-0">
+<div class="event-marquee">
+            <img src="assets/images/pages/gallery/WhatsApp Image 2026-09-01 at 10.41.01 AM.jpeg" alt="Event 1" class="w-72 h-48 object-cover rounded-2xl shrink-0 mx-3">
+            <img src="assets/images/pages/gallery/WhatsApp Image 2026-09-01 at 10.41.35 AM.jpeg" alt="Event 2" class="w-72 h-48 object-cover rounded-2xl shrink-0 mx-3">
+            <img src="assets/images/pages/gallery/WhatsApp Image 2026-09-01 at 10.42.07 AM.jpeg" alt="Event 3" class="w-72 h-48 object-cover rounded-2xl shrink-0 mx-3">
+            <img src="assets/images/pages/gallery/ChatGPT Image Aug 29, 2026, 12_23_34 PM.png" alt="Event 4" class="w-72 h-48 object-cover rounded-2xl shrink-0 mx-3">
+            <img src="assets/images/pages/gallery/WhatsApp Image 2026-09-01 at 10.42.11 AM (1).jpeg" alt="Event 5" class="w-72 h-48 object-cover rounded-2xl shrink-0 mx-3">
+            <img src="assets/images/pages/gallery/WhatsApp Image 2026-09-01 at 10.42.11 AM (3).jpeg" alt="Event 6" class="w-72 h-48 object-cover rounded-2xl shrink-0 mx-3">
+            <img src="assets/images/pages/gallery/WhatsApp Image 2026-09-01 at 10.42.12 AM (2).jpeg" alt="Event 7" class="w-72 h-48 object-cover rounded-2xl shrink-0 mx-3">
+            <img src="assets/images/pages/gallery/WhatsApp Image 2026-09-01 at 10.42.13 AM (1).jpeg" alt="Event 8" class="w-72 h-48 object-cover rounded-2xl shrink-0 mx-3">
+            <img src="assets/images/pages/gallery/WhatsApp Image 2026-09-01 at 10.42.13 AM.jpeg" alt="Event 9" class="w-72 h-48 object-cover rounded-2xl shrink-0 mx-3">
+            <img src="assets/images/pages/gallery/WhatsApp Image 2026-09-01 at 10.42.14 AM (1).jpeg" alt="Event 10" class="w-72 h-48 object-cover rounded-2xl shrink-0 mx-3">
+            <img src="assets/images/pages/gallery/WhatsApp Image 2026-09-01 at 10.42.15 AM (1).jpeg" alt="Event 11" class="w-72 h-48 object-cover rounded-2xl shrink-0 mx-3">
+            <img src="assets/images/pages/gallery/WhatsApp Image 2026-09-01 at 10.41.01 AM.jpeg" alt="Event 1" class="w-72 h-48 object-cover rounded-2xl shrink-0 mx-3">
+            <img src="assets/images/pages/gallery/WhatsApp Image 2026-09-01 at 10.41.35 AM.jpeg" alt="Event 2" class="w-72 h-48 object-cover rounded-2xl shrink-0 mx-3">
+            <img src="assets/images/pages/gallery/WhatsApp Image 2026-09-01 at 10.42.07 AM.jpeg" alt="Event 3" class="w-72 h-48 object-cover rounded-2xl shrink-0 mx-3">
+            <img src="assets/images/pages/gallery/ChatGPT Image Aug 29, 2026, 12_23_34 PM.png" alt="Event 4" class="w-72 h-48 object-cover rounded-2xl shrink-0 mx-3">
+            <img src="assets/images/pages/gallery/WhatsApp Image 2026-09-01 at 10.42.11 AM (1).jpeg" alt="Event 5" class="w-72 h-48 object-cover rounded-2xl shrink-0 mx-3">
+            <img src="assets/images/pages/gallery/WhatsApp Image 2026-09-01 at 10.42.11 AM (3).jpeg" alt="Event 6" class="w-72 h-48 object-cover rounded-2xl shrink-0 mx-3">
+            <img src="assets/images/pages/gallery/WhatsApp Image 2026-09-01 at 10.42.12 AM (2).jpeg" alt="Event 7" class="w-72 h-48 object-cover rounded-2xl shrink-0 mx-3">
+            <img src="assets/images/pages/gallery/WhatsApp Image 2026-09-01 at 10.42.13 AM (1).jpeg" alt="Event 8" class="w-72 h-48 object-cover rounded-2xl shrink-0 mx-3">
+            <img src="assets/images/pages/gallery/WhatsApp Image 2026-09-01 at 10.42.13 AM.jpeg" alt="Event 9" class="w-72 h-48 object-cover rounded-2xl shrink-0 mx-3">
+            <img src="assets/images/pages/gallery/WhatsApp Image 2026-09-01 at 10.42.14 AM (1).jpeg" alt="Event 10" class="w-72 h-48 object-cover rounded-2xl shrink-0 mx-3">
+            <img src="assets/images/pages/gallery/WhatsApp Image 2026-09-01 at 10.42.15 AM (1).jpeg" alt="Event 11" class="w-72 h-48 object-cover rounded-2xl shrink-0 mx-3">
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 py-16">
+        <div class="flex justify-between items-center mb-10" data-aos="fade-up">
+            <h2 class="text-3xl font-bold tracking-tight text-black">Latest News</h2>
+            <a href="blog-insights.html" class="text-xs font-bold text-brand flex items-center gap-1 hover:underline">
+                View All Press &rarr;
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <div class="border-b border-gray-200 pb-6 hover:pl-4 transition-all duration-300 hover:border-brand hover:shadow-sm rounded" data-aos="fade-up" data-aos-delay="0">
+                <p class="text-[11px] font-semibold text-gray-400 mb-2">March 15, 2024</p>
+                <h3 class="font-bold text-base text-black mb-4 leading-snug">CelebsoX Announces Delhi Fashion Runway</h3>
+                <a href="#" class="text-xs font-bold text-brand flex items-center gap-1 hover:underline">
+                    Read More &rarr;
+                </a>
+            </div>
+
+            <div class="border-b border-gray-200 pb-6 hover:pl-4 transition-all duration-300 hover:border-brand hover:shadow-sm rounded" data-aos="fade-up" data-aos-delay="100">
+                <p class="text-[11px] font-semibold text-gray-400 mb-2">March 10, 2024</p>
+                <h3 class="font-bold text-base text-black mb-4 leading-snug">Celebso Group Expands Into AI Ecosystem</h3>
+                <a href="#" class="text-xs font-bold text-brand flex items-center gap-1 hover:underline">
+                    Read More &rarr;
+                </a>
+            </div>
+
+            <div class="border-b border-gray-200 pb-6 hover:pl-4 transition-all duration-300 hover:border-brand hover:shadow-sm rounded" data-aos="fade-up" data-aos-delay="200">
+                <p class="text-[11px] font-semibold text-gray-400 mb-2">March 5, 2024</p>
+                <h3 class="font-bold text-base text-black mb-4 leading-snug">Celebso Launches Founder Growth Platform</h3>
+                <a href="#" class="text-xs font-bold text-brand flex items-center gap-1 hover:underline">
+                    Read More &rarr;
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+<section class="max-w-full overflow-hidden py-10 px-0 opacity-65 grayscale">
+<div class="event-marquee">
+            <div class="flex items-center gap-12 pr-12 shrink-0">
+                <h3 class="font-serif font-bold text-xl tracking-tighter whitespace-nowrap">entreprenuer INDIA</h3>
+                <h3 class="font-black text-xl tracking-widest text-blue-900 whitespace-nowrap">ZOOM</h3>
+                <h3 class="font-bold text-sm tracking-wide whitespace-nowrap">StartupNews<span class="text-red-500">.</span>fyi</h3>
+                <h3 class="font-serif font-black text-lg tracking-widest whitespace-nowrap">YOURSTORY</h3>
+                <h3 class="font-serif font-bold text-xl tracking-tight whitespace-nowrap">Forbes</h3>
+            </div>            <div class="flex items-center gap-12 pr-12 shrink-0">
+                <h3 class="font-serif font-bold text-xl tracking-tighter whitespace-nowrap">entreprenuer INDIA</h3>
+                <h3 class="font-black text-xl tracking-widest text-blue-900 whitespace-nowrap">ZOOM</h3>
+                <h3 class="font-bold text-sm tracking-wide whitespace-nowrap">StartupNews<span class="text-red-500">.</span>fyi</h3>
+                <h3 class="font-serif font-black text-lg tracking-widest whitespace-nowrap">YOURSTORY</h3>
+                <h3 class="font-serif font-bold text-xl tracking-tight whitespace-nowrap">Forbes</h3>
+            </div>            <div class="flex items-center gap-12 pr-12 shrink-0">
+                <h3 class="font-serif font-bold text-xl tracking-tighter whitespace-nowrap">entreprenuer INDIA</h3>
+                <h3 class="font-black text-xl tracking-widest text-blue-900 whitespace-nowrap">ZOOM</h3>
+                <h3 class="font-bold text-sm tracking-wide whitespace-nowrap">StartupNews<span class="text-red-500">.</span>fyi</h3>
+                <h3 class="font-serif font-black text-lg tracking-widest whitespace-nowrap">YOURSTORY</h3>
+                <h3 class="font-serif font-bold text-xl tracking-tight whitespace-nowrap">Forbes</h3>
+            </div>            <div class="flex items-center gap-12 pr-12 shrink-0">
+                <h3 class="font-serif font-bold text-xl tracking-tighter whitespace-nowrap">entreprenuer INDIA</h3>
+                <h3 class="font-black text-xl tracking-widest text-blue-900 whitespace-nowrap">ZOOM</h3>
+                <h3 class="font-bold text-sm tracking-wide whitespace-nowrap">StartupNews<span class="text-red-500">.</span>fyi</h3>
+                <h3 class="font-serif font-black text-lg tracking-widest whitespace-nowrap">YOURSTORY</h3>
+                <h3 class="font-serif font-bold text-xl tracking-tight whitespace-nowrap">Forbes</h3>
+            </div>        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 py-8 relative">
+        <div class="relative w-full h-[280px] rounded-2xl overflow-hidden">
+            <!-- Replace with Building Image -->
+            <img src="assets/images/pages/gallery/ChatGPT Image Aug 29, 2026, 12_23_34 PM.png" alt="Building Banner" class="w-full h-full object-cover object-bottom">
+
+            <div class="absolute right-8 top-1/2 -translate-y-1/2 bg-white rounded-xl p-4 flex items-center gap-3 shadow-lg w-56">
+<div>
+                    <h5 class="font-bold text-black text-xs">Startup</h5>
+                    <p class="text-[11px] text-gray-500 font-medium">Incubation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#0B0E14] text-white pt-16 pb-10 px-6 mt-12 relative overflow-hidden bg-cover bg-center" style="background-image:url('assets/images/footer/footer-bg.png');">
+        <div class="absolute inset-0 bg-neutral-900/70"></div>
+        <div class="max-w-4xl mx-auto text-center space-y-8 relative z-10">
+
+            <div class="flex justify-center">
+<img src="assets/images/logo/footer-logo.png" alt="NXT Fund" class="h-24 w-auto object-contain">
+            </div>
+
+            <p class="text-xs font-medium text-gray-400 tracking-wide">
+                Connect. <span class="text-brand font-semibold">Create.</span> Grow.
+            </p>
+
+            <ul class="flex flex-wrap justify-center gap-x-6 gap-y-3 text-xs text-gray-300 font-medium">
+                <li><a href="terms-privacy.html" class="hover:text-brand transition">Terms & Privacy</a></li>
+                <li><a href="about.html" class="hover:text-brand transition">About Us</a></li>
+                <li><a href="contact-us.html" class="hover:text-brand transition">Contact Us</a></li>
+                <li><a href="partners.html" class="hover:text-brand transition">Become a Partner</a></li>
+            </ul>
+
+            <div class="flex items-center justify-center gap-2 text-xs text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span data-setting="contact_email">Startup.nxtfund@gmail.com</span>
+            </div>
+
+            <div class="flex justify-center gap-4 pt-2">
+                <a data-social="instagram" href="https://www.instagram.com/thenxtfund?stkn=bnY0enhtZzdnY2o=" aria-label="Instagram" class="w-9 h-9 rounded-full border border-gray-800 flex items-center justify-center hover:border-brand transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 3a5 5 0 015 5v8a5 5 0 01-5 5H8a5 5 0 01-5-5V8a5 5 0 015-5h8zm-4 6a3 3 0 100 6 3 3 0 000-6zm4.5-2.5h.01"></path></svg>
+                </a>
+                <a data-social="linkedin" href="https://www.linkedin.com/company/celebso-venture/posts/?feedView=all" aria-label="LinkedIn" class="w-9 h-9 rounded-full border border-gray-800 flex items-center justify-center hover:border-brand transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>
+                </a>
+                <a href="#" aria-label="YouTube" class="w-9 h-9 rounded-full border border-gray-800 flex items-center justify-center hover:border-brand transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg>
+                </a>
+                <a href="#" aria-label="Heart" class="w-9 h-9 rounded-full border border-gray-800 flex items-center justify-center hover:border-brand transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                </a>
+            </div>
+
+            <div class="text-[11px] text-gray-500 pt-6 border-t border-gray-900">
+                © 2026 ANTELLAY Labs. All Rights Reserved. A Celebso Group Company.
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 80
+        });
+        (function () {
+            const toggle = document.getElementById('mobile-toggle');
+            const menu = document.getElementById('mobile-menu');
+            const iconMenu = document.getElementById('icon-menu');
+            const iconClose = document.getElementById('icon-close');
+            if (!toggle || !menu) return;
+            toggle.addEventListener('click', () => {
+                const open = menu.classList.toggle('hidden') === false;
+                if (iconMenu) iconMenu.classList.toggle('hidden', open);
+                if (iconClose) iconClose.classList.toggle('hidden', !open);
+            });
+        })();
+    </script>
+    <script>
+        (function () {
+            function esc(str) {
+                var d = document.createElement('div');
+                d.textContent = str == null ? '' : String(str);
+                return d.innerHTML;
+            }
+
+            // Featured Startups
+            var grid = document.getElementById('home-featured-grid');
+            if (grid) {
+                fetch((window.API_BASE || '') + '/api/startups')
+                    .then(function (r) { return r.json(); })
+                    .then(function (startups) {
+                        if (!Array.isArray(startups) || !startups.length) return;
+
+                        // Main featured card = ANTELLAY Space (fixed hero startup)
+                        var main = { name: 'ANTELLAY Space', description: 'AI brain for satellites and space missions', image: 'assets/images/pages/index/WhatsApp Image 2026-09-03 at 9.48.57 PM.jpeg', tags: ['AI/ML', 'SpaceTech'] };
+                        var mainTags = main.tags.map(function (c) { return '<span class="bg-gray-100 text-gray-600 px-3 py-1 rounded text-xs font-bold">' + esc(c) + '</span>'; }).join('');
+
+                        var html = '<div class="lg:col-span-8 bg-white rounded-2xl shadow-sm overflow-hidden flex flex-col relative hover-lift" data-aos="fade-right">' +
+                            '<span class="absolute top-4 right-4 bg-brand text-white text-[10px] px-3 py-1.5 rounded-full uppercase font-bold tracking-wider z-10">Portfolio</span>' +
+                            '<img src="' + main.image + '" alt="' + esc(main.name) + '" class="w-full h-[340px] object-cover">' +
+                            '<div class="p-8 flex-1 flex flex-col justify-center">' +
+                                '<h3 class="text-2xl font-bold text-black mb-2">' + esc(main.name) + '</h3>' +
+                                '<p class="text-gray-500 text-sm leading-relaxed max-w-xl">' + esc(main.description) + '</p>' +
+                                '<div class="flex gap-2 mt-5">' + mainTags + '</div>' +
+                            '</div>' +
+                        '</div>';
+
+                        // Side cards: pinned VOLIMY + pinned NumeriXX.ai
+                        var numerixx = { name: 'NumeriXX.ai', description: 'AI-powered Personal Pattern Intelligence', image: 'assets/images/pages/index/ChatGPT Image Aug 29, 2026, 01_44_16 PM.png' };
+                        var picards = [volimy, numerixx];
+
+                        var side = '';
+                        picards.forEach(function (p, i) {
+                            side += '<div class="bg-white rounded-2xl shadow-sm flex flex-1 overflow-hidden relative hover-lift" data-aos="fade-left" data-aos-delay="' + ((i + 1) * 100) + '">' +
+                                '<img src="' + p.image + '" alt="' + esc(p.name) + '" class="w-[45%] object-cover">' +
+                                '<div class="p-5 flex flex-col justify-center pr-10 w-full">' +
+                                    '<h3 class="text-lg font-bold text-black mb-1.5">' + esc(p.name) + '</h3>' +
+                                    '<p class="text-xs text-gray-500 leading-relaxed">' + esc(p.description) + '</p>' +
+                                '</div>' +
+                            '</div>';
+                        });
+
+                        html += '<div class="lg:col-span-4 flex flex-col gap-6">' + side + '</div>';
+                        grid.innerHTML = html;
+                        if (window.AOS) AOS.refresh();
+                    })
+                    .catch(function () { /* fallback */ });
+            }
+        })();
+    </script>
+<script src="assets/js/settings.js"></script>
+</body>
+</html>

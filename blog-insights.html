@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog & Insights - NXTFund</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#F24E2B',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+        html, body { overflow-x: hidden; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #111827;
+    }
+    .page-wrapper {
+      max-width: 1120px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .text-orange {
+      color: #ff5733;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+      border-bottom: 1px solid #f3f4f6;
+    }
+    .brand-logo {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #000000;
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      color: #374151;
+      position: relative;
+      padding-bottom: 4px;
+    }
+    .nav-links a.active {
+      font-weight: 600;
+      color: #111827;
+    }
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -25px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #ff5733;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .btn-apply {
+      background-color: #000000;
+      color: #ffffff;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .profile-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .profile-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: #374151;
+      fill: none;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      padding: 44px 0 32px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .hero-content {
+      max-width: 500px;
+      z-index: 2;
+    }
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      color: #ff5733;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 40px;
+      line-height: 1.15;
+      font-weight: 700;
+      color: #0d0d0d;
+      margin-bottom: 16px;
+    }
+    .hero-subtitle {
+      font-size: 13.5px;
+      color: #4b5563;
+      line-height: 1.55;
+    }
+    .hero-map-bg {
+      position: absolute;
+      right: 0;
+      top: 10px;
+      width: 540px;
+      height: 220px;
+      opacity: 0.35;
+      pointer-events: none;
+      background-image: radial-gradient(#9ca3af 1.2px, transparent 1.2px);
+      background-size: 10px 10px;
+      mask-image: radial-gradient(circle at 65% 40%, black 20%, transparent 75%);
+      -webkit-mask-image: radial-gradient(circle at 65% 40%, black 20%, transparent 75%);
+    }
+
+    .hero-image {
+      align-self: flex-start;
+      margin-top: 10px;
+      width: 540px;
+      max-width: 100%;
+      height: auto;
+      border-radius: 16px;
+      object-fit: contain;
+    }
+
+    /* Filter Nav Bar */
+    .filter-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e5e7eb;
+      margin-bottom: 32px;
+    }
+    .tabs-list {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+    .tab-item {
+      font-size: 12px;
+      font-weight: 500;
+      color: #4b5563;
+      padding: 12px 0;
+      cursor: pointer;
+      position: relative;
+    }
+    .tab-item.active {
+      color: #ff5733;
+      font-weight: 600;
+    }
+    .tab-item.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #ff5733;
+    }
+    .search-box {
+      position: relative;
+      margin-bottom: 4px;
+    }
+    .search-box svg {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 14px;
+      height: 14px;
+      stroke: #9ca3af;
+      fill: none;
+    }
+    .search-input {
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 6px 12px 6px 30px;
+      font-size: 11.5px;
+      outline: none;
+      width: 180px;
+    }
+
+    /* Layout Grid Columns */
+    .content-layout {
+      display: grid;
+      grid-template-columns: 1fr 310px;
+      gap: 36px;
+    }
+
+    /* Left Column - Articles */
+    .featured-card {
+      background: #ffffff;
+      border: 1px solid #f0f0f0;
+      border-radius: 12px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+    .featured-info {
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .meta-tag {
+      font-size: 10px;
+      font-weight: 700;
+      color: #ff5733;
+      letter-spacing: 0.8px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    .meta-date {
+      color: #9ca3af;
+      font-weight: 400;
+      margin-left: 6px;
+      text-transform: none;
+    }
+    .featured-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 22px;
+      line-height: 1.25;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 12px;
+    }
+    .featured-excerpt {
+      font-size: 11.5px;
+      color: #6b7280;
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+    .read-more {
+      font-size: 11px;
+      font-weight: 600;
+      color: #ff5733;
+      text-decoration: none;
+    }
+    .featured-img-box {
+      background-color: #e5e7eb;
+      width: 100%;
+      height: 100%;
+      min-height: 240px;
+    }
+    .featured-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Article Cards 3x2 Grid */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .article-card {
+      background: #ffffff;
+      border: 1px solid #f0f0f0;
+      border-radius: 10px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-img-wrapper {
+      width: 100%;
+      height: 110px;
+      border-radius: 6px;
+      overflow: hidden;
+      background-color: #f3f4f6;
+      margin-bottom: 10px;
+    }
+    .card-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .card-meta {
+      font-size: 9px;
+      font-weight: 700;
+      color: #ff5733;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      text-transform: uppercase;
+    }
+    .card-meta span {
+      color: #9ca3af;
+      font-weight: 400;
+      text-transform: none;
+    }
+    .card-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #111827;
+      margin-bottom: 6px;
+    }
+    .card-excerpt {
+      font-size: 10.5px;
+      color: #6b7280;
+      line-height: 1.4;
+      margin-bottom: 12px;
+      flex-grow: 1;
+    }
+
+    /* Load More Button */
+    .load-more-container {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .btn-load-more {
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      padding: 8px 20px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #374151;
+      cursor: pointer;
+    }
+
+    /* Right Column - Sidebar */
+    .sidebar-section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 20px;
+    }
+
+    /* Popular Reads List */
+    .popular-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .popular-item {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .popular-thumb {
+      width: 60px;
+      height: 60px;
+      border-radius: 6px;
+      overflow: hidden;
+      background-color: #e5e7eb;
+      flex-shrink: 0;
+    }
+    .popular-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .popular-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .popular-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.35;
+      color: #111827;
+      margin-bottom: 4px;
+    }
+    .popular-meta {
+      font-size: 9.5px;
+      color: #9ca3af;
+    }
+
+    /* Newsletter Box */
+    .newsletter-box {
+      background-color: #fbfbfb;
+      border: 1px solid #efefef;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 32px;
+    }
+    .newsletter-icon {
+      width: 32px;
+      height: 32px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+    .newsletter-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: #ff5733;
+      fill: none;
+    }
+    .newsletter-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 4px;
+    }
+    .newsletter-desc {
+      font-size: 10px;
+      color: #6b7280;
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+    .newsletter-input {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+      font-size: 11px;
+      margin-bottom: 8px;
+      outline: none;
+    }
+    .btn-subscribe {
+      width: 100%;
+      background: #000000;
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      padding: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Explore Topics Tag Cloud */
+    .topics-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 12px;
+    }
+    .tags-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .tag-pill {
+      font-size: 10px;
+      font-weight: 500;
+      color: #4b5563;
+      background-color: #f3f4f6;
+      padding: 5px 10px;
+      border-radius: 4px;
+      text-decoration: none;
+    }
+
+    /* Bottom CTA Banner */
+    .cta-banner {
+      background-color: #050505;
+      border-radius: 10px;
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #ffffff;
+      margin-top: 48px;
+      margin-bottom: 32px;
+    }
+    .cta-left-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .cta-mid-text {
+      font-size: 11px;
+      color: #9ca3af;
+      max-width: 280px;
+      line-height: 1.4;
+    }
+    .btn-cta-white {
+      background-color: #ffffff;
+      color: #000000;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Footer */
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 10px;
+      color: #9ca3af;
+      padding-top: 12px;
+      border-top: 1px solid #f3f4f6;
+    }
+    .footer-brand {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #000000;
+      margin-right: 12px;
+    }
+    .footer-left {
+      display: flex;
+      align-items: center;
+    }
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .footer-right a {
+      color: #6b7280;
+      text-decoration: none;
+    }
+    .social-icons {
+      display: flex;
+      gap: 10px;
+      margin-left: 10px;
+    }
+    .social-icons svg {
+      width: 14px;
+      height: 14px;
+      fill: #4b5563;
+    }
+
+    /* ==== Responsive / Mobile ==== */
+    @media (max-width: 768px) {
+      .page-wrapper {
+        padding: 0 16px;
+      }
+      .hero {
+        flex-direction: column;
+        padding: 24px 0;
+        gap: 20px;
+      }
+      .hero-content {
+        max-width: 100%;
+      }
+      .hero-title {
+        font-size: 30px;
+      }
+      .hero-image {
+        width: 100%;
+        margin-top: 0;
+      }
+      .filter-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .tabs-list {
+        gap: 16px;
+        overflow-x: auto;
+        width: 100%;
+      }
+      .tab-item {
+        white-space: nowrap;
+      }
+      .search-box {
+        width: 100%;
+      }
+      .search-input {
+        width: 100%;
+      }
+      .content-layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+      .featured-card {
+        grid-template-columns: 1fr;
+      }
+      .featured-img-box {
+        min-height: 200px;
+        order: -1;
+      }
+      .featured-info {
+        padding: 20px 18px;
+      }
+      .articles-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+    }
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 26px;
+      }
+      .articles-grid {
+        grid-template-columns: 1fr;
+      }
+      .cta-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 20px;
+      }
+      .cta-mid-text {
+        max-width: 100%;
+      }
+      .footer {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+      }
+    }
+  </style>
+<script src="assets/js/api.js"></script>
+</head>
+<body>
+
+    <nav class="relative flex items-center justify-between px-6 py-4 max-w-[1400px] mx-auto w-full bg-white">
+        <a href="index.html" class="cursor-pointer">
+            <img src="assets/images/logo/log1.png" alt="NXT Fund" class="h-16 w-auto object-contain">
+        </a>
+
+        <ul id="desktop-menu" class="hidden lg:flex items-center space-x-8 text-[15px] font-semibold text-gray-800">
+            <li class="cursor-pointer hover:text-brand transition pb-1"><a href="startups.html">Startups</a></li>
+            <li class="cursor-pointer hover:text-brand transition pb-1"><a href="investor-brief.html">Investors</a></li>
+            <li class="cursor-pointer hover:text-brand transition pb-1"><a href="partners.html">Partners</a></li>
+            <li class="cursor-pointer hover:text-brand transition pb-1"><a href="events.html">Events</a></li>
+            <li class="border-b-2 border-brand text-black pb-1"><a href="blog-insights.html">News</a></li>
+            <li class="cursor-pointer hover:text-brand transition pb-1"><a href="gallery.html">Gallery</a></li>
+        </ul>
+
+        <div id="desktop-cta" class="hidden lg:flex items-center space-x-3">
+            <a href="yc/yc-application.html" class="bg-brand text-white text-[15px] font-semibold py-2.5 px-6 rounded-md hover:bg-orange-600 transition">
+                Apply for Funding
+            </a>
+            </div>
+
+        <button id="mobile-toggle" aria-label="Toggle menu" class="lg:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand">
+            <svg id="icon-menu" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <svg id="icon-close" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+
+        <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-lg z-50">
+            <ul class="flex flex-col p-4 space-y-2 text-[15px] font-semibold text-gray-800">
+                <li class="hover:text-brand transition"><a href="startups.html" class="block py-2">Startups</a></li>
+                <li class="hover:text-brand transition"><a href="investor-brief.html" class="block py-2">Investors</a></li>
+                <li class="hover:text-brand transition"><a href="partners.html" class="block py-2">Partners</a></li>
+                <li class="hover:text-brand transition"><a href="events.html" class="block py-2">Events</a></li>
+                <li class="hover:text-brand transition"><a href="blog-insights.html" class="block py-2">News</a></li>
+                <li class="hover:text-brand transition"><a href="gallery.html" class="block py-2">Gallery</a></li>
+                <li class="pt-2">
+                    <a href="yc/yc-application.html" class="block text-center bg-brand text-white font-semibold py-3 rounded-md hover:bg-orange-600 transition">Apply for Funding</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+  <div class="page-wrapper">
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow">BLOG &amp; INSIGHTS</div>
+        <h1 class="hero-title">
+          Ideas, perspectives and insights for builders of the <span class="text-orange">future.</span>
+        </h1>
+        <p class="hero-subtitle">
+          In-depth perspectives on startups, capital, technology, markets and the global innovation ecosystem.
+        </p>
+      </div>
+      <img src="assets/images/pages/blog/ChatGPT Image Sep 1, 2026, 06_59_59 PM.png" alt="BLOG & INSIGHTS" class="hero-image">
+    </section>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+      <ul class="tabs-list">
+        <li class="tab-item active">All</li>
+        <li class="tab-item">Fundraising</li>
+        <li class="tab-item">Startups</li>
+        <li class="tab-item">Ecosystem</li>
+        <li class="tab-item">Technology</li>
+        <li class="tab-item">Leadership</li>
+        <li class="tab-item">Global Markets</li>
+        <li class="tab-item">Reports</li>
+        <li class="tab-item">News</li>
+      </ul>
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" class="search-input" placeholder="Search blogs...">
+      </div>
+    </div>
+
+    <!-- Main Content Layout -->
+    <div class="content-layout">
+
+      <!-- Left Column: Articles Feed -->
+      <main class="main-content">
+        
+        <!-- Featured Article -->
+        <article class="featured-card" id="featured-blog">
+          <div class="featured-info">
+            <div class="meta-tag">
+              FEATURED <span class="meta-date">Ã¢â‚¬Â¢ May 15, 2025 Ã¢â‚¬Â¢ 8 min read</span>
+            </div>
+            <h2 class="featured-title">The Next Decade of Global Innovation: Opportunities for Founders Everywhere</h2>
+            <p class="featured-excerpt">The world is entering a new era of innovation driven by technology, capital accessibility and a borderless entrepreneurial mindset.</p>
+            <a href="#" class="read-more">Read More &rarr;</a>
+          </div>
+          <div class="featured-img-box">
+            <!-- REPLACE WITH NYC SKYLINE IMAGE -->
+            <img src="assets/images/pages/blog/ChatGPT Image Sep 1, 2026, 08_48_29 PM.png" alt="City Skyline">
+          </div>
+        </article>
+
+        <!-- 3x2 Grid of Articles -->
+        <div class="articles-grid" id="articles-grid">
+          <!-- Dynamically rendered from /api/blogs -->
+
+          <!-- Card 1 -->
+          <article class="article-card">
+            <div class="card-img-wrapper">
+              <!-- REPLACE WITH IMAGE -->
+              <img src="assets/images/pages/blog/ChatGPT Image Sep 1, 2026, 10_24_19 AM.png" alt="Team Meeting">
+            </div>
+            <div class="card-meta">
+              FUNDRAISING <span>May 8, 2025 Ã¢â‚¬Â¢ 6 min read</span>
+            </div>
+            <h3 class="card-title">How to Build a Fundraising Strategy That Works in Any Market</h3>
+            <p class="card-excerpt">Practical steps founders can take to prepare, position and raise capital successfully.</p>
+            <a href="#" class="read-more">Read More &rarr;</a>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="article-card">
+            <div class="card-img-wrapper">
+              <!-- REPLACE WITH IMAGE -->
+              <img src="assets/images/pages/blog/ChatGPT Image Sep 1, 2026, 09_17_39 PM.png" alt="Digital Globe Network">
+            </div>
+            <div class="card-meta">
+              ECOSYSTEM <span>Apr 30, 2025 Ã¢â‚¬Â¢ 7 min read</span>
+            </div>
+            <h3 class="card-title">Emerging Startup Hubs Redefining the Global Innovation Map</h3>
+            <p class="card-excerpt">A look at high-potential ecosystems outside traditional markets driving the next wave of startups.</p>
+            <a href="#" class="read-more">Read More &rarr;</a>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="article-card">
+            <div class="card-img-wrapper">
+              <!-- REPLACE WITH IMAGE -->
+              <img src="assets/images/pages/blog/ChatGPT Image Sep 1, 2026, 09_09_37 PM.png" alt="Tablet displaying charts">
+            </div>
+            <div class="card-meta">
+              INSIGHTS <span>Apr 22, 2025 Ã¢â‚¬Â¢ 5 min read</span>
+            </div>
+            <h3 class="card-title">Key Trends in Venture Capital for 2025 and Beyond</h3>
+            <p class="card-excerpt">Where capital is flowing, what investors are prioritizing and how founders can stay ahead.</p>
+            <a href="#" class="read-more">Read More &rarr;</a>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="article-card">
+            <div class="card-img-wrapper">
+              <!-- REPLACE WITH IMAGE -->
+              <img src="assets/images/pages/blog/ChatGPT Image Sep 1, 2026, 09_04_33 PM.png" alt="Person working on laptop">
+            </div>
+            <div class="card-meta">
+              LEADERSHIP <span>Apr 15, 2025 Ã¢â‚¬Â¢ 6 min read</span>
+            </div>
+            <h3 class="card-title">Founder Mindset: Building Resilience in an Uncertain World</h3>
+            <p class="card-excerpt">Resilience is the ultimate competitive advantage for founders navigating challenges.</p>
+            <a href="#" class="read-more">Read More &rarr;</a>
+          </article>
+
+          <!-- Card 5 -->
+          <article class="article-card">
+            <div class="card-img-wrapper">
+              <!-- REPLACE WITH IMAGE -->
+              <img src="assets/images/pages/blog/ChatGPT Image Sep 1, 2026, 09_19_12 PM.png" alt="Windmills and solar panels">
+            </div>
+            <div class="card-meta">
+              TECHNOLOGY <span>Apr 7, 2025 Ã¢â‚¬Â¢ 6 min read</span>
+            </div>
+            <h3 class="card-title">Deep Tech Startups Solving Real-World Problems at Scale</h3>
+            <p class="card-excerpt">How deep tech is addressing critical challenges and creating massive long-term impact.</p>
+            <a href="#" class="read-more">Read More &rarr;</a>
+          </article>
+
+          <!-- Card 6 -->
+          <article class="article-card">
+            <div class="card-img-wrapper">
+              <!-- REPLACE WITH IMAGE -->
+              <img src="assets/images/pages/blog/ChatGPT Image Sep 1, 2026, 09_15_55 PM.png" alt="Cargo Ship">
+            </div>
+            <div class="card-meta">
+              GLOBAL MARKETS <span>Mar 28, 2025 Ã¢â‚¬Â¢ 5 min read</span>
+            </div>
+            <h3 class="card-title">Cross-Border Expansion: How Startups Can Go Global, Faster</h3>
+            <p class="card-excerpt">Strategies for entering new markets, building local advantage and scaling sustainably.</p>
+            <a href="#" class="read-more">Read More &rarr;</a>
+          </article>
+
+        </div>
+
+        <!-- Load More -->
+        <div class="load-more-container">
+          <button class="btn-load-more">Load More Articles &nbsp;?</button>
+        </div>
+
+      </main>
+
+      <!-- Right Column: Sidebar -->
+      <aside class="sidebar">
+        
+        <h3 class="sidebar-section-title">Popular Reads</h3>
+
+        <div class="popular-list">
+          
+          <!-- Popular 1 -->
+          <div class="popular-item">
+            <div class="popular-thumb">
+              <!-- REPLACE WITH IMAGE -->
+              <img src="assets/images/pages/blog/ChatGPT Image Sep 1, 2026, 09_03_13 PM.png" alt="Bridge view">
+            </div>
+            <div class="popular-info">
+              <h4 class="popular-title">Why India is Building Startups for the World</h4>
+              <span class="popular-meta">May 5, 2025 Ã¢â‚¬Â¢ 6 min read</span>
+            </div>
+          </div>
+
+          <!-- Popular 2 -->
+          <div class="popular-item">
+            <div class="popular-thumb">
+              <!-- REPLACE WITH IMAGE -->
+              <img src="assets/images/pages/blog/ChatGPT Image Aug 29, 2026, 01_28_12 PM.png" alt="Team working">
+            </div>
+            <div class="popular-info">
+              <h4 class="popular-title">The Rise of AI-Native Startups</h4>
+              <span class="popular-meta">Apr 18, 2025 Ã¢â‚¬Â¢ 7 min read</span>
+            </div>
+          </div>
+
+          <!-- Popular 3 -->
+          <div class="popular-item">
+            <div class="popular-thumb">
+              <!-- REPLACE WITH IMAGE -->
+              <img src="assets/images/pages/blog/ChatGPT Image Sep 1, 2026, 08_48_29 PM.png" alt="Cityscape">
+            </div>
+            <div class="popular-info">
+              <h4 class="popular-title">Southeast Asia: The Next Growth Frontier</h4>
+              <span class="popular-meta">Apr 10, 2025 Ã¢â‚¬Â¢ 6 min read</span>
+            </div>
+          </div>
+
+          <!-- Popular 4 -->
+          <div class="popular-item">
+            <div class="popular-thumb">
+              <!-- REPLACE WITH IMAGE -->
+              <img src="assets/images/pages/blog/ChatGPT Image Sep 1, 2026, 10_28_58 AM.png" alt="Boardroom">
+            </div>
+            <div class="popular-info">
+              <h4 class="popular-title">Building Strong Board Relationships</h4>
+              <span class="popular-meta">Mar 25, 2025 Ã¢â‚¬Â¢ 5 min read</span>
+            </div>
+          </div>
+
+          <!-- Popular 5 -->
+          <div class="popular-item">
+            <div class="popular-thumb">
+              <!-- REPLACE WITH IMAGE -->
+              <img src="assets/images/pages/blog/ChatGPT Image Sep 1, 2026, 09_19_12 PM.png" alt="Valley landscape">
+            </div>
+            <div class="popular-info">
+              <h4 class="popular-title">Climate Tech: Investing in a Sustainable Future</h4>
+              <span class="popular-meta">Mar 12, 2025 Ã¢â‚¬Â¢ 6 min read</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Newsletter Card -->
+        <div class="newsletter-box">
+          <div class="newsletter-icon">
+            <svg viewBox="0 0 24 24" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <h4 class="newsletter-title">Stay updated</h4>
+          <p class="newsletter-desc">Get the latest insights, reports and stories straight to your inbox.</p>
+          <input type="email" class="newsletter-input" placeholder="Enter your email">
+          <button class="btn-subscribe">Subscribe</button>
+        </div>
+
+        <!-- Explore Topics -->
+        <h4 class="topics-title">Explore Topics</h4>
+        <div class="tags-cloud">
+          <a href="#" class="tag-pill">Fundraising</a>
+          <a href="#" class="tag-pill">Startups</a>
+          <a href="#" class="tag-pill">Ecosystem</a>
+          <a href="#" class="tag-pill">Technology</a>
+          <a href="#" class="tag-pill">Leadership</a>
+          <a href="#" class="tag-pill">Markets</a>
+          <a href="#" class="tag-pill">Global</a>
+          <a href="#" class="tag-pill">Innovation</a>
+          <a href="#" class="tag-pill">Reports</a>
+        </div>
+
+      </aside>
+
+    </div>
+
+    <!-- Bottom Banner -->
+    <section class="cta-banner">
+      <h2 class="cta-left-title">Insights that inspire<br>builders and investors.</h2>
+      <p class="cta-mid-text">Thought leadership, deep dives and actionable perspectives from the NXTFund team and global contributors.</p>
+      <a href="#" class="btn-cta-white">Explore All Insights &rarr;</a>
+    </section>
+
+  </div>
+
+        <footer class="bg-[#0B0E14] text-white pt-16 pb-10 px-6 mt-12 relative overflow-hidden bg-cover bg-center" style="background-image:url('assets/images/footer/footer-bg.png');">
+        <div class="absolute inset-0 bg-neutral-900/70"></div>
+        <div class="max-w-4xl mx-auto text-center space-y-8 relative z-10">
+
+            <div class="flex justify-center">
+<img src="assets/images/logo/footer-logo.png" alt="NXT Fund" class="h-24 w-auto object-contain">
+            </div>
+
+            <p class="text-xs font-medium text-gray-400 tracking-wide">
+                Connect. <span class="text-brand font-semibold">Create.</span> Grow.
+            </p>
+
+            <ul class="flex flex-wrap justify-center gap-x-6 gap-y-3 text-xs text-gray-300 font-medium">
+                <li><a href="terms-privacy.html" class="hover:text-brand transition">Terms & Privacy</a></li>
+                <li><a href="about.html" class="hover:text-brand transition">About Us</a></li>
+                <li><a href="contact-us.html" class="hover:text-brand transition">Contact Us</a></li>
+                <li><a href="partners.html" class="hover:text-brand transition">Become a Partner</a></li>
+            </ul>
+
+            <div class="flex items-center justify-center gap-2 text-xs text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span data-setting="contact_email">Startup.nxtfund@gmail.com</span>
+            </div>
+
+            <div class="flex justify-center gap-4 pt-2">
+                <a data-social="instagram" href="https://www.instagram.com/thenxtfund?stkn=bnY0enhtZzdnY2o=" aria-label="Instagram" class="w-9 h-9 rounded-full border border-gray-800 flex items-center justify-center hover:border-brand transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 3a5 5 0 015 5v8a5 5 0 01-5 5H8a5 5 0 01-5-5V8a5 5 0 015-5h8zm-4 6a3 3 0 100 6 3 3 0 000-6zm4.5-2.5h.01"></path></svg>
+                </a>
+                <a data-social="linkedin" href="https://www.linkedin.com/company/celebso-venture/posts/?feedView=all" aria-label="LinkedIn" class="w-9 h-9 rounded-full border border-gray-800 flex items-center justify-center hover:border-brand transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>
+                </a>
+                <a href="#" aria-label="YouTube" class="w-9 h-9 rounded-full border border-gray-800 flex items-center justify-center hover:border-brand transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg>
+                </a>
+                <a href="#" aria-label="Heart" class="w-9 h-9 rounded-full border border-gray-800 flex items-center justify-center hover:border-brand transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                </a>
+            </div>
+
+            <div class="text-[11px] text-gray-500 pt-6 border-t border-gray-900">
+                © 2026 ANTELLAY Labs. All Rights Reserved. A Celebso Group Company.
+            </div>
+
+        </div>
+    </footer>
+
+<script>
+        (function () {
+            const grid = document.getElementById('articles-grid');
+            const featured = document.getElementById('featured-blog');
+            if (!grid) return;
+
+            function esc(str) {
+                const d = document.createElement('div');
+                d.textContent = str == null ? '' : String(str);
+                return d.innerHTML;
+            }
+
+            function formatDate(dateStr) {
+                if (!dateStr) return '';
+                const m = String(dateStr).match(/^(\d{4})-(\d{2})-(\d{2})/);
+                if (!m) return '';
+                const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                return months[parseInt(m[2], 10) - 1] + ' ' + parseInt(m[3], 10) + ', ' + m[1];
+            }
+
+            fetch((window.API_BASE || '') + '/api/blogs')
+                .then(function (r) { return r.json(); })
+                .then(function (blogs) {
+                    if (!Array.isArray(blogs) || !blogs.length) return;
+                    const published = blogs.filter(function (b) { return b.status === 'published' || !b.status; });
+                    if (!published.length) return;
+
+                    // Featured card = first blog
+                    if (featured) {
+                        const f = published[0];
+                        featured.querySelector('.featured-title').textContent = f.title || '';
+                        featured.querySelector('.featured-excerpt').textContent = f.excerpt || '';
+                        featured.querySelector('.meta-date').textContent = 'Ã¢â‚¬Â¢ ' + formatDate(f.created_at) + ' Ã¢â‚¬Â¢ 5 min read';
+                        const fImg = featured.querySelector('.featured-img-box img');
+                        if (fImg && f.image_url) fImg.setAttribute('src', f.image_url);
+                    }
+
+                    // Grid cards = remaining blogs
+                    var html = '';
+                    published.slice(1).forEach(function (b) {
+                        const img = b.image_url
+                            ? '<div class="card-img-wrapper"><img src="' + esc(b.image_url) + '" alt="' + esc(b.title) + '" loading="lazy"></div>'
+                            : '<div class="card-img-wrapper"></div>';
+                        html += '' +
+                            '<article class="article-card">' +
+                                img +
+                                '<div class="card-meta">INSIGHTS <span>' + formatDate(b.created_at) + ' Ã¢â‚¬Â¢ 5 min read</span></div>' +
+                                '<h3 class="card-title">' + esc(b.title) + '</h3>' +
+                                '<p class="card-excerpt">' + esc(b.excerpt || '') + '</p>' +
+                                '<a href="#" class="read-more">Read More &rarr;</a>' +
+                            '</article>';
+                    });
+                    grid.innerHTML = html;
+                })
+                .catch(function () { /* keep hardcoded fallback */ });
+        })();
+    </script>
+    <script>
+        (function () {
+            const toggle = document.getElementById('mobile-toggle');
+            const menu = document.getElementById('mobile-menu');
+            const iconMenu = document.getElementById('icon-menu');
+            const iconClose = document.getElementById('icon-close');
+            if (!toggle || !menu) return;
+            toggle.addEventListener('click', () => {
+                const open = menu.classList.toggle('hidden') === false;
+                if (iconMenu) iconMenu.classList.toggle('hidden', open);
+                if (iconClose) iconClose.classList.toggle('hidden', !open);
+            });
+        })();
+    </script>
+<script src="assets/js/settings.js"></script>
+</body>
+</html>

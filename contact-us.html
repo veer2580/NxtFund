@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NXTFund - Contact Us</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            red: '#FA4A23',
+                            lightRed: '#FFF5F2',
+                            dark: '#111827',
+                            gray: '#6B7280',
+                            lightGray: '#F9FAFB',
+                            border: '#E5E7EB'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html, body { overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; }
+
+        /* ===== Custom Animations ===== */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-150%); }
+            100% { transform: translateX(300%); }
+        }
+        @keyframes bounce-slow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .animate-float { animation: float 5s ease-in-out infinite; }
+        .animate-bounce-slow { animation: bounce-slow 2.5s ease-in-out infinite; }
+        .hover-lift {
+            transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s cubic-bezier(0.16,1,0.3,1);
+        }
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .btn-shine { position: relative; overflow: hidden; }
+        .btn-shine::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+            transform: translateX(-150%);
+            animation: shimmer 3s ease infinite;
+        }
+    </style>
+<script src="assets/js/api.js"></script>
+</head>
+<body class="bg-white text-gray-800 antialiased selection:bg-brand-red selection:text-white">
+
+    <nav class="relative flex items-center justify-between px-6 py-4 max-w-[1400px] mx-auto w-full bg-white">
+        <a href="index.html" class="cursor-pointer">
+            <img src="assets/images/logo/log1.png" alt="NXT Fund" class="h-16 w-auto object-contain">
+        </a>
+
+        <ul id="desktop-menu" class="hidden lg:flex items-center space-x-8 text-[15px] font-semibold text-gray-800">
+            <li class="cursor-pointer hover:text-[#F24E2B] transition pb-1"><a href="startups.html">Startups</a></li>
+            <li class="cursor-pointer hover:text-[#F24E2B] transition pb-1"><a href="investor-brief.html">Investors</a></li>
+            <li class="cursor-pointer hover:text-[#F24E2B] transition pb-1"><a href="partners.html">Partners</a></li>
+            <li class="cursor-pointer hover:text-[#F24E2B] transition pb-1"><a href="events.html">Events</a></li>
+            <li class="cursor-pointer hover:text-[#F24E2B] transition pb-1"><a href="blog-insights.html">News</a></li>
+            <li class="cursor-pointer hover:text-[#F24E2B] transition pb-1"><a href="gallery.html">Gallery</a></li>
+        </ul>
+
+        <div id="desktop-cta" class="hidden lg:flex items-center space-x-3">
+            <a href="yc/yc-application.html" class="btn-shine bg-[#F24E2B] text-white text-[15px] font-semibold py-2.5 px-6 rounded-md hover:bg-orange-600 transition">
+                Apply for Funding
+            </a>
+            </div>
+
+        <button id="mobile-toggle" aria-label="Toggle menu" class="lg:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand">
+            <svg id="icon-menu" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            <svg id="icon-close" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+
+        <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-lg z-50">
+            <ul class="flex flex-col p-4 space-y-2 text-[15px] font-semibold text-gray-800">
+                <li class="hover:text-brand transition"><a href="startups.html" class="block py-2">Startups</a></li>
+                <li class="hover:text-brand transition"><a href="investor-brief.html" class="block py-2">Investors</a></li>
+                <li class="hover:text-brand transition"><a href="partners.html" class="block py-2">Partners</a></li>
+                <li class="hover:text-brand transition"><a href="events.html" class="block py-2">Events</a></li>
+                <li class="hover:text-brand transition"><a href="blog-insights.html" class="block py-2">News</a></li>
+                <li class="hover:text-brand transition"><a href="gallery.html" class="block py-2">Gallery</a></li>
+                <li class="pt-2">
+                    <a href="yc/yc-application.html" class="block text-center bg-brand text-white font-semibold py-3 rounded-md hover:bg-orange-600 transition">Apply for Funding</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="bg-gradient-to-b from-brand-lightRed/60 via-brand-lightRed/30 to-white py-14 px-6 lg:px-12 relative overflow-hidden">
+        <div class="max-w-[1200px] mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="max-w-lg mb-8 md:mb-0" data-aos="fade-right">
+                <span class="text-brand-red font-bold text-xs tracking-wider uppercase mb-2 block">CONTACT US</span>
+                <h1 class="text-4xl lg:text-5xl font-extrabold text-brand-dark tracking-tight leading-tight mb-4">
+                    Let's Build the<br>Future <span class="text-brand-red">Together.</span>
+                </h1>
+                <p class="text-gray-600 text-sm md:text-base leading-relaxed">
+                    We're here to help you with funding, partnerships, queries and everything in between.
+                </p>
+            </div>
+            
+            <div class="relative w-full max-w-md h-48 flex items-center justify-center" data-aos="fade-left" data-aos-delay="150">
+                <div class="relative animate-float">
+                    <div class="w-48 h-32 bg-orange-100 border-2 border-brand-red/20 rounded-2xl rotate-[-6deg] p-4 flex flex-col justify-between shadow-lg relative bg-gradient-to-br from-orange-50 to-orange-100">
+                        <div class="w-full h-2 bg-white rounded"></div>
+                        <div class="w-2/3 h-2 bg-white rounded"></div>
+                        <div class="w-1/2 h-2 bg-white rounded"></div>
+                        <div class="self-end w-10 h-10 rounded-full bg-brand-red text-white flex items-center justify-center text-lg font-bold shadow">
+                            @
+                        </div>
+                    </div>
+                    <div class="absolute -top-10 -left-12 text-brand-red transform -rotate-12">
+                        <i class="fa-solid fa-paper-plane text-5xl text-brand-red"></i>
+                    </div>
+                    <svg class="absolute -top-6 -left-20 w-40 h-20 text-brand-red/40" fill="none" stroke="currentColor" stroke-dasharray="4 4" viewBox="0 0 100 50">
+                        <path d="M 0 50 Q 50 0 100 20" stroke-width="2"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-[1200px] mx-auto px-6 lg:px-12 -mt-4 mb-16">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <div class="lg:col-span-5 space-y-6">
+                <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow hover-lift" data-aos="fade-up" data-aos-delay="0">
+<div class="flex items-center justify-center mb-6 py-4 bg-brand-lightRed/40 rounded-xl">
+                        <img src="assets/images/pages/contact/ChatGPT Image Sep 1, 2026, 10_15_34 AM.png" alt="San Francisco" class="w-40 h-24 object-contain">
+                    </div>
+                    <h3 class="font-bold text-brand-red text-sm tracking-wide mb-4">SAN FRANCISCO, USA</h3>
+                    <div class="space-y-3 text-xs md:text-sm text-gray-600">
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-location-dot text-brand-red mt-1 mr-3 w-4 text-center"></i>
+                            <span>San Francisco, USA</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-phone text-brand-red mr-3 w-4 text-center"></i>
+                            <a href="tel:9784626443" class="hover:underline">9784626443</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow hover-lift" data-aos="fade-up" data-aos-delay="150">
+<div class="flex items-center justify-center mb-6 py-4 bg-brand-lightRed/40 rounded-xl">
+                        <img src="assets/images/pages/contact/ChatGPT Image Sep 1, 2026, 10_18_26 AM.png" alt="Jaipur Office" class="w-40 h-28 object-contain">
+                    </div>
+                    <h3 class="font-bold text-brand-red text-sm tracking-wide mb-4 leading-snug">
+                        CELEBSO STARTUP VALLEY<br>JAIPUR, LAL KOTHI<br>SIGNATURE TOWER,
+                    </h3>
+                    <div class="space-y-3 text-xs md:text-sm text-gray-600">
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-location-dot text-brand-red mt-1 mr-3 w-4 text-center"></i>
+                            <span>Celebso Startup Valley Jaipur, Lal Kothi, Signature Tower</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-phone text-brand-red mr-3 w-4 text-center"></i>
+                            <a href="tel:9784626443" class="hover:underline">9784626443</a>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa-regular fa-envelope text-brand-red mr-3 w-4 text-center"></i>
+                            <a href="mailto:Info.celebso@gmail.com" class="hover:underline">Info.celebso@gmail.com</a>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa-regular fa-envelope text-brand-red mr-3 w-4 text-center"></i>
+                            <a href="mailto:Startup.nxtfund@gmail.com" class="hover:underline">Startup.nxtfund@gmail.com</a>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa-solid fa-phone text-brand-red mr-3 w-4 text-center"></i>
+                            <a href="tel:9784626443" class="hover:underline">9784626443</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-7">
+                <div class="bg-white border border-gray-100 rounded-2xl p-6 lg:p-8 shadow-sm" data-aos="fade-left" data-aos-delay="100">
+                    <form class="space-y-5" onsubmit="event.preventDefault();">
+                        
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1">Full Name <span class="text-brand-red">*</span></label>
+                            <input type="text" placeholder="Enter your full name" class="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:border-brand-red bg-gray-50/50">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1">Company Email <span class="text-brand-red">*</span></label>
+                            <input type="email" placeholder="Enter your company email" class="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:border-brand-red bg-gray-50/50">
+                        </div>
+
+                        <div class="grid grid-cols-12 gap-3">
+                            <div class="col-span-4 lg:col-span-3">
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">Code <span class="text-brand-red">*</span></label>
+                                <select class="w-full px-3 py-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:border-brand-red bg-gray-50/50">
+                                    <option>+91</option>
+                                    <option>+1</option>
+                                    <option>+44</option>
+                                </select>
+                            </div>
+                            <div class="col-span-8 lg:col-span-9">
+                                <label class="block text-xs font-semibold text-gray-700 mb-1">Phone Number <span class="text-brand-red">*</span></label>
+                                <input type="tel" placeholder="Enter your phone number" class="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:border-brand-red bg-gray-50/50">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1">Company Name <span class="text-brand-red">*</span></label>
+                            <input type="text" placeholder="Enter your company name" class="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:border-brand-red bg-gray-50/50">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1">What Are You Looking For? <span class="text-brand-red">*</span></label>
+                            <select class="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm text-gray-500 focus:outline-none focus:border-brand-red bg-gray-50/50">
+                                <option value="">Tell us about your requirement</option>
+                                <option>Investment & Funding</option>
+                                <option>Partnerships</option>
+                                <option>General Enquiry</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1">Your Message <span class="text-brand-red">*</span></label>
+                            <textarea rows="4" placeholder="Type your message here..." class="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm focus:outline-none focus:border-brand-red bg-gray-50/50 resize-none"></textarea>
+                        </div>
+
+                        <div class="flex items-center space-x-2 pt-1">
+                            <input type="checkbox" id="nda" class="w-4 h-4 rounded text-brand-red focus:ring-brand-red border-gray-300">
+                            <label for="nda" class="text-xs text-gray-600 font-medium cursor-pointer">Yes, send me a Mutual NDA (Non-Disclosure Agreement)</label>
+                        </div>
+
+                        <div class="flex justify-end pt-2">
+                            <button type="submit" class="bg-brand-red text-white px-8 py-3 rounded-lg font-semibold text-sm hover:bg-red-600 transition-colors shadow-md shadow-red-200 flex items-center space-x-2">
+                                <span>Submit Now</span>
+                                <i class="fa-solid fa-paper-plane text-xs"></i>
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-8 bg-brand-lightRed/50 rounded-2xl p-4 lg:p-6 flex flex-col md:flex-row items-center justify-between text-xs md:text-sm text-gray-700 space-y-3 md:space-y-0">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-brand-red shadow-sm">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </div>
+                <span>Drop us a line at <a href="mailto:Startup.nxtfund@gmail.com" class="font-bold text-brand-red hover:underline">Startup.nxtfund@gmail.com</a></span>
+            </div>
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-brand-red shadow-sm">
+                    <i class="fa-solid fa-phone"></i>
+                </div>
+                <span><a href="tel:9784626443" class="font-bold text-brand-red hover:underline">9784626443</a></span>
+            </div>
+        </div>
+    </section>
+
+    <section class="max-w-[1200px] mx-auto px-6 lg:px-12 py-12">
+        <div class="flex items-center justify-between mb-8" data-aos="fade-up">
+            <div>
+                <span class="text-brand-red font-bold text-xs tracking-wider uppercase mb-1 block">FAQS</span>
+                <h2 class="text-2xl lg:text-3xl font-extrabold text-brand-dark">Frequently Asked Questions</h2>
+                <p class="text-xs text-gray-500 mt-1">Find quick answers to common questions about NXTFund.</p>
+            </div>
+            <a href="#" class="text-xs font-semibold text-brand-red hover:underline flex items-center">
+                Still have questions? Contact us <i class="fa-solid fa-arrow-right ml-1"></i>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            
+            <div class="border border-gray-100 rounded-xl bg-white shadow-sm hover:border-brand-red/30 transition-all">
+                <div class="p-4 flex items-center justify-between cursor-pointer faq-item">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-lightRed text-brand-red flex items-center justify-center text-xs shrink-0">
+                            <i class="fa-regular fa-circle-question"></i>
+                        </div>
+                        <span class="text-xs font-semibold text-gray-800">What is NXTFund?</span>
+                    </div>
+                    <i class="fa-solid fa-plus text-xs text-gray-400 faq-icon transition-transform duration-300"></i>
+                </div>
+                <div class="px-4 pb-0 max-h-0 overflow-hidden transition-all duration-300 faq-answer">
+                    <p class="text-xs text-gray-500 leading-relaxed py-3 border-t border-gray-100">NXTFund is an early-stage startup fund by Celebso Group. We invest up to ₹100 Crore, four times a year, in a select group of startups, providing funding, incubation, mentorship and an extensive investor network.</p>
+                </div>
+            </div>
+
+            <div class="border border-gray-100 rounded-xl bg-white shadow-sm hover:border-brand-red/30 transition-all">
+                <div class="p-4 flex items-center justify-between cursor-pointer faq-item">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-lightRed text-brand-red flex items-center justify-center text-xs shrink-0">
+                            <i class="fa-solid fa-building text-xs"></i>
+                        </div>
+                        <span class="text-xs font-semibold text-gray-800">What kind of startups does NXTFund invest in?</span>
+                    </div>
+                    <i class="fa-solid fa-plus text-xs text-gray-400 faq-icon transition-transform duration-300"></i>
+                </div>
+                <div class="px-4 pb-0 max-h-0 overflow-hidden transition-all duration-300 faq-answer">
+                    <p class="text-xs text-gray-500 leading-relaxed py-3 border-t border-gray-100">We invest in early-stage technology startups across sectors — SaaS, fintech, healthtech, agritech, consumer and more. We look for exceptional founders building ambitious, category-defining companies.</p>
+                </div>
+            </div>
+
+            <div class="border border-gray-100 rounded-xl bg-white shadow-sm hover:border-brand-red/30 transition-all">
+                <div class="p-4 flex items-center justify-between cursor-pointer faq-item">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-lightRed text-brand-red flex items-center justify-center text-xs shrink-0">
+                            <i class="fa-regular fa-user"></i>
+                        </div>
+                        <span class="text-xs font-semibold text-gray-800">Who can apply for funding?</span>
+                    </div>
+                    <i class="fa-solid fa-plus text-xs text-gray-400 faq-icon transition-transform duration-300"></i>
+                </div>
+                <div class="px-4 pb-0 max-h-0 overflow-hidden transition-all duration-300 faq-answer">
+                    <p class="text-xs text-gray-500 leading-relaxed py-3 border-t border-gray-100">Any early-stage founder building a technology-driven startup in India can apply. We welcome first-time founders, experienced entrepreneurs and teams from across the country.</p>
+                </div>
+            </div>
+
+            <div class="border border-gray-100 rounded-xl bg-white shadow-sm hover:border-brand-red/30 transition-all">
+                <div class="p-4 flex items-center justify-between cursor-pointer faq-item">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-lightRed text-brand-red flex items-center justify-center text-xs shrink-0">
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </div>
+                        <span class="text-xs font-semibold text-gray-800">Do you take equity in startups?</span>
+                    </div>
+                    <i class="fa-solid fa-plus text-xs text-gray-400 faq-icon transition-transform duration-300"></i>
+                </div>
+                <div class="px-4 pb-0 max-h-0 overflow-hidden transition-all duration-300 faq-answer">
+                    <p class="text-xs text-gray-500 leading-relaxed py-3 border-t border-gray-100">Yes, in exchange for funding we take a small equity stake in the startup. This aligns our interests and allows us to support your long-term growth and success.</p>
+                </div>
+            </div>
+
+            <div class="border border-gray-100 rounded-xl bg-white shadow-sm hover:border-brand-red/30 transition-all">
+                <div class="p-4 flex items-center justify-between cursor-pointer faq-item">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-lightRed text-brand-red flex items-center justify-center text-xs shrink-0">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <span class="text-xs font-semibold text-gray-800">What is the funding range?</span>
+                    </div>
+                    <i class="fa-solid fa-plus text-xs text-gray-400 faq-icon transition-transform duration-300"></i>
+                </div>
+                <div class="px-4 pb-0 max-h-0 overflow-hidden transition-all duration-300 faq-answer">
+                    <p class="text-xs text-gray-500 leading-relaxed py-3 border-t border-gray-100">We invest up to ₹100 Crore per batch, distributed across a select group of startups. The exact amount per startup depends on the stage, team and opportunity.</p>
+                </div>
+            </div>
+
+            <div class="border border-gray-100 rounded-xl bg-white shadow-sm hover:border-brand-red/30 transition-all">
+                <div class="p-4 flex items-center justify-between cursor-pointer faq-item">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-lightRed text-brand-red flex items-center justify-center text-xs shrink-0">
+                            <i class="fa-solid fa-credit-card"></i>
+                        </div>
+                        <span class="text-xs font-semibold text-gray-800">Is there an application fee?</span>
+                    </div>
+                    <i class="fa-solid fa-plus text-xs text-gray-400 faq-icon transition-transform duration-300"></i>
+                </div>
+                <div class="px-4 pb-0 max-h-0 overflow-hidden transition-all duration-300 faq-answer">
+                    <p class="text-xs text-gray-500 leading-relaxed py-3 border-t border-gray-100">No, applying to NXTFund is completely free. We never charge founders an application fee. The entire application and selection process is free of cost.</p>
+                </div>
+            </div>
+
+            <div class="border border-gray-100 rounded-xl bg-white shadow-sm hover:border-brand-red/30 transition-all">
+                <div class="p-4 flex items-center justify-between cursor-pointer faq-item">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-lightRed text-brand-red flex items-center justify-center text-xs shrink-0">
+                            <i class="fa-regular fa-clipboard"></i>
+                        </div>
+                        <span class="text-xs font-semibold text-gray-800">How does the selection process work?</span>
+                    </div>
+                    <i class="fa-solid fa-plus text-xs text-gray-400 faq-icon transition-transform duration-300"></i>
+                </div>
+                <div class="px-4 pb-0 max-h-0 overflow-hidden transition-all duration-300 faq-answer">
+                    <p class="text-xs text-gray-500 leading-relaxed py-3 border-t border-gray-100">Applications are reviewed by our team in stages — initial screening, video submission, founder meetings, and finally a pitch to our investor audience. Selected founders get funded and incubated at Celebso Startup Valley.</p>
+                </div>
+            </div>
+
+            <div class="border border-gray-100 rounded-xl bg-white shadow-sm hover:border-brand-red/30 transition-all">
+                <div class="p-4 flex items-center justify-between cursor-pointer faq-item">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-lightRed text-brand-red flex items-center justify-center text-xs shrink-0">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <span class="text-xs font-semibold text-gray-800">How can I track my application?</span>
+                    </div>
+                    <i class="fa-solid fa-plus text-xs text-gray-400 faq-icon transition-transform duration-300"></i>
+                </div>
+                <div class="px-4 pb-0 max-h-0 overflow-hidden transition-all duration-300 faq-answer">
+                    <p class="text-xs text-gray-500 leading-relaxed py-3 border-t border-gray-100">After applying, you will receive email updates at each stage of the process. You can also contact us at Startup.nxtfund@gmail.com for any updates regarding your application.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+        <footer class="bg-[#0B0E14] text-white pt-16 pb-10 px-6 mt-12 relative overflow-hidden bg-cover bg-center" style="background-image:url('assets/images/footer/footer-bg.png');">
+        <div class="absolute inset-0 bg-neutral-900/70"></div>
+        <div class="max-w-4xl mx-auto text-center space-y-8 relative z-10">
+
+            <div class="flex justify-center">
+<img src="assets/images/logo/footer-logo.png" alt="NXT Fund" class="h-24 w-auto object-contain">
+            </div>
+
+            <p class="text-xs font-medium text-gray-400 tracking-wide">
+                Connect. <span class="text-brand font-semibold">Create.</span> Grow.
+            </p>
+
+            <ul class="flex flex-wrap justify-center gap-x-6 gap-y-3 text-xs text-gray-300 font-medium">
+                <li><a href="terms-privacy.html" class="hover:text-brand transition">Terms & Privacy</a></li>
+                <li class="text-gray-500">•</li>
+                <li><a href="about.html" class="hover:text-brand transition">About Us</a></li>
+                <li class="text-gray-500">•</li>
+                <li><a href="contact-us.html" class="hover:text-brand transition">Contact Us</a></li>
+                <li class="text-gray-500">•</li>
+                <li><a href="partners.html" class="hover:text-brand transition">Become a Partner</a></li>
+                <li class="text-gray-500">•</li>
+            </ul>
+
+            <div class="flex items-center justify-center gap-2 text-xs text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span>Startup.nxtfund@gmail.com</span>
+            </div>
+
+            <div class="flex justify-center gap-4 pt-2">
+                <a href="https://www.instagram.com/thenxtfund?stkn=bnY0enhtZzdnY2o=" aria-label="Instagram" class="w-9 h-9 rounded-full border border-gray-800 flex items-center justify-center hover:border-brand transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 3a5 5 0 015 5v8a5 5 0 01-5 5H8a5 5 0 01-5-5V8a5 5 0 015-5h8zm-4 6a3 3 0 100 6 3 3 0 000-6zm4.5-2.5h.01"></path></svg>
+                </a>
+                <a href="https://www.linkedin.com/company/celebso-venture/posts/?feedView=all" aria-label="LinkedIn" class="w-9 h-9 rounded-full border border-gray-800 flex items-center justify-center hover:border-brand transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>
+                </a>
+                <a href="#" aria-label="YouTube" class="w-9 h-9 rounded-full border border-gray-800 flex items-center justify-center hover:border-brand transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg>
+                </a>
+                <a href="#" aria-label="Heart" class="w-9 h-9 rounded-full border border-gray-800 flex items-center justify-center hover:border-brand transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                </a>
+            </div>
+
+            <div class="text-[11px] text-gray-500 pt-6 border-t border-gray-900">
+                © 2026 ANTELLAY Labs. All Rights Reserved. A Celebso Group Company.
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 80
+        });
+
+        document.querySelectorAll('.faq-item').forEach(function (item) {
+            item.addEventListener('click', function () {
+                const card = item.parentElement;
+                const answer = card.querySelector('.faq-answer');
+                const icon = item.querySelector('.faq-icon');
+                const isOpen = card.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(function (other) {
+                    const otherCard = other.parentElement;
+                    otherCard.classList.remove('active');
+                    otherCard.querySelector('.faq-answer').style.maxHeight = null;
+                    otherCard.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+                });
+                if (!isOpen) {
+                    card.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                    icon.style.transform = 'rotate(45deg)';
+                }
+            });
+        });
+
+        (function () {
+            function showToast(message, type) {
+                var toast = document.createElement('div');
+                toast.style.cssText = 'position:fixed;top:24px;right:24px;z-index:9999;padding:14px 24px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.15);font-size:14px;font-weight:600;color:#fff;transition:all 0.35s cubic-bezier(0.16,1,0.3,1);transform:translateX(120%);opacity:0;' + (type === 'success' ? 'background:#16a34a;' : 'background:#dc2626;');
+                toast.textContent = message;
+                document.body.appendChild(toast);
+                requestAnimationFrame(function () {
+                    toast.style.transform = 'translateX(0)';
+                    toast.style.opacity = '1';
+                });
+                setTimeout(function () {
+                    toast.style.transform = 'translateX(120%)';
+                    toast.style.opacity = '0';
+                    setTimeout(function () { toast.remove(); }, 400);
+                }, 4000);
+            }
+
+            var form = document.querySelector('form');
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                var inputs = form.querySelectorAll('input[type="text"]');
+                var selects = form.querySelectorAll('select');
+
+                var name = inputs[0] ? inputs[0].value.trim() : '';
+                var email = form.querySelector('input[type="email"]') ? form.querySelector('input[type="email"]').value.trim() : '';
+                var subject = selects[1] ? selects[1].value.trim() : '';
+                var message = form.querySelector('textarea') ? form.querySelector('textarea').value.trim() : '';
+
+                if (!name || !email || !subject || !message) {
+                    showToast('Please fill in all required fields.', 'error');
+                    return;
+                }
+
+                try {
+                    var response = await fetch((window.API_BASE || '') + '/api/contacts/submit', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name: name, email: email, subject: subject, message: message })
+                    });
+
+                    if (!response.ok) throw new Error('Submission failed');
+
+                    showToast('Your message has been submitted successfully!', 'success');
+                    form.reset();
+                } catch (err) {
+                    showToast('Something went wrong. Please try again.', 'error');
+                }
+            });
+        })();
+    </script>
+<script>
+        (function () {
+            const toggle = document.getElementById('mobile-toggle');
+            const menu = document.getElementById('mobile-menu');
+            const iconMenu = document.getElementById('icon-menu');
+            const iconClose = document.getElementById('icon-close');
+            if (!toggle || !menu) return;
+            toggle.addEventListener('click', () => {
+                const open = menu.classList.toggle('hidden') === false;
+                if (iconMenu) iconMenu.classList.toggle('hidden', open);
+                if (iconClose) iconClose.classList.toggle('hidden', !open);
+            });
+        })();
+    </script>
+</body>
+</html>
