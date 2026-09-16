@@ -142,30 +142,30 @@ body{
   font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 a{text-decoration:none;color:inherit}
-.container{width:min(950px,calc(100% - 72px));margin:auto}
+.container{width:min(820px,calc(100% - 56px));margin:auto}
 .back{padding:20px 0 16px;color:#e0a32c;font-size:13px}
 .back:before{content:"←";font-size:20px;margin-right:10px;vertical-align:-2px}
-.hero-grid{display:grid;grid-template-columns:minmax(0,2fr) 312px;gap:0;align-items:start}
+.hero-grid{display:grid;grid-template-columns:minmax(0,2fr) 280px;gap:0;align-items:start}
 .hero-card{
-  min-height:555px;position:relative;border-radius:3px;overflow:hidden;
-  background:#0a0c0c url("founder-circle-hero.jpg") center/cover no-repeat;
+  min-height:460px;position:relative;border-radius:3px;overflow:hidden;
+  background:#0a0c0c url("assets/images/pages/demo day/ChatGPT Image Sep 16, 2026, 11_53_42 PM.png") center/contain no-repeat;
 }
 .hero-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.12) 55%,rgba(0,0,0,.72))}
 .hero-meta{
-  position:absolute;left:78px;right:78px;bottom:18px;z-index:2;
-  border:1px solid #a97820;border-radius:14px;background:rgba(8,9,9,.83);
-  display:flex;justify-content:center;gap:20px;padding:12px 16px;font-size:12px
+  position:absolute;left:48px;right:48px;bottom:14px;z-index:2;
+  border:1px solid #a97820;border-radius:12px;background:rgba(8,9,9,.85);
+  display:flex;justify-content:center;gap:14px;padding:10px 14px;font-size:11px
 }
 .hero-meta span{display:flex;gap:9px;align-items:center;white-space:nowrap}
 .icon{color:var(--gold);font-size:17px}
 .side{
   border:1px solid #303331;border-radius:12px;background:linear-gradient(145deg,#171a19,#0d0f0f);
-  padding:25px;margin-left:0;min-height:555px
+  padding:20px;margin-left:0;min-height:460px
 }
-.side h1{font-size:24px;line-height:1.25;margin:0 0 13px;font-weight:700}
-.gold-line{width:53px;height:2px;background:var(--gold);margin:16px 0 18px}
-.side p{font-size:13px;line-height:1.75;color:#e1e1dd;margin:0 0 24px}
-.details{border:1px solid #303332;border-radius:9px;padding:14px 16px}
+.side h1{font-size:20px;line-height:1.25;margin:0 0 10px;font-weight:700}
+.gold-line{width:46px;height:2px;background:var(--gold);margin:12px 0 14px}
+.side p{font-size:13px;line-height:1.75;color:#e1e1dd;margin:0 0 18px}
+.details{border:1px solid #303332;border-radius:9px;padding:12px 14px}
 .detail{display:flex;gap:14px;margin:10px 0;align-items:flex-start;font-size:13px;line-height:1.45}
 .detail .icon{width:21px}
 .verify{
@@ -174,46 +174,46 @@ a{text-decoration:none;color:inherit}
 }
 .cta{
   display:block;text-align:center;background:linear-gradient(#efb62f,#d99b1e);
-  color:#080909;border-radius:9px;padding:14px;margin-top:15px;font-weight:800;font-size:14px
+  color:#080909;border-radius:9px;padding:12px;margin-top:13px;font-weight:800;font-size:14px
 }
 .limited{text-align:center;color:#b7b7b1;font-size:11px;margin-top:12px}
-.section-grid{display:grid;grid-template-columns:1.32fr 1fr;gap:14px;margin-top:28px}
+.section-grid{display:grid;grid-template-columns:1.32fr 1fr;gap:12px;margin-top:22px}
 .panel{
   border:1px solid #292d2b;border-radius:11px;background:linear-gradient(145deg,#151817,#0c0e0e);
-  padding:23px
+  padding:18px
 }
-.panel p{color:#d2d2ce;font-size:12px;line-height:1.9;margin:0 0 23px}
+.panel p{color:#d2d2ce;font-size:12px;line-height:1.9;margin:0 0 18px}
 .panel h2{margin:0 0 20px;color:var(--gold);font-size:16px;letter-spacing:.2px}
 .expect{list-style:none;padding:0;margin:0}
 .expect li{display:flex;gap:13px;align-items:center;margin:15px 0;color:#d8d8d4;font-size:12px}
 .expect li .icon{width:22px;text-align:center}
-.bottom-grid{display:grid;grid-template-columns:365px 1fr;gap:14px;margin-top:18px}
+.bottom-grid{display:grid;grid-template-columns:320px 1fr;gap:12px;margin-top:16px}
 .contact h2,.venue h2{color:var(--gold);font-size:16px;margin:0 0 18px}
 .person{display:flex;align-items:center;gap:18px}
-.person img{width:78px;height:78px;border-radius:50%;object-fit:cover;border:1px solid #777}
+.person img{width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:50% 0%;border:1px solid #777}
 .person strong{font-size:16px}
 .contact-row{margin:9px 0;font-size:12px;color:#ddd;display:flex;gap:10px;align-items:center}
 hr{border:0;border-top:1px solid #77591f;margin:22px 0}
 .small{font-size:12px;color:#cfcfca;line-height:1.8}
 .contact .cta{margin-top:18px}
 .subnote{text-align:center;color:#bbb;font-size:11px;margin-top:11px}
-.venue-inner{display:grid;grid-template-columns:1fr 268px;gap:18px;align-items:center}
-.venue p{font-size:12px;color:#b9b9b4;line-height:1.7;margin:0 0 15px}
-.map{display:inline-block;border:1px solid #494844;border-radius:8px;padding:10px 14px;font-size:11px;color:#e4a52a}
-.venue img{width:100%;height:165px;object-fit:cover;border-radius:9px}
-.quote{margin-top:14px;display:flex;gap:20px;align-items:flex-start}
-.quote-mark{font-family:Georgia;font-size:64px;color:var(--gold);line-height:.7}
-.quote p{font-family:Georgia,serif;color:#eee;font-size:17px;line-height:1.35;margin:0}
+.venue-inner{display:grid;grid-template-columns:1fr 220px;gap:14px;align-items:center}
+.venue p{font-size:12px;color:#b9b9b4;line-height:1.7;margin:0 0 13px}
+.map{display:inline-block;border:1px solid #494844;border-radius:8px;padding:9px 13px;font-size:11px;color:#e4a52a}
+.venue img{width:100%;height:135px;object-fit:cover;border-radius:9px}
+.quote{margin-top:14px;display:flex;gap:14px;align-items:flex-start}
+.quote-mark{font-family:Georgia;font-size:46px;color:var(--gold);line-height:.7}
+.quote p{font-family:Georgia,serif;color:#eee;font-size:15px;line-height:1.4;margin:0}
 .quote .gold-line{margin:18px 0 0}
 @media(max-width:900px){
  .container{width:min(94%,950px)}
  .hero-grid{grid-template-columns:1fr}.side{margin-top:14px;min-height:auto}
- .hero-card{min-height:500px}.hero-meta{left:35px;right:35px}
+ .hero-card{min-height:400px}.hero-meta{left:35px;right:35px}
  .bottom-grid{grid-template-columns:1fr}.venue-inner{grid-template-columns:1fr}
 }
 @media(max-width:650px){
  .container{width:calc(100% - 28px)}
- .hero-card{min-height:440px}.hero-meta{left:12px;right:12px;gap:8px;flex-wrap:wrap;font-size:10px}
+ .hero-card{min-height:360px}.hero-meta{left:12px;right:12px;gap:8px;flex-wrap:wrap;font-size:10px}
  .section-grid{grid-template-columns:1fr}.panel{padding:18px}
  .venue img{height:180px}
 }
@@ -318,7 +318,7 @@ hr{border:0;border-top:1px solid #77591f;margin:22px 0}
     <div class="panel contact" id="request">
       <h2>CONTACT & REGISTRATION</h2>
       <div class="person">
-        <img src="veer-avatar.jpg" alt="Host">
+        <img src="assets/images/pages/about/ChatGPT Image Sep 1, 2026, 07_01_10 PM.png" alt="Host">
         <div>
           <strong>Veer Singh</strong>
           <div class="contact-row"><span class="icon">♧</span> <a href="gemini-code-1789578686772.html">9784626443</a></div>
@@ -340,7 +340,7 @@ hr{border:0;border-top:1px solid #77591f;margin:22px 0}
             <p>RIICO Institutional Area, Sitapura,<br>Jaipur, Rajasthan 302022</p>
             <a class="map" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Novotel+Jaipur+Convention+Centre">⌖ &nbsp; View on Map</a>
           </div>
-          <img src="novotel-jaipur.jpg" alt="Novotel Jaipur Convention Centre">
+          <img src="assets/images/pages/demo day/Screenshot 2026-09-16 235721.png" alt="Novotel Jaipur Convention Centre">
         </div>
       </div>
 
@@ -356,7 +356,7 @@ hr{border:0;border-top:1px solid #77591f;margin:22px 0}
 
   </main>
 
-    <footer class="max-w-7xl mx-auto px-6 pb-12 relative z-10 mt-[-20px]">
+    <footer class="max-w-7xl mx-auto px-6 pb-12 relative z-10 mt-10">
         <div class="bg-black text-white rounded-xl p-8 md:p-10 flex flex-col md:flex-row justify-between items-center md:items-stretch gap-8 shadow-2xl">
 
             <div class="flex-1 border-b md:border-b-0 md:border-r border-gray-700 pb-6 md:pb-0 md:pr-8 flex items-center">
