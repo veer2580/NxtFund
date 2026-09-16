@@ -90,14 +90,7 @@ async function seed() {
 
   if (await db.collection('partners').countDocuments() === 0) {
     const partners = [
-      { name: "Amazon Web Services", description: "Powering startups with secure, scalable and reliable cloud infrastructure.", category: "Corporate", website: "", logo_url: "https://logo.clearbit.com/aws.amazon.com" },
-      { name: "Microsoft", description: "Empowering startups with world-class technology and developer tools.", category: "Corporate", website: "", logo_url: "assets/images/pages/partners/ChatGPT Image Sep 1, 2026, 10_01_54 AM.png" },
-      { name: "Antler", description: "Backing early-stage founders and helping them build global companies.", category: "VCs", website: "", logo_url: "assets/images/pages/partners/ChatGPT Image Sep 1, 2026, 10_03_41 AM.png" },
-      { name: "Stripe", description: "Enabling startups to accept payments and manage revenue globally.", category: "Corporate", website: "", logo_url: "assets/images/pages/partners/ChatGPT Image Sep 1, 2026, 10_04_23 AM.png" },
-      { name: "HubSpot", description: "Helping startups grow better with CRM, marketing and automation tools.", category: "Corporate", website: "", logo_url: "assets/images/pages/partners/ChatGPT Image Sep 1, 2026, 10_07_02 AM.png" },
       { name: "Slack", description: "Bringing teams and tools together to build and ship faster.", category: "Corporate", website: "", logo_url: "assets/images/pages/partners/ChatGPT Image Sep 1, 2026, 10_08_53 AM.png" },
-      { name: "Amazon", description: "Supporting startups with scalable technology and digital infrastructure.", category: "Corporate", website: "", logo_url: "https://logo.clearbit.com/amazon.com" },
-      { name: "Google", description: "Helping startups build, scale and innovate with Google's technology ecosystem.", category: "Corporate", website: "", logo_url: "https://logo.clearbit.com/google.com" },
       { name: "Zoho", description: "Empowering startups with business software and productivity solutions.", category: "Corporate", website: "", logo_url: "assets/images/pages/partners/ChatGPT Image Sep 4, 2026, 12_12_03 PM.png" },
       { name: "WhatsApp", description: "Helping businesses connect with customers through messaging.", category: "Corporate", website: "", logo_url: "https://logo.clearbit.com/whatsapp.com" },
       { name: "AllEvents", description: "Connecting founders and communities through events and experiences.", category: "Accelerators", website: "", logo_url: "assets/images/pages/partners/ChatGPT Image Sep 4, 2026, 12_02_02 PM.png" },
@@ -105,7 +98,12 @@ async function seed() {
       { name: "Startup Chaupal", description: "Connecting founders, investors and ecosystem stakeholders.", category: "Accelerators", website: "", logo_url: "assets/images/pages/partners/ChatGPT Image Sep 4, 2026, 12_06_13 PM.png" },
       { name: "Marwari Catalysts", description: "Supporting high-potential startups through investment and mentorship.", category: "Advisors", website: "", logo_url: "assets/images/pages/partners/ChatGPT Image Sep 4, 2026, 12_08_09 PM.png" },
       { name: "iStart Rajasthan", description: "Supporting Rajasthan's startup ecosystem through incubation and mentorship.", category: "Accelerators", website: "", logo_url: "assets/images/pages/partners/ChatGPT Image Sep 4, 2026, 12_08_56 PM.png" },
-      { name: "Fluid Ventures", description: "Supporting emerging startups with capital and strategic guidance.", category: "VCs", website: "", logo_url: "assets/images/pages/partners/ChatGPT Image Sep 4, 2026, 12_04_21 PM.png" },
+      { name: "Fluid Ventures", description: "Supporting emerging startups with capital and strategic guidance.", category: "VCs", website: "", logo_url: "assets/images/pages/partners/WhatsApp Image 2026-09-16 at 1.21.11 PM.jpeg" },
+      { name: "Leads AI", description: "Get more leads & dominate your competition.", category: "Service", website: "", logo_url: "assets/images/pages/partners/WhatsApp Image 2026-09-13 at 9.33.06 PM.jpeg" },
+      { name: "Volimy", description: "Volimy is India's water supply management platform.", category: "Service", website: "", logo_url: "assets/images/pages/partners/WhatsApp Image 2026-09-13 at 9.33.10 PM.jpeg" },
+      { name: "Getgabs", description: "AI-based WhatsApp automation platform for marketing, sales CRM, and customer support.", category: "Service", website: "", logo_url: "assets/images/pages/partners/WhatsApp Image 2026-09-13 at 9.38.40 PM.jpeg" },
+      { name: "Scale", description: "Scale delivers proven data, evaluations, and outcomes to AI labs.", category: "Technology", website: "", logo_url: "assets/images/pages/partners/WhatsApp Image 2026-09-13 at 9.45.26 PM.jpeg" },
+      { name: "Markifid", description: "Markifid is India's full-service growth agency offering IT services.", category: "Service", website: "", logo_url: "assets/images/pages/partners/WhatsApp Image 2026-09-13 at 9.47.19 PM.jpeg" },
     ];
     for (const p of partners) await db.collection('partners').insertOne({ ...p, created_at: new Date() });
     console.log(`Seeded ${partners.length} partners`);
