@@ -1112,7 +1112,8 @@
 
     async function deleteItem(kind, id, successMsg) {
       try {
-        await api('/admin/' + kind + '/' + id, { method: 'DELETE' });
+        var path = (kind === 'contacts' || kind === 'applications' || kind === 'registrations') ? '/admin/' : '/admin/content/';
+        await api(path + kind + '/' + id, { method: 'DELETE' });
         showToast(successMsg, 'success');
         if (kind === 'contacts' || kind === 'applications' || kind === 'registrations') await loadAll();
         else {
