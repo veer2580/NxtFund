@@ -1,5 +1,6 @@
 const express = require('express');
 const { getDb, toId, serialize, serializeMany } = require('../database/setup');
+const { EVENT_DEFAULTS } = require('../database/events-data');
 const { authRequired, checkAdminPassword, changeAdminPassword } = require('./auth');
 
 const router = express.Router();
@@ -134,7 +135,7 @@ router.get('/content/:type', async (req, res) => {
     if (!CONTENT_TYPES.includes(type)) return res.status(400).json({ error: 'Invalid content type' });
     const db = await getDb();
     const filter = buildSearchFilter(req.query, CONTENT_SCHEMAS[type]);
-    const sortKey = type === 'events' ? { date: -1 } : { created_at: -1 };
+    const sortKey = type === 'events' ? { sort_order: 1, date: -1 } : { created_at: -1 };
     const items = await db.collection(type).find(filter).sort(sortKey).toArray();
     res.json(serializeMany(items));
   } catch (err) {
@@ -202,6 +203,20 @@ router.delete('/content/:type/:id', async (req, res) => {
     const r = await db.collection(type).deleteOne({ _id: toId(req.params.id) });
     if (!r.deletedCount) return res.status(404).json({ error: 'Not found' });
     res.json({ message: `${type.slice(0, -1)} deleted` });
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
+router.post('/content/events/reset', async (req, res) => {
+  try {
+    const db = await getDb();
+    await db.collection('events').deleteMany({});
+    for (const e of EVENT_DEFAULTS) {
+      await db.collection('events').insertOne({ ...e, updated_at: new Date() });
+    }
+    const items = await db.collection('events').find().sort({ sort_order: 1 }).toArray();
+    res.json({ message: `${items.length} default events restored`, items: serializeMany(items) });
   } catch (err) {
     res.status(500).json({ error: 'Server error' });
   }

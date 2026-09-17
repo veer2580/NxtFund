@@ -247,6 +247,7 @@
           </div>
           <div class="ml-auto flex flex-wrap items-center gap-2">
             <input type="search" data-csearch="events" placeholder="Search..." class="form-input !w-48">
+            <button data-reset="events" class="text-sm font-bold px-4 py-2.5 rounded-lg bg-gray-700 hover:bg-gray-800 text-white transition">Reset to Default Events</button>
             <button data-add="events" class="text-sm font-bold px-4 py-2.5 rounded-lg bg-[#F24E2B] hover:bg-[#d94020] text-white transition">+ Add Event</button>
           </div>
         </div>
@@ -483,7 +484,7 @@
         fields: [
           { key: 'title', label: 'Title', type: 'text', required: true, full: true },
           { key: 'description', label: 'Description', type: 'textarea', full: true },
-          { key: 'date', label: 'Date', type: 'date' },
+          { key: 'date', label: 'Date', type: 'text' },
           { key: 'time', label: 'Time (e.g. 10:00 AM)', type: 'text' },
           { key: 'location', label: 'Location', type: 'text' },
           { key: 'type', label: 'Type', type: 'select', options: ['upcoming', 'past'] },
@@ -1091,6 +1092,20 @@
 
     document.querySelectorAll('[data-add]').forEach(function (btn) {
       btn.addEventListener('click', function () { openFormModal(btn.getAttribute('data-add'), null); });
+    });
+
+    document.querySelectorAll('[data-reset]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        confirmDialog('Replace all events with the default events (Celebso Founders Circle, Celebrity Fashion Show, past meetups, etc.)?', async function () {
+          try {
+            var data = await api('/admin/content/events/reset', { method: 'POST', body: '{}' });
+            state.content.events = data.items || [];
+            renderContent('events');
+            renderOverview();
+            showToast(data.message || 'Default events restored', 'success');
+          } catch (err) { showToast(err.message, 'error'); }
+        });
+      });
     });
     document.querySelectorAll('[data-close-form]').forEach(function (b) {
       b.addEventListener('click', function () { formModal.classList.add('hidden'); });

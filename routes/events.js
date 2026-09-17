@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
     const db = await getDb();
     const filter = {};
     if (type && type !== 'all') filter.type = type;
-    const events = await db.collection('events').find(filter).sort({ date: -1 }).toArray();
+    const events = await db.collection('events').find(filter).sort({ sort_order: 1, date: -1 }).toArray();
     res.json(serializeMany(events));
   } catch (err) {
     res.status(500).json({ error: 'Server error' });

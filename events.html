@@ -1007,13 +1007,17 @@
 
             function buildCard(ev, index, isPast) {
                 let month = '', day = '', year = '';
-                if (ev.date) {
+                if (ev.date && String(ev.date) !== 'TBA') {
                     const parts = String(ev.date).split('-');
                     if (parts.length === 3) {
                         year = parts[0];
                         month = MONTHS[parseInt(parts[1], 10) - 1] || '';
                         day = String(parseInt(parts[2], 10));
                     }
+                } else {
+                    month = 'TBA';
+                    day = '--';
+                    year = ev.year || '';
                 }
                 const location = ev.location || '';
                 const demoHref = (ev.title && ev.title.indexOf('Demo Day') > -1) ? 'celebso-founders-circle.html' : null;
@@ -1023,7 +1027,7 @@
                     ? '<span class="btn disabled">Completed</span>'
                     : (evHref
                         ? '<a href="' + esc(evHref) + '" target="_blank" rel="noopener" class="btn">Register Now</a>'
-                        : '<button class="btn">Register Now</button>');
+                        : '<button class="btn disabled">Coming Soon</button>');
                 const delay = (index % 7) * 100;
                 return '' +
                     '<div class="event-card hover-lift" data-aos="fade-up" data-aos-delay="' + delay + '">' +

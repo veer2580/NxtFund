@@ -1,5 +1,6 @@
 require('dotenv').config();
 const { getDb } = require('./setup');
+const { EVENT_DEFAULTS } = require('./events-data');
 
 async function seed() {
   const db = await getDb();
@@ -35,15 +36,8 @@ async function seed() {
   }
 
   if (await db.collection('events').countDocuments() === 0) {
-    const events = [
-      { title: "NXTFund Founder Meetup - Bengaluru", description: "An exclusive meetup for founders and investors to connect and collaborate.", date: "2026-08-20", time: "10:00 AM", location: "Bengaluru, India", type: "upcoming", image_url: "" },
-      { title: "Webinar: Raising Capital in 2026", description: "Expert panel on fundraising trends, investor expectations and smarter pitches.", date: "2026-09-05", time: "4:00 PM", location: "Online", type: "upcoming", image_url: "" },
-      { title: "NXTFund Demo Day", description: "Top startups pitch to investors and ecosystem partners.", date: "2026-09-18", time: "11:00 AM", location: "Mumbai, India", type: "upcoming", image_url: "", link: "celebso-founders-circle.html" },
-      { title: "Startup Weekend Jaipur", description: "54-hour event where aspiring entrepreneurs pitch, build and launch startups.", date: "2026-06-15", time: "9:00 AM", location: "Jaipur, India", type: "past", image_url: "" },
-      { title: "AI in Startup Ecosystem Webinar", description: "Exploring how artificial intelligence is reshaping startup strategies and operations.", date: "2026-05-20", time: "3:00 PM", location: "Online", type: "past", image_url: "" },
-    ];
-    for (const e of events) await db.collection('events').insertOne({ ...e, created_at: new Date() });
-    console.log(`Seeded ${events.length} events`);
+    for (const e of EVENT_DEFAULTS) await db.collection('events').insertOne({ ...e, created_at: new Date() });
+    console.log(`Seeded ${EVENT_DEFAULTS.length} events`);
   }
 
   if (await db.collection('blogs').countDocuments() === 0) {
