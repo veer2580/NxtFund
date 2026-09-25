@@ -28,7 +28,9 @@ nxtfund/
 ├── admin.html              # Admin panel (password login) — served at /admin
 ├── about.html              # About us
 ├── startups.html           # Startups section
-├── investor-brief.html     # Investors / Advisors & Partners
+├── investor-brief.html     # Mentors — advisors & partners network
+├── investors.html          # Global Investor Brief
+├── due-diligence.html      # Due Diligence — 7 key evaluation areas + process + data room
 ├── partners.html           # Partners section
 ├── events.html             # Events section
 ├── blog-insights.html      # News / Blog insights
@@ -72,6 +74,26 @@ nxtfund/
     │   └── pages/<section>/    # Page-specific images per section
     └── uploads/                # Multer file uploads (gitignored)
 ```
+
+---
+
+## Site Navigation
+
+The navbar is identical across every marketing page (`index.html`, section pages and all `yc/` wizard pages):
+
+`Startups · Mentors · Investors · Partners · Events · Due Diligence · Gallery` + **Apply for Funding** CTA (links to `yc/yc-application.html`), with a hamburger dropdown on mobile.
+
+The footer (dark, `assets/images/footer/footer-bg.png`) carries the secondary links:
+
+`Terms & Privacy · About Us · News · Contact Us · Become a Partner`
+
+Page-to-page notes:
+
+- `Mentors` → `investor-brief.html` (World-Class Mentors network)
+- `Investors` → `investors.html` (Global Investor Brief)
+- `Due Diligence` → `due-diligence.html` — a standalone, full-width page covering the 7 evaluation areas (Founder & Team, Business & Market, Product & Technology, Traction & Customers, Financial Due Diligence, Legal & Compliance, Investment Readiness), the 7-step due diligence process, and the secure data room document list. It reuses the site navbar/footer and is purely static (no API dependency).
+- `News` is no longer in the navbar — it lives in the footer on all pages.
+- `yc/` pages use `../` relative paths for all of the above.
 
 ---
 
